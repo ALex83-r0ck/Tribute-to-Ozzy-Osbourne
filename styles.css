@@ -1,0 +1,383 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #1a1a1a;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    overflow-x: hidden;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('images/ozzy-osbourne-on-stage.png');
+    background-attachment: unset;
+    background-size: cover;
+}
+
+body.light-mode {
+    background-color: #fff;
+    color: #000;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url('images/OIP (1).jpg');
+}
+
+body.headbang-mode {
+    animation: shake 0.5s infinite;
+}
+
+#flameCanvas, #spotlightCanvas, #smokeCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.3;
+}
+
+nav {
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2em;
+    text-transform: uppercase;
+}
+
+nav ul li a:hover {
+    color: #ff0000;
+}
+
+body.light-mode nav {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+body.light-mode nav ul li a {
+    color: #000;
+}
+
+body.light-mode nav ul li a:hover {
+    color: #333;
+}
+
+header {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-bottom: 5px solid #ff0000;
+    position: relative;
+    z-index: 1;
+}
+
+body.light-mode header {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-bottom: 5px solid #000;
+}
+
+h1 {
+    font-size: 3em;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-shadow: 3px 3px 6px #ff0000;
+}
+
+body.light-mode h1 {
+    text-shadow: 3px 3px 6px #000;
+}
+
+.button-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.hanging-button {
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 10px;
+    transform: rotate(-5deg); /* Schräge Position wie hängende Zettel */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s;
+}
+
+.hanging-button:hover {
+    transform: rotate(5deg);
+}
+
+body.light-mode .hanging-button {
+    background-color: #000;
+    color: #fff;
+}
+
+body.light-mode .hanging-button:hover {
+    background-color: #333;
+}
+
+#hero {
+    padding: 30px;
+    position: relative;
+    z-index: 1;
+}
+
+#gallery {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+}
+
+#imageContainer {
+    position: absolute;
+    display: flex;
+    width: 100%;
+}
+
+.galleryImage {
+    width: 300px;
+    height: 300px;
+    margin: 0 20px;
+    border: 5px solid #ff0000;
+    border-radius: 15px;
+    opacity: 0.7;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+body.light-mode .galleryImage {
+    border-color: #000;
+}
+
+.galleryImage:nth-child(1) { animation: bounceLeft 6s infinite ease-in-out; }
+.galleryImage:nth-child(2) { animation: bounceRight 6s infinite ease-in-out; }
+.galleryImage:nth-child(3) { animation: bounceCenter 6s infinite ease-in-out; }
+.galleryImage:nth-child(4) { animation: bounceLeft 6s infinite ease-in-out; }
+.galleryImage:nth-child(5) { animation: bounceRight 6s infinite ease-in-out; }
+.galleryImage:nth-child(6) { animation: bounceCenter 6s infinite ease-in-out; }
+.galleryImage:nth-child(7) { animation: bounceLeft 6s infinite ease-in-out; }
+
+.galleryImage.active {
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+#quote {
+    font-size: 1.8em;
+    font-style: italic;
+    margin: 20px 0;
+    min-height: 60px;
+    opacity: 0;
+    transform: scale(0.5);
+    animation: popUp 0.5s ease forwards, blink 1s ease;
+}
+
+@keyframes blink {
+    0%, 100% { color: #fff; text-shadow: 3px 3px 6px #ff0000; }
+    50% { color: #00ff00; text-shadow: 3px 3px 6px #00ff00; }
+}
+
+body.light-mode #quote {
+    animation: popUp 0.5s ease forwards, blinkLight 1s ease;
+}
+
+@keyframes blinkLight {
+    0%, 100% { color: #000; text-shadow: 3px 3px 6px #000; }
+    50% { color: #ff00ff; text-shadow: 3px 3px 6px #ff00ff; }
+}
+
+#quoteButton, #startButton, #showHighscore {
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1.2em;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 10px;
+    transition: transform 0.2s, background-color 0.3s;
+    animation: pulse 1.5s infinite;
+}
+
+body.light-mode #quoteButton, body.light-mode #startButton, body.light-mode #showHighscore {
+    background-color: #000;
+    color: #fff;
+}
+
+#quoteButton:hover, #startButton:hover, #showHighscore:hover {
+    background-color: #cc0000;
+    transform: scale(1.1);
+}
+
+body.light-mode #quoteButton:hover, body.light-mode #startButton:hover, body.light-mode #showHighscore:hover {
+    background-color: #333;
+}
+
+#spriteContainer {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+#ozzySprite {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    animation: halfCirclePath 10s infinite ease-in-out;
+    opacity: 0; /* Initial unsichtbar, JS steuert Sichtbarkeit */
+}
+
+@keyframes halfCirclePath {
+    0% { top: -100px; left: 50%; transform: translateX(-50%); opacity: 1; }
+    50% { top: 50%; left: 100%; transform: translateX(-100%) rotate(180deg); opacity: 1; }
+    100% { top: 100%; left: 50%; transform: translateX(-50%); opacity: 0; }
+}
+
+#quiz {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    position: relative;
+    z-index: 1;
+}
+
+body.light-mode #quiz {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+#quizQuestion {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    display: none;
+}
+
+#quizOptions {
+    display: none;
+}
+
+#quizResult {
+    font-size: 1.2em;
+    margin-top: 10px;
+}
+
+#quizScore {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+#highscore {
+    margin-top: 20px;
+}
+
+#highscoreList {
+    list-style: none;
+    padding: 0;
+}
+
+#highscoreList li {
+    font-size: 1.1em;
+    margin: 5px 0;
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1em;
+    color: #ede7e7;
+    animation: popUp 0.5s ease forwards;
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes bounceLeft {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(-200px); }
+    100% { transform: translateX(0); }
+}
+
+@keyframes bounceRight {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(200px); }
+    100% { transform: translateX(0); }
+}
+
+@keyframes bounceCenter {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(100px) scale(0.8); }
+    100% { transform: translateX(0); }
+}
+
+@keyframes popUp {
+    0% { opacity: 0; transform: scale(0.5); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    50% { transform: translateX(10px); }
+    75% { transform: translateX(-10px); }
+    100% { transform: translateX(0); }
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2em;
+    }
+    .galleryImage {
+        width: 200px;
+        height: 200px;
+    }
+    #quote {
+        font-size: 1.4em;
+    }
+    #quizQuestion {
+        font-size: 1.2em;
+    }
+    .quizOption {
+        font-size: 1em;
+        padding: 8px 16px;
+    }
+    #ozzySprite {
+        width: 80px;
+        height: 80px;
+    }
+    @keyframes bounceLeft {
+        0% { transform: translateX(0); }
+        50% { transform: translateX(-100px); }
+        100% { transform: translateX(0); }
+    }
+    @keyframes bounceRight {
+        0% { transform: translateX(0); }
+        50% { transform: translateX(100px); }
+        100% { transform: translateX(0); }
+    }
+    @keyframes bounceCenter {
+        0% { transform: translateX(0); }
+        50% { transform: translateX(50px) scale(0.8); }
+        100% { transform: translateX(0); }
+    }
+}

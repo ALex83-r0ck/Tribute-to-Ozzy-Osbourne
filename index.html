@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ozzy R.I.P 🤘🏻</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark-mode">
+    <canvas id="flameCanvas"></canvas>
+    <canvas id="spotlightCanvas"></canvas>
+    <canvas id="fireworkCanvas"></canvas>
+    <canvas id="smokeCanvas"></canvas>
+    <nav>
+        <ul>
+            <li><a href="#gallery">Galerie</a></li>
+            <li><a href="#quote">Zitat</a></li>
+            <li><a href="#quiz">Quiz</a></li>
+            <li><a href="#headbang">Headbang</a></li>
+            <li><a href="#highscore">Highscore</a></li>
+            <li><a href="concert.html">Letztes Konzert & Beerdingung</a></li>
+        </ul>
+    </nav>
+    <header>
+        <h1>🤘🏻 Ozzy The Fucking Prince of Darkness 🤘🏻</h1>
+        <div id="buttonContainer">
+            <button id="themeToggle">Light Mode</button>
+            <button id="discoToggle">Disco Mode: Off</button>
+            <button id="headbangToggle">Headbang: Off</button>
+        </div>
+    </header>
+    <main>
+        <section id="hero">
+            <div id="gallery">
+                <div id="imageContainer">
+                    <img class="galleryImage" src="images/1407501.jpg" alt="Ozzy Osbourne">
+                    <img class="galleryImage" src="images/OIP (1).jpg" alt="Ozzy Osbourne">
+                    <img class="galleryImage" src="images/OIP (1).webp" alt="Ozzy Osbourne">
+                    <img class="galleryImage" src="images/OIP (2).jpg" alt="Ozzy Osbourne">
+                    <img class="galleryImage" src="images/OIP (3).jpg" alt="Ozzy Osbourne">
+                    <img class="galleryImage" src="images/OIP (4).jpg" alt="Ozzy Osbourne">
+                    <img class="galleryImage" src="images/OIP (5).webp" alt="Ozzy Osbourne">
+                </div>
+            </div>
+            <p id="quote">Klick für ein Ozzy-Zitat!</p>
+            <button id="quoteButton">Zitat</button>
+            <audio id="quoteSound" src="sound/Voicy_Fucking crap It disappears.mp3"></audio>
+            <audio id="crowdSound" src="sound/Voicy_It's a fucking stamp.mp3"></audio>
+            <div id="spriteContainer">
+                <img id="ozzySprite" src="gif/91184.gif" alt="Ozzy Sprite">
+            </div>
+            <div id="quiz">
+                <h2>Ozzy-Fakten-Quiz</h2>
+                <input type="text" id="playerName" placeholder="Dein Name" maxlength="20">
+                <button id="startButton">Start</button>
+                <p id="quizQuestion"></p>
+                <div id="quizOptions"></div>
+                <p id="quizResult"></p>
+                <p id="quizScore">Punkte: 0</p>
+                <button id="highscoreToggle">Highscore Anzeigen</button>
+                <div id="highscore" style="display: none;">
+                    <h3>Highscore</h3>
+                    <ul id="highscoreList"></ul>
+                </div>
+            </div>
+            <div id="headbang"></div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Alexander Rothe</p>
+    </footer>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="script.js"></script>
+</body>
+</html>
