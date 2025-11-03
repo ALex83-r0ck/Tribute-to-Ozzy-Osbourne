@@ -94,3 +94,26 @@ footer {
     pointer-events: none;
     z-index: 5;
 }
+
+.easter-egg-input {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.easter-egg-input input {
+    padding: 8px;
+    border: 1px solid #666;
+    border-radius: 6px;
+    background: #111;
+    color: #fff;
+}
+
+.easter-egg-input button {
+    padding: 8px 16px;
+    background: #333;
+    color: #fff;
+    border: 1px solid #666;
+    border-radius: 6px;
+}

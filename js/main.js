@@ -99,6 +99,8 @@ function playRandomOzzy() {
 
 // Starte alle 25–45 Sekunden
 setInterval(() => {
+    if (quoteActive || isPlaying) return;
+
     if (Math.random() > 0.6) playRandomOzzy();
 }, 30000);
 
@@ -109,11 +111,19 @@ setTimeout(playRandomOzzy, 6000);
 let konami = "";
 document.addEventListener("keydown", (e) => {
     konami += e.key.toLowerCase();
-    if (konami.slice(-11) === "ozzyozzyozzy") {
+    if (konami.slice(-11) === "ozzy") {
         triggerNoMoreTears();
         konami = "";
     }
     if (konami.length > 20) konami = konami.slice(-20);
+});
+
+document.getElementById("easterSubmit")?.addEventListener("click", () => {
+    const input = document.getElementById("easterInput").value.toLowerCase();
+    if (input === "ozzyozzyozzy") {
+        triggerNoMoreTears();
+        document.getElementById("easterInput").value = "";
+    }
 });
 
 function triggerNoMoreTears() {
@@ -141,3 +151,10 @@ function triggerNoMoreTears() {
         alert("NO MORE TEARS! Secret gefunden! 🤘");
     }, 5000);
 }
+
+// Quote Button
+let quoteActive = false;
+quoteButton?.addEventListener("click", () => {
+    quoteActive = true;
+    setTimeout(() => { quoteActive = false; }, 3000);
+});

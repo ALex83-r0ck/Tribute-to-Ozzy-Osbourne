@@ -48,7 +48,11 @@
     z-index: 10;
 }
 
-
+.disco-mode .galleryImage {
+    animation: discoPulse 1.5s infinite !important;
+    filter: brightness(1.3) !important;
+    mix-blend-mode: normal !important;
+}
 
 /* Staggered Animation  */
 .galleryImage:nth-child(1) { animation-delay: 0.1s; }
