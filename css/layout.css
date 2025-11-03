@@ -1,0 +1,13 @@
+/* css/layout.css */
+header, nav {
+    transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+nav ul li a:hover {
+    color: var(--color-accent-light);
+    text-shadow: 0 0 10px var(--color-accent-light);
+}
+
+#highscore {
+    display: none;
+}

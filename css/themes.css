@@ -1,0 +1,84 @@
+/* css/themes.css */
+body {
+    margin: 0;
+    font-family: var(--font-main);
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-dark);
+    text-align: center;
+    position: relative;
+    overflow-x: hidden;
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.7),
+        rgba(0, 0, 0, 0.7)
+    ), url(../assets/images/ozzy-osbourne-on-stage.png);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: inherit;
+    transition: background-color var(--transition-speed),
+                color var(--transition-speed),
+                background-image var(--transition-speed);
+}
+
+/* Light Mode*/
+body.light-mode {
+    background: #1a1a1a;
+    color: #ddd;
+    background-image: 
+        linear-gradient(rgba(26,26,26,0.9), rgba(26,26,26,0.95)),
+        url('../assets/images/OIP\\ \(5\\).webp') !important;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+body.light-mode h1, body.light-mode h2 {
+    color: #ff3333;
+    text-shadow: 0 0 10px #ff0000;
+}
+
+body.light-mode button {
+    background: #333;
+    color: #fff;
+    border: 2px solid #ff0000;
+}
+
+body.light-mode a {
+    color: #ff3333;
+}
+
+/* Buttonsm, Links usw. */
+button, a {
+    transition: 
+        background-color var(--transition-speed),
+        color var(--transition-speed),
+        transform var(--transition-speed);
+}
+
+/* Disco Mode */
+
+.disco-mode {
+    animation: discoBody 4s infinite;
+}
+
+@keyframes discoBody {
+    0%, 100% { filter: hue-rotate(0deg); }
+    50% { filter: hue-rotate(180deg); }
+}
+
+.disco-mode .galleryImage {
+    animation: discoPulse 1.2s infinite;
+}
+
+.disco-mode h1, .disco-mode h2 {
+    text-shadow: 0 0 20px var(--color-accent-dark), 0 0 40px var(--color-accent-dark);
+}
+
+/* Headbanger Mode */
+.headbang-mode {
+    animation: headbangShake 0.2s infinite;
+}
+
+@keyframes headbangShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-8px) rotate(-2deg); }
+    75% { transform: translateX(8px) rotate(2deg); }
+}

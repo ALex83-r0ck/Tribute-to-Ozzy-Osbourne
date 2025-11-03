@@ -1,0 +1,21 @@
+/* css/base.css */
+:root {
+    /* Dark Theme Farben */
+    --color-bg-dark: #1a1a1a;
+    --color-text-dark: #ffffff;
+    --color-accent-dark: #ff0000;
+
+    /* Light Theme Farben */
+    --color-bg-light: #ffffff;
+    --color-text-light: #000000;
+    --color-accent-light: #333333;
+
+    /* Allegemein */
+    --transition-speed: 0.4s;
+    --font-main: 'Arial', sans-serif;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}

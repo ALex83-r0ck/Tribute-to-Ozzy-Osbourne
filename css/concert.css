@@ -1,0 +1,80 @@
+/* css/concert.css */
+@import url('base.css');
+@import url('themes.css');
+@import url('layout.css');
+
+body {
+    background: var(--color-bg-dark);
+    color: var(--color-text-dark);
+    font-family: var(--font-main);
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.85),
+        rgba(0, 0, 0, 0.85)
+    ), url('../images/ozzy-memorial-bg.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+header {
+    background-color: rgba(0, 0, 0, 0.85);
+    padding: 20px;
+    border-bottom: 3px solid var(--color-accent-dark);
+}
+
+header h1 {
+    font-size: 2em;
+    margin: 0;
+    color: var(--color-accent-dark);
+    text-shadow: 2px 2px 10px red;
+}
+
+header a {
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--color-text-dark);
+    text-decoration: none;
+    border: 2px solid var(--color-accent-dark);
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+header a:hover {
+    background-color: var(--color-accent-dark);
+    color: #fff;
+    transform: scale(1.05);
+}
+
+main {
+    padding: 40px 20px;
+}
+
+section {
+    margin-bottom: 50px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px var(--color-accent-dark);
+}
+
+h2 {
+    font-size: 1.5em;
+    color: var(--color-accent-dark);
+    margin-bottom: 20px;
+}
+
+iframe {
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+}
+
+footer {
+    background-color: rgba(0, 0, 0, 0.85);
+    padding: 10px;
+    border-top: 3px solid var(--color-accent-dark);
+    font-size: 0.9em;
+}

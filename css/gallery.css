@@ -1,0 +1,68 @@
+#gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 30px 15px;
+    max-width: 1300px;
+    margin: 0 auto;
+    opacity: 0;
+    animation: fadeInGallery 1.2s ease-out forwards;
+    animation-delay: 0.3s;
+}
+
+@keyframes fadeInGallery {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.galleryImage {
+    width: 230px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+    animation: popIn 0.6s ease-out forwards;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.galleryImage::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(255,0,0,0.3));
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.galleryImage:hover::after {
+    opacity: 1;
+}
+
+.galleryImage:hover {
+    transform: scale(1.1) translateY(-10px);
+    box-shadow: 0 20px 40px rgba(255, 0, 0, 0.6), 0 0 30px rgba(255, 0, 0, 0.5);
+    z-index: 10;
+}
+
+/* Staggered Animation */
+.galleryImage:nth-child(1) { animation-delay: 0.1s; }
+.galleryImage:nth-child(2) { animation-delay: 0.2s; }
+.galleryImage:nth-child(3) { animation-delay: 0.3s; }
+.galleryImage:nth-child(4) { animation-delay: 0.4s; }
+.galleryImage:nth-child(5) { animation-delay: 0.5s; }
+.galleryImage:nth-child(6) { animation-delay: 0.6s; }
+.galleryImage:nth-child(7) { animation-delay: 0.7s; }
+
+@keyframes popIn {
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}

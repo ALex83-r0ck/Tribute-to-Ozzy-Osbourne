@@ -1,75 +1,103 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="Interaktive Homage an Ozzy Osbourne - Galerie, Quiz,Headbang, Disco & Geister-Sprite! 🤘">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ozzy R.I.P 🤘🏻</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body class="dark-mode">
-    <canvas id="flameCanvas"></canvas>
-    <canvas id="spotlightCanvas"></canvas>
-    <canvas id="fireworkCanvas"></canvas>
-    <canvas id="smokeCanvas"></canvas>
-    <nav>
-        <ul>
-            <li><a href="#gallery">Galerie</a></li>
-            <li><a href="#quote">Zitat</a></li>
-            <li><a href="#quiz">Quiz</a></li>
-            <li><a href="#headbang">Headbang</a></li>
-            <li><a href="#highscore">Highscore</a></li>
-            <li><a href="concert.html">Letztes Konzert & Beerdingung</a></li>
-        </ul>
-    </nav>
+
+    <!-- Header -->
     <header>
-        <h1>🤘🏻 Ozzy The Fucking Prince of Darkness 🤘🏻</h1>
+        <h1>🤘🏻 Ozzy The Prince of Darkness 🤘🏻</h1>
         <div id="buttonContainer">
             <button id="themeToggle">Light Mode</button>
             <button id="discoToggle">Disco Mode: Off</button>
             <button id="headbangToggle">Headbang: Off</button>
         </div>
+        <!-- Navigation -->
+        <nav>
+            <a href="#gallerySection">Galerie</a>
+            <a href="#quoteSection">Zitat</a>
+            <a href="#headbangSection">Headbang</a>     
+        </nav>
     </header>
-    <main>
-        <section id="hero">
-            <div id="gallery">
-                <div id="imageContainer">
-                    <img class="galleryImage" src="images/1407501.jpg" alt="Ozzy Osbourne">
-                    <img class="galleryImage" src="images/OIP (1).jpg" alt="Ozzy Osbourne">
-                    <img class="galleryImage" src="images/OIP (1).webp" alt="Ozzy Osbourne">
-                    <img class="galleryImage" src="images/OIP (2).jpg" alt="Ozzy Osbourne">
-                    <img class="galleryImage" src="images/OIP (3).jpg" alt="Ozzy Osbourne">
-                    <img class="galleryImage" src="images/OIP (4).jpg" alt="Ozzy Osbourne">
-                    <img class="galleryImage" src="images/OIP (5).webp" alt="Ozzy Osbourne">
-                </div>
-            </div>
+
+    <!-- Hero Section (Canvas Effekte) -->
+    <section id="hero">
+        <canvas id="flameCanvas"></canvas>
+        <canvas id="spotlightCanvas"></canvas>
+        <canvas id="fireworkCanvas"></canvas>
+        <canvas id="smokeCanvas"></canvas>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallerySection" class="container">
+        <h2>Galerie</h2>
+        <div id="gallery">
+            <img class="galleryImage" src="/assets/images/1407501.jpg" alt="Ozzy Live" loading="lazy">
+            <img class="galleryImage" src="/assets/images/OIP (1).jpg" alt="Ozzy Bühne" loading="lazy">
+            <img class="galleryImage" src="/assets/images/OIP (1).webp" alt="Ozzy Porträt" loading="lazy">
+            <img class="galleryImage" src="/assets/images/OIP (2).jpg" alt="Ozzy mit Gitarre" loading="lazy">
+            <img class="galleryImage" src="/assets/images/OIP (3).jpg" alt="Ozzy schreit" loading="lazy">
+            <img class="galleryImage" src="/assets/images/OIP (4).jpg" alt="Ozzy & Sharon" loading="lazy">
+            <img class="galleryImage" src="/assets/images/OIP (5).jpg" alt="Ozzy Legend" loading="lazy">
+        </div>
+    </section>
+
+    <!-- Quote Section -->
+    <section id="quoteSection" class="container">
+        <h2>Zitat</h2>
+        <div id="quoteContainer">
             <p id="quote">Klick für ein Ozzy-Zitat!</p>
             <button id="quoteButton">Zitat</button>
-            <audio id="quoteSound" src="sound/Voicy_Fucking crap It disappears.mp3"></audio>
-            <audio id="crowdSound" src="sound/Voicy_It's a fucking stamp.mp3"></audio>
-            <div id="spriteContainer">
-                <img id="ozzySprite" src="gif/91184.gif" alt="Ozzy Sprite">
-            </div>
-            <div id="quiz">
-                <h2>Ozzy-Fakten-Quiz</h2>
-                <input type="text" id="playerName" placeholder="Dein Name" maxlength="20">
-                <button id="startButton">Start</button>
-                <p id="quizQuestion"></p>
-                <div id="quizOptions"></div>
-                <p id="quizResult"></p>
-                <p id="quizScore">Punkte: 0</p>
-                <button id="highscoreToggle">Highscore Anzeigen</button>
-                <div id="highscore" style="display: none;">
-                    <h3>Highscore</h3>
-                    <ul id="highscoreList"></ul>
-                </div>
-            </div>
-            <div id="headbang"></div>
-        </section>
-    </main>
+            <audio id="quoteSound" src="/assets/sound/Voicy_Fucking crap It disappears.mp3"></audio>
+            <audio id="crowdSound" src="/assets/sound/Voicy_It's a fucking stamp.mp3"></audio>
+        </div>
+    </section>
+
+    <!-- Sprite Section -->
+    <section id="spriteSection" class="container">
+        <h2>Ozzy Sprite</h2>
+        <div id="spriteContainer">
+            <img id="ozzySprite" src="/assets/gif/driving ozzy osbourne GIF by History UK.gif" alt="Ozzy Sprite">
+            <audio id="paranoidRiff" src="/assets/sound/Voicy_black sabbath good morning vietnam.mp3" preload="auto"></audio>
+            <audio id="timesHaveChanged" src="/assets/sound/Voicy_Times have changed and times are strange.mp3" preload="auto"></audio>
+        </div>
+    </section>
+    
+    <section id="to-quiz">
+        <a href="pages/quiz.html">Ready for the Quiz?</a>
+    </section>
+
+    <section>
+        <a href="pages/concert.html">Letztes Konzert & Beerdigung</a>
+    </section>
+
+    <!-- Headbang Section -->
+    <section id="headbangSection" class="container">
+        <h2>Headbang Mode</h2>
+        <div id="headbang"></div>
+    </section>
+
+    <!-- Footer -->
     <footer>
         <p>&copy; 2025 Alexander Rothe</p>
+        <p>Design by Alexander Rothe</p>
+        <p><em>Dies ist ein rein privates Hobby-Projekt – keine kommerzielle Nutzung.</em></p>
+        <p class="footer-hint">Tipp: Tippe <code>nomoretears</code> für ein Easter Egg...</p>
+        <p>Version 1.0</p>
     </footer>
+
+    <!-- JavaScript -->
     <script src="https://www.youtube.com/iframe_api"></script>
-    <script src="script.js"></script>
+    <script src="/js/effects.js"></script>
+    <script src="/js/gallery.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/quiz.js"></script>
+    <script src="/js/sound.js"></script>
 </body>
 </html>
