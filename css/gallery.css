@@ -27,9 +27,10 @@
     transform: scale(0.8) translateY(20px);
     animation: popIn 0.6s ease-out forwards;
     cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
     position: relative;
     overflow: hidden;
+    animation: galleryPop 0.8s ease-out forwards;
 }
 
 .galleryImage::after {
@@ -41,15 +42,13 @@
     transition: opacity 0.4s;
 }
 
-.galleryImage:hover::after {
-    opacity: 1;
-}
-
 .galleryImage:hover {
-    transform: scale(1.1) translateY(-10px);
-    box-shadow: 0 20px 40px rgba(255, 0, 0, 0.6), 0 0 30px rgba(255, 0, 0, 0.5);
+    transform: translateY(-20px) rotateY(10deg) scale(1.1);
+    box-shadow: 0 30px 60px rgba(255,0,0,0.4), 0 0 40px rgba(255,0,0,0.6);
     z-index: 10;
 }
+
+
 
 /* Staggered Animation */
 .galleryImage:nth-child(1) { animation-delay: 0.1s; }
@@ -65,4 +64,9 @@
         opacity: 1;
         transform: scale(1) translateY(0);
     }
+}
+
+@keyframes galleryPop {
+    from { opacity: 0; transform: translateY(50px) rotateY(30deg); }
+    to { opacity: 1; transform: translateY(0) rotateY(0); }
 }
