@@ -1,39 +1,42 @@
-// ========== js/effects.js ==========
+const canvas = document.getElementById("flameCanvas");
+const ctx = canvas?.getContext("2d");
 
-// Beispiel: Einfacher Flammen-Effekt
-const flameCanvas = document.getElementById("flameCanvas");
-const ctx = flameCanvas?.getContext("2d");
-
-if (flameCanvas) {
-    flameCanvas.width = window.innerWidth;
-    flameCanvas.height = window.innerHeight;
+if (canvas) {
+    const resize = () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight * 0.5;
+        canvas.style.bottom = "0";
+        canvas.style.top = "auto";
+    };
+    resize();
+    window.addEventListener("resize", resize);
 
     const flames = [];
-
-    function createFlame() {
-        return {
-            x: Math.random() * flameCanvas.width,
-            y: flameCanvas.height,
-            size: Math.random() * 10 + 5,
-            speed: Math.random() * 3 + 2,
-        };
+    for (let i = 0; i < 60; i++) {
+        flames.push({
+            x: Math.random() * canvas.width,
+            y: canvas.height,
+            size: Math.random() * 12 + 8,
+            speed: Math.random() * 4 + 3
+        });
     }
 
-    for (let i = 0; i < 50; i++) flames.push(createFlame());
-
-    function drawFlames() {
-        ctx.clearRect(0, 0, flameCanvas.width, flameCanvas.height);
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
         flames.forEach(f => {
             ctx.beginPath();
             ctx.arc(f.x, f.y, f.size, 0, Math.PI * 2);
-            ctx.fillStyle = "rgba(255, 100, 0, 0.5)";
+            ctx.fillStyle = `rgba(255, ${100 + Math.random()*50}, 0, 0.6)`;
             ctx.fill();
             f.y -= f.speed;
-            f.size *= 0.98;
-            if (f.size < 0.5) Object.assign(f, createFlame());
+            f.size *= 0.97;
+            if (f.size < 1) {
+                f.y = canvas.height;
+                f.x = Math.random() * canvas.width;
+                f.size = Math.random() * 12 + 8;
+            }
         });
-        requestAnimationFrame(drawFlames);
+        requestAnimationFrame(draw);
     }
-
-    drawFlames();
+    draw();
 }

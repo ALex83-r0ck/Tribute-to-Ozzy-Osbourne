@@ -1,119 +1,102 @@
-/* css/styles.css */
-@import url('base.css');
-@import url('layout.css');
-@import url('gallery.css');
-@import url('quote.css');
-@import url('animations.css');
-@import url('themes.css');
+/* === IMPORTS === */
+@import url('/css/animations.css');
+@import url('/css/themes.css');
+@import url('/css/base.css');
+@import url('/css/layout.css');
+@import url('/css/quote.css');
+@import url('/css/gallery.css');
+@import url('/css/quiz.css');
 
-/* Globale Fixes */
-* { box-sizing: border-box;}
+/* === RESET & BASE === */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+button { font: inherit; cursor: pointer; border: none; }
+ul { list-style: none; }
 
-/* Canvas Fullscreen */
-/* Hero Section */
-#hero {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
-    pointer-events: none;
-    overflow: hidden;
+/* === BARRIEREFREIHEIT === */
+.skip-link {
+    position: absolute; top: -40px; left: 6px; background: #000; color: #fff;
+    padding: 8px; z-index: 1000; transition: top 0.3s;
 }
+.skip-link:focus { top: 6px; }
 
-#hero canvas {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    mix-blend-mode: screen;
+/* === LAYOUT === */
+header {
+    padding: 2rem 1rem; background: rgba(0,0,0,0.8); -webkit-backdrop-filter: blur(10px); ;backdrop-filter: blur(10px);
 }
+h1 { font-size: 2.8rem; margin-bottom: 1rem; text-shadow: 0 0 20px #ff0000; }
+nav { margin: 1.5rem 0; }
+nav a {
+    color: #fff; font-weight: bold; padding: 0.6rem 1.2rem; border-radius: 8px;
+    transition: all 0.3s;
+}
+nav a:hover, nav a:focus { background: var(--color-accent-dark); color: #000; }
 
 #buttonContainer {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    margin: 25px 0;
-    flex-wrap: wrap;
+    display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin: 1.5rem 0;
 }
-
-#buttonContainer button {
-    min-width: 150px;
-    padding: 14px 24px;
-    font-weight: bold;
-    border: 2px solid var(--color-accent-dark);
-    border-radius: 10px;
-    background: rgba(0,0,0,0.7);
-    color: white;
-    font-size: 1.1em;
+.modern-btn {
+    min-width: 130px; padding: 0.9rem 1.5rem; font-weight: 600; font-size: 1rem;
+    border-radius: 12px; background: linear-gradient(135deg, #333, #111);
+    color: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.5); transition: all 0.3s ease;
+    position: relative; overflow: hidden;
 }
-
-nav {
-    margin: 30px 0;
-    padding: 15px 0;
-    border-top: 2px solid var(--color-accent-dark);
-    border-bottom: 2px solid var(--color-accent-dark);
+.modern-btn::before {
+    content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: 0.5s;
 }
-
-nav a {
-    margin: 0 25px;
-    font-size: 1.2em;
-    font-weight: bold;
-    padding: 10px 20px;
-    border-radius: 8px;
+.modern-btn:hover::before { left: 100%; }
+.modern-btn:hover {
+    transform: translateY(-3px); box-shadow: 0 8px 25px rgba(255,0,0,0.4);
+    background: linear-gradient(135deg, #ff0000, #8b0000);
 }
+.modern-btn.active {
+    background: linear-gradient(135deg, #00ff00, #008000);
+    box-shadow: 0 0 20px rgba(0,255,0,0.6);
+}
+.modern-btn:focus-visible { outline: 3px solid #ff0; outline-offset: 2px; }
 
+.container { padding: 3rem 1rem; max-width: 1300px; margin: 0 auto; }
+.cta-link {
+    display: inline-block; margin: 1rem; padding: 1rem 2rem; background: #333;
+    color: #fff; border-radius: 50px; font-weight: bold; transition: 0.3s;
+}
+.cta-link:hover { background: #ff0000; transform: scale(1.05); }
+
+/* === HERO CANVAS === */
+#hero { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; }
+#flameCanvas { position: absolute; bottom: 0; height: 50vh; width: 100%; top: auto; mix-blend-mode: screen; }
+
+/* === GALERIE === */
+#gallery {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem; padding: 2rem 1rem;
+}
+.galleryImage {
+    border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+    cursor: zoom-in; transition: all 0.6s ease; opacity: 0; transform: translateY(30px);
+    animation: popIn 0.8s ease-out forwards;
+}
+.galleryImage:hover {
+    transform: translateY(-15px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(255,0,0,0.5);
+}
+.galleryImage:nthливих-child(1) { animation-delay: 0.1s; }
+.galleryImage:nth-child(2) { animation-delay: 0.2s; }
+/* ... bis 7 */
+
+/* === FOOTER === */
 footer {
-    background: linear-gradient(to top, #8b0000,);
-    color: #fff;
-    width: 100%;
-    height: 10px;
-    padding: auto;
-    text-align: center;
-    font-size: 0.9em;
-    font-weight: bold;
-    margin-top: auto;
-    position: relative;
-    z-index: 10;
+    background: linear-gradient(to top, #8b0000, #ff0000);
+    color: #fff; padding: 2rem 1rem; margin-top: auto; font-size: 0.9rem;
 }
+.footer-hint { color: #ccc; font-size: 0.8rem; margin-top: 0.5rem; }
 
-.foote-hint {
-    font-size: 0.8em;
-    color: #666;
-    margin-top: 8px;
-}
-
-#hero::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0;
-    width: 100%;
-    height: 160px;
-    background: linear-gradient(to bottom, transparent, #8b0000);
-    pointer-events: none;
-    z-index: 5;
-}
-
-.easter-egg-input {
-    margin-top: 15px;
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-}
-
-.easter-egg-input input {
-    padding: 8px;
-    border: 1px solid #666;
-    border-radius: 6px;
-    background: #111;
-    color: #fff;
-}
-
-.easter-egg-input button {
-    padding: 8px 16px;
-    background: #333;
-    color: #fff;
-    border: 1px solid #666;
-    border-radius: 6px;
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    h1 { font-size: 2.2rem; }
+    .modern-btn { min-width: 110px; padding: 0.8rem 1.2rem; font-size: 0.95rem; }
+    #gallery { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
 }

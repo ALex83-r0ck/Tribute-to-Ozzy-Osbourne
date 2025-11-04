@@ -1,31 +1,29 @@
-// ========== js/main.js ==========
-
-// Theme Toggle
+// === TOGGLES ===
 const body = document.body;
 const themeToggle = document.getElementById("themeToggle");
 const discoToggle = document.getElementById("discoToggle");
 const headbangToggle = document.getElementById("headbangToggle");
+const soundToggle = document.getElementById("soundToggle");
 
-// Theme-Wechsel
+let soundEnabled = false;
+let headbangActive = false;
+let isPlaying = false;
+let quoteActive = false;
+
+// Theme
 themeToggle?.addEventListener("click", () => {
-    body.classList.toggle("light-mode");
-    themeToggle.textContent = body.classList.contains("light-mode") 
-        ? "Dark Mode" 
-        : "Light Mode";
+    const isLight = body.classList.toggle("light-mode");
+    themeToggle.textContent = isLight ? "Dark Mode" : "Light Mode";
+    themeToggle.setAttribute("aria-pressed", isLight);
 });
 
-// Disco Mode mit Farbwechsel
+// Disco
 discoToggle?.addEventListener("click", () => {
-    const isActive = discoToggle.classList.toggle("active");
-    discoToggle.textContent = isActive ? "Disco Mode: On" : "Disco Mode: Off";
-
-    if (isActive) {
-        document.body.classList.add("disco-mode");
-        startDisco();
-    } else {
-        document.body.classList.remove("disco-mode");
-        stopDisco();
-    }
+    const active = discoToggle.classList.toggle("active");
+    discoToggle.textContent = active ? "Disco: An" : "Disco: Aus";
+    discoToggle.setAttribute("aria-pressed", active);
+    active ? startDisco() : stopDisco();
+    body.classList.toggle("disco-mode", active);
 });
 
 let discoInterval;
@@ -33,128 +31,126 @@ function startDisco() {
     const colors = ["#ff0000", "#ff00ff", "#00ffff", "#ffff00", "#00ff00", "#ff6600"];
     let i = 0;
     discoInterval = setInterval(() => {
-        const color = colors[i % colors.length];
-        document.documentElement.style.setProperty('--color-accent-dark', color);
+        document.documentElement.style.setProperty('--color-accent-dark', colors[i % colors.length]);
         i++;
     }, 400);
 }
-
 function stopDisco() {
     clearInterval(discoInterval);
     document.documentElement.style.setProperty('--color-accent-dark', '#ff0000');
 }
 
-// Headbang Toggle mit Klick auf Body stoppen
-let headbangActive = false;
+// Headbang
 headbangToggle?.addEventListener("click", () => {
     headbangActive = !headbangActive;
     headbangToggle.classList.toggle("active", headbangActive);
-    headbangToggle.textContent = headbangActive ? "Headbang: On" : "Headbang: Off";
-    document.body.classList.toggle("headbang-mode", headbangActive);
+    headbangToggle.textContent = headbangActive ? "Headbang: An" : "Headbang: Aus";
+    headbangToggle.setAttribute("aria-pressed", headbangActive);
+    body.classList.toggle("headbang-mode", headbangActive);
 });
 
-// Stop bei Klick/Touch auf Body
 document.body.addEventListener("click", (e) => {
     if (headbangActive && !e.target.closest("#headbangToggle")) {
         headbangActive = false;
         headbangToggle.classList.remove("active");
-        headbangToggle.textContent = "Headbang: Off";
-        document.body.classList.remove("headbang-mode");
+        headbangToggle.textContent = "Headbang: Aus";
+        headbangToggle.setAttribute("aria-pressed", false);
+        body.classList.remove("headbang-mode");
     }
 });
 
-// Beim Laden Konsole Info
-console.log("%c🤘 Welcome to Ozzy's Tribute Page! 🤘", "color: red; font-size: 16px;");
+// Sound
+soundToggle?.addEventListener("click", () => {
+    soundEnabled = !soundEnabled;
+    soundToggle.textContent = soundEnabled ? "Ton: An" : "Ton: Aus";
+    soundToggle.classList.toggle("active", !soundEnabled);
+    soundToggle.setAttribute("aria-pressed", soundEnabled);
+});
 
-// Ozzy Sprite mit zufälliger Position + Song-Wechsel
-const sprite = document.getElementById("ozzySprite");
-const paranoidRiff = document.getElementById("paranoidRiff");
-const timesHaveChanged = document.getElementById("timesHaveChanged");
-const songs = [
-    { audio: paranoidRiff, duration: 20000, start: 6 },
-    { audio: timesHaveChanged, duration: 15000, start: 0 }
+// === OZZY SPRITE ===
+const ozzyEvents = [
+    { sprite: document.getElementById("ozzyDriving"), audio: document.getElementById("paranoidRiff"), duration: 14000, start: 6 },
+    { sprite: document.getElementById("ozzyBanging"), audio: document.getElementById("timesHaveChanged"), duration: 14000, start: 0 }
 ];
 
-let isPlaying = false;
-
-function playRandomOzzy() {
-    if (isPlaying) return;
+function triggerOzzyEvent() {
+    if (isPlaying || quoteActive) return;
     isPlaying = true;
 
-    const song = songs[Math.floor(Math.random() * songs.length)];
-    const top = Math.random() * 70 + 15; // 15-85vh
-    const left = Math.random() * 70 + 15; // 15-85vw
+    const event = ozzyEvents[Math.floor(Math.random() * ozzyEvents.length)];
+    const top = Math.random() * 60 + 20;
+    const left = Math.random() * 70 + 15;
+    const direction = Math.random() > 0.5 ? 1 : -1;
 
-    sprite.style.top = `${top}vh`;
-    sprite.style.left = `${left}vw`;
-    sprite.style.transform = `translate(-50%, -50%) scaleX(${Math.random() > 0.5 ? -1 : 1})`;
+    event.sprite.classList.remove("active");
+    void event.sprite.offsetWidth;
+    event.sprite.style.top = `${top}vh`;
+    event.sprite.style.left = `${left}vw`;
+    event.sprite.style.transform = `translate(-50%, -50%) scaleX(${direction})`;
+    event.sprite.classList.add("active");
 
-    song.audio.currentTime = song.start;
-    song.audio.play().catch(() => {});
+    if (soundEnabled) {
+        event.audio.currentTime = event.start;
+        event.audio.play().catch(() => {});
+    }
 
     setTimeout(() => {
+        event.sprite.classList.remove("active");
         isPlaying = false;
-    }, song.duration);
+    }, event.duration);
 }
 
-// Starte alle 25–45 Sekunden
-setInterval(() => {
-    if (quoteActive || isPlaying) return;
+setTimeout(triggerOzzyEvent, 8000);
+setInterval(() => Math.random() > 0.55 && triggerOzzyEvent(), 30000);
 
-    if (Math.random() > 0.6) playRandomOzzy();
-}, 30000);
+// === CUSTOM LIGHTBOX ===
+document.querySelectorAll(".galleryImage").forEach(img => {
+    img.addEventListener("click", () => {
+        const modal = document.createElement("div");
+        modal.style.cssText = `position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);display:flex;align-items:center;justify-content:center;z-index:10000;cursor:zoom-out;`;
+        const full = document.createElement("img");
+        full.src = img.dataset.full;
+        full.style.cssText = `max-width:90%;max-height:90%;border-radius:16px;box-shadow:0 0 60px #ff0000;`;
+        modal.appendChild(full);
 
-// Erster Start nach 6s
-setTimeout(playRandomOzzy, 6000);
-
-// Easter Egg
-let konami = "";
-document.addEventListener("keydown", (e) => {
-    konami += e.key.toLowerCase();
-    if (konami.slice(-11) === "ozzy") {
-        triggerNoMoreTears();
-        konami = "";
-    }
-    if (konami.length > 20) konami = konami.slice(-20);
+        const close = () => { modal.remove(); document.removeEventListener("keydown", escHandler); };
+        const escHandler = e => e.key === "Escape" && close();
+        modal.addEventListener("click", close);
+        document.addEventListener("keydown", escHandler);
+        document.body.appendChild(modal);
+    });
 });
 
-document.getElementById("easterSubmit")?.addEventListener("click", () => {
-    const input = document.getElementById("easterInput").value.toLowerCase();
-    if (input === "ozzyozzyozzy") {
+// === KONAMI CODE ===
+let konami = "";
+const code = "ArrowUpArrowUpArrowDownArrowDownArrowLeftArrowRightArrowLeftArrowRightba";
+document.addEventListener("keydown", e => {
+    konami += e.key;
+    if (1984 > code.length) konami = konami.slice(-code.length);
+    if (konami.toLowerCase() === code) {
         triggerNoMoreTears();
-        document.getElementById("easterInput").value = "";
+        konami = "";
     }
 });
 
 function triggerNoMoreTears() {
-    document.body.style.filter = "sepia(1) hue-rotate(180deg) brightness(0.8)";
+    body.style.filter = "sepia(1) hue-rotate(180deg) brightness(0.8)";
     const tears = setInterval(() => {
         const tear = document.createElement("div");
         tear.textContent = "tear";
-        tear.style.cssText = `
-            position: fixed;
-            left: ${Math.random() * 100}vw;
-            top: -20px;
-            font-size: ${15 + Math.random() * 15}px;
-            color: #00f;
-            animation: fall 3s linear forwards;
-            pointer-events: none;
-            z-index: 9999;
-        `;
+        tear.style.cssText = `position:fixed;left:${Math.random()*100}vw;top:-20px;font-size:${15+Math.random()*15}px;color:#00f;animation:fall 3s linear forwards;pointer-events:none;z-index:9999;`;
         document.body.appendChild(tear);
         setTimeout(() => tear.remove(), 3000);
     }, 80);
-
     setTimeout(() => {
         clearInterval(tears);
-        document.body.style.filter = "";
-        alert("NO MORE TEARS! Secret gefunden! 🤘");
+        body.style.filter = "";
+        alert("NO MORE TEARS! Secret gefunden!");
     }, 5000);
 }
 
-// Quote Button
-let quoteActive = false;
-quoteButton?.addEventListener("click", () => {
+// === QUOTE BLOCK ===
+document.getElementById("quoteButton")?.addEventListener("click", () => {
     quoteActive = true;
-    setTimeout(() => { quoteActive = false; }, 3000);
+    setTimeout(() => quoteActive = false, 3000);
 });

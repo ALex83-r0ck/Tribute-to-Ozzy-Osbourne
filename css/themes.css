@@ -1,84 +1,34 @@
-/* css/themes.css */
+:root {
+    --font-main: 'Metal Mania', cursive, sans-serif;
+    --color-bg-dark: #000;
+    --color-text-dark: #eee;
+    --color-accent-dark: #ff0000;
+    --transition-speed: 0.4s;
+}
+
 body {
-    margin: 0;
-    font-family: var(--font-main);
-    background-color: var(--color-bg-dark);
-    color: var(--color-text-dark);
-    text-align: center;
-    position: relative;
-    overflow-x: hidden;
-    background-image: linear-gradient(
-        rgba(0, 0, 0, 0.7),
-        rgba(0, 0, 0, 0.7)
-    ), url(../assets/images/ozzy-osbourne-on-stage.png);
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: inherit;
-    transition: background-color var(--transition-speed),
-                color var(--transition-speed),
-                background-image var(--transition-speed);
+    font-family: var(--font-main); background: var(--color-bg-dark); color: var(--color-text-dark);
+    text-align: center; line-height: 1.6;
+    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('../assets/images/ozzy-osbourne-on-stage.png');
+    background-size: cover; background-attachment: fixed; transition: background 0.5s ease;
+    min-height: 100vh; display: flex; flex-direction: column;
 }
 
-/* Light Mode*/
 body.light-mode {
-    background: #1a1a1a;
-    color: #ddd;
-    background-image: 
-        linear-gradient(rgba(26,26,26,0.9), rgba(26,26,26,0.95)),
-        url('../assets/images/OIP\\ \(5\\).webp') !important;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    background: #111 url('../assets/images/OIP (5).jpg') center/cover fixed;
+    background-blend-mode: overlay;
 }
-body.light-mode h1, body.light-mode h2 {
-    color: #ff3333;
-    text-shadow: 0 0 10px #ff0000;
-}
+body.light-mode h1, body.light-mode h2 { color: #ff3333; text-shadow: 0 0 10px #ff0000; }
 
-body.light-mode button {
-    background: #333;
-    color: #fff;
-    border: 2px solid #ff0000;
-}
+/* === DISCO MODE === */
+.disco-mode { animation: discoBody 4s infinite; }
+@keyframes discoBody { 0%,100% { filter: hue-rotate(0deg); } 50% { filter: hue-rotate(180deg); } }
+.disco-mode .galleryImage { filter: brightness(1.4) saturate(1.5) !important; mix-blend-mode: normal !important; }
 
-body.light-mode a {
-    color: #ff3333;
-}
-
-/* Buttonsm, Links usw. */
-button, a {
-    transition: 
-        background-color var(--transition-speed),
-        color var(--transition-speed),
-        transform var(--transition-speed);
-}
-
-/* Disco Mode */
-
-.disco-mode {
-    animation: discoBody 4s infinite;
-}
-
-@keyframes discoBody {
-    0%, 100% { filter: hue-rotate(0deg); }
-    50% { filter: hue-rotate(180deg); }
-}
-
-.disco-mode .galleryImage {
-    animation: discoPulse 1.2s infinite;
-}
-
-.disco-mode h1, .disco-mode h2 {
-    text-shadow: 0 0 20px var(--color-accent-dark), 0 0 40px var(--color-accent-dark);
-}
-
-/* Headbanger Mode */
-.headbang-mode {
-    animation: headbangShake 0.2s infinite;
-}
-
-@keyframes headbangShake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-8px) rotate(-2deg); }
-    75% { transform: translateX(8px) rotate(2deg); }
+/* === HEADBANG MODE === */
+.headbang-mode { animation: softHeadbang 0.8s infinite ease-in-out; }
+@keyframes softHeadbang {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    25% { transform: translateX(-4px) rotate(-1deg); }
+    75% { transform: translateX(4px) rotate(1deg); }
 }

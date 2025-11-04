@@ -11,6 +11,7 @@ body {
     background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../images/ozzy-bg-quiz.jpg');
     background-size: cover;
     background-position: center;
+    min-height: 100vh;
 }
 
 header {
@@ -72,9 +73,62 @@ button:hover {
     background-color: #b30000;
 }
 
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* HINT STYLES */
+#hintContainer {
+    margin: 15px 0;
+    padding: 10px;
+    background: rgba(255, 204, 0, 0.1);
+    border: 1px solid #ffcc00;
+    border-radius: 8px;
+}
+
+.hintBtn {
+    background: #333;
+    color: #ffcc00;
+    border: 1px solid #ffcc00;
+    font-size: 0.9em;
+    padding: 8px 12px;
+}
+
+.hintBtn:disabled {
+    color: #888;
+    border-color: #666;
+}
+
+.hintText {
+    margin: 10px 0 0;
+    padding: 10px;
+    background: #222;
+    border-left: 4px solid #ffcc00;
+    color: #ffcc00;
+    font-style: italic;
+    font-size: 0.95em;
+    border-radius: 0 5px 5px 0;
+}
+
 #highscore {
-    display: none;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 15px;
+    border-radius: 8px;
     margin-top: 20px;
+}
+
+#highscore ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+#highscore li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #444;
+    color: #ffcc00;
 }
 
 footer {
