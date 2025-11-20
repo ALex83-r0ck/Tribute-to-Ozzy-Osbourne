@@ -1,25 +1,4 @@
-:root {
-    --font-main: 'Metal Mania', cursive, sans-serif;
-    --color-bg-dark: #000;
-    --color-text-dark: #eee;
-    --color-accent-dark: #ff0000;
-    --transition-speed: 0.4s;
-}
-
-body {
-    font-family: var(--font-main); background: var(--color-bg-dark); color: var(--color-text-dark);
-    text-align: center; line-height: 1.6;
-    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('../assets/images/ozzy-osbourne-on-stage.png');
-    background-size: cover; background-attachment: fixed; transition: background 0.5s ease;
-    min-height: 100vh; display: flex; flex-direction: column;
-}
-
-body.light-mode {
-    background: #111 url('../assets/images/OIP (5).jpg') center/cover fixed;
-    background-blend-mode: overlay;
-}
-body.light-mode h1, body.light-mode h2 { color: #ff3333; text-shadow: 0 0 10px #ff0000; }
-
+/* css/themes.css */
 /* === DISCO MODE === */
 .disco-mode { animation: discoBody 4s infinite; }
 @keyframes discoBody { 0%,100% { filter: hue-rotate(0deg); } 50% { filter: hue-rotate(180deg); } }

@@ -1,39 +1,32 @@
 /* css/animations.css */
-/* === OZZY SPRITE === */
-#ozzySpriteContainer {
-    position: fixed; 
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100%;
-    pointer-events: none; 
-    z-index: 999; 
-    overflow: hidden;
+/* === OZZY OFFERINGS EFFEKTE === */
+@keyframes fallBeer {
+    to { transform: translateY(100vh) rotate(720deg); opacity: 0; }
 }
-
-.ozzy-sprite {
-    position: absolute; 
-    width: 180px; 
-    filter: drop-shadow(0 0 25px #ff0000);
-    opacity: 0; 
-    transition: opacity 0.8s ease; 
-    pointer-events: none;
+@keyframes fallBlood {
+    to { transform: translateY(100vh) rotate(360deg) scale(0.5); opacity: 0; }
 }
-
-.ozzy-sprite.active {
-    opacity: 1;
-    animation: ghostDrive 14s ease-in-out forwards;
+@keyframes flyBat {
+    to { transform: translateX(110vw) rotate(360deg); }
 }
-
-
-@keyframes ghostDrive {
-    0%   { opacity: 0; }
-    10%  { opacity: 1; }
-    90%  { opacity: 1; }
-    100% { opacity: 0; }
+.train-shake {
+    animation: shake 0.5s infinite;
 }
-
-/* === GALERIE === */
-@keyframes popIn {
-    to { opacity: 1; transform: translateY(0); }
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+.headbang-plus {
+    animation: headbangPlus 0.3s infinite;
+}
+@keyframes headbangPlus {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-15deg); }
+    75% { transform: rotate(15deg); }
+}
+@keyframes flash {
+    0% { opacity: 0; transform: translate(-50%,-50%) scale(0.5); }
+    50% { opacity: 1; transform: translate(-50%,-50%) scale(1.2); }
+    100% { opacity: 0; transform: translate(-50%,-50%) scale(1); }
 }

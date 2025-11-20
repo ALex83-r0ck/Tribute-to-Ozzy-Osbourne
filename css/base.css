@@ -1,21 +1,42 @@
 /* css/base.css */
 :root {
-    /* Dark Theme Farben */
-    --color-bg-dark: #1a1a1a;
-    --color-text-dark: #ffffff;
-    --color-accent-dark: #ff0000;
-
-    /* Light Theme Farben */
-    --color-bg-light: #ffffff;
-    --color-text-light: #000000;
-    --color-accent-light: #333333;
-
-    /* Allegemein */
-    --transition-speed: 0.4s;
-    --font-main: 'Arial', sans-serif;
+    --font-main: 'Metal Mania', cursive, sans-serif;
+    --transition: 0.5s ease;
 }
 
-
-h1, h2, h3, h4, h5, h6 {
+body {
+    font-family: var(--font-main);
+    color: #eee;
+    text-align: center;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
     margin: 0;
+    transition: background var(--transition), color var(--transition);
+}
+
+/* DARK MODE */
+body.dark-mode {
+    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('../assets/images/ozzy-osbourne-on-stage\ RIP.png') center fixed;
+    color: #fdfdfd;
+    background-blend-mode: overlay;
+}
+
+/* LIGHT MODE */
+body.light-mode {
+    background: #f5f5f5 url('../assets/images/Rest\ in\ Power\ Prince\ Of\ Darkness.webp') center/cover fixed;
+    background-size: cover;
+    background-blend-mode: overlay;
+    color: #aea4a4;
+}
+
+body.light-mode h1,
+body.light-mode h2,
+body.light-mode h3 { color: #ff3333; text-shadow: 0 0 12px #ff0000; }
+
+body.light-mode .modern-btn {
+    background: linear-gradient(135deg, #ddd, #aaa);
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    color: #000000;
 }

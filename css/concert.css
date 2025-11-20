@@ -1,80 +1,106 @@
 /* css/concert.css */
-@import url('base.css');
-@import url('themes.css');
-@import url('layout.css');
-
 body {
-    background: var(--color-bg-dark);
-    color: var(--color-text-dark);
-    font-family: var(--font-main);
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    min-height: 100vh;
     margin: 0;
     padding: 0;
-    text-align: center;
-    background-image: linear-gradient(
-        rgba(0, 0, 0, 0.85),
-        rgba(0, 0, 0, 0.85)
-    ), url('../images/ozzy-memorial-bg.jpg');
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #000 url('../assets/images/ozzy-memorial-bg.jpg') center/cover fixed;
+}
+nav {
+    margin: 20px auto;
+    max-width: 1200px;
+    border-radius: solid #ff0000d1 5px;
+    box-shadow: 0 0 20px #ff0000;
+    background: rgba(0,0,0,0.85);
+    background-image: url('../assets/images/RIP.webp');
     background-size: cover;
     background-position: center;
-}
-
-header {
-    background-color: rgba(0, 0, 0, 0.85);
+    background-attachment: fixed;
     padding: 20px;
-    border-bottom: 3px solid var(--color-accent-dark);
 }
-
-header h1 {
-    font-size: 2em;
-    margin: 0;
-    color: var(--color-accent-dark);
-    text-shadow: 2px 2px 10px red;
-}
-
-header a {
-    display: inline-block;
-    margin-top: 10px;
-    color: var(--color-text-dark);
-    text-decoration: none;
-    border: 2px solid var(--color-accent-dark);
-    padding: 8px 16px;
-    border-radius: 5px;
-    transition: 0.3s;
-}
-
-header a:hover {
-    background-color: var(--color-accent-dark);
-    color: #fff;
-    transform: scale(1.05);
-}
-
-main {
-    padding: 40px 20px;
-}
-
-section {
-    margin-bottom: 50px;
-    background-color: rgba(0, 0, 0, 0.7);
+header, main, section {
+    background: rgba(0,0,0,0.85);
+    background-image: url('../assets/images/RIP.webp');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px var(--color-accent-dark);
-}
-
-h2 {
-    font-size: 1.5em;
-    color: var(--color-accent-dark);
-    margin-bottom: 20px;
-}
-
-iframe {
-    margin: 10px;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+    margin: 10px auto;
+    max-width: 1200px;
+    border-radius: solid #ff0000d1 5px;
+    box-shadow: 0 0 20px #ff0000;
 }
 
 footer {
-    background-color: rgba(0, 0, 0, 0.85);
-    padding: 10px;
-    border-top: 3px solid var(--color-accent-dark);
-    font-size: 0.9em;
+    background: rgba(0,0,0,0.85);
+    background-image: url('../assets/images/RIP.webp');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 1200px;
+    border-radius: solid #ff0000d1 5px;
+    box-shadow: 0 0 20px #ff0000;
+}
+iframe {
+    width: 100%;
+    aspect-ratio: 16/9;
+    max-width: 560px;
+    height: 315px;
+    margin: 10px;
+    border: 3px solid #ff0000;
+    border-radius: 50px;
+}
+@media (max-width: 768px) {
+    iframe { height: 200px; }
+}
+
+#song-container {
+    display: flex;
+    background-image: url("../assets/images/BandBlackSabbath.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 20px;
+    margin: 10px auto;
+    max-width: 1200px;
+    border-radius: solid #ff0000d1 5px;
+    box-shadow: 0 0 20px #ff0000;
+    flex-direction: column;
+    align-items: center;
+}
+
+#konzert-container {
+    display: flex;
+    background-image: url("../assets/images/ozzy-osbourne-sept-10-2022-billboard-1548.webp");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 20px;
+    margin: 10px auto;
+    max-width: 1200px;
+    border-radius: solid #ff0000d1 5px;
+    box-shadow: 0 0 20px #ff0000;
+    flex-direction: column;
+    align-items: center;
+}
+
+#beerdigung {
+    background-image: url("../assets/images/ozzy-osbourne-on-stage.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 20px;
+    margin: 10px auto;
+    max-width: 1200px;
+    border-radius: solid #ff0000d1 5px;
+    box-shadow: 0 0 20px #ff0000;
+    flex-direction: column;
+    align-items: center;
 }

@@ -1,0 +1,13 @@
+package-lock.json
+package.json
+struktur.txt
+__tests__/
+coverage/
+node_modules/
+
+# Snyk Security Extension - AI Rules (auto-generated)
+.github\
+
+
+# Snyk Security Extension - AI Rules (auto-generated)
+.github\instructions\snyk_rules.instructions.md

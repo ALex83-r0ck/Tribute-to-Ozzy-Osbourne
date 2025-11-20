@@ -1,0 +1,7 @@
+# mkdocs.yml
+site_name: Ozzy Tribute
+theme: readthedocs
+nav:
+  - Home: index.html
+  - Quiz: quiz.html
+  - Konzert & Beerdigung: concert.html

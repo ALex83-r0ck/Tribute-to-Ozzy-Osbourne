@@ -1,24 +1,22 @@
+<!-- ========== pages/quiz.html ========== -->
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ozzy Quiz</title>
+    <title>Ozzy Quiz – Fan-Projekt</title>
     <link rel="stylesheet" href="../css/quiz.css">
 </head>
 <body class="dark-mode">
-
     <header>
         <h1>Ozzy-Fakten-Quiz</h1>
-        <a href="../index.html">Zurück zur Hauptseite</a>
+        <a href="../index.html">← Zurück</a>
     </header>
-
     <main>
         <section id="quiz">
             <input type="text" id="playerName" placeholder="Dein Name" maxlength="20">
             <button id="startButton">Start</button>
 
-            <!-- HINT BEREICH -->
             <div id="hintContainer">
                 <button id="hintButton" class="hintBtn">Tipp anzeigen (-1 Punkt)</button>
                 <p id="hintText" class="hintText"></p>
@@ -26,7 +24,6 @@
 
             <p id="quizQuestion"></p>
             <div id="quizOptions"></div>
-            
             <p id="quizResult"></p>
             <p id="quizScore">Punkte: 0</p>
 
@@ -37,18 +34,9 @@
             </div>
         </section>
     </main>
-
     <footer>
-        <p>&copy; 2025 Alexander Rothe</p>
+        <p>&copy; 2025 Alexander Rothe – Fan-Projekt</p>
     </footer>
-
-    <!-- JavaScript -->
-    <script src="https://www.youtube.com/iframe_api"></script>
-    <script src="../js/effects.js"></script>
-    <script src="../js/gallery.js"></script>
-    <script src="../js/main.js"></script>
     <script src="../js/quiz.js"></script>
-    <script src="../js/sound.js"></script>
-
 </body>
 </html>

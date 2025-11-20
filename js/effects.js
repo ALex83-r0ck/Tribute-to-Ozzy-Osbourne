@@ -1,12 +1,18 @@
+// js/effects.js
+// === FLAME-CANVAS ===
 const canvas = document.getElementById("flameCanvas");
 const ctx = canvas?.getContext("2d");
 
 if (canvas) {
+    canvas.style.position = "fixed";
+    canvas.style.top = "0";
+    
+
     const resize = () => {
         canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight * 0.5;
-        canvas.style.bottom = "0";
-        canvas.style.top = "auto";
+        canvas.height = window.innerHeight;
+        canvas.style.width = "100vw";
+        canvas.style.height = "100vh";
     };
     resize();
     window.addEventListener("resize", resize);

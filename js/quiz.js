@@ -1,5 +1,5 @@
 // ========== js/quiz.js ==========
-
+// === OZZY FAN PROJEKT – QUIZ ===
 const questions = [
     { 
         question: "Wann wurde Ozzy Osbourne geboren?", 

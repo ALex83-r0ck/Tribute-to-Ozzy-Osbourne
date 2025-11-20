@@ -1,28 +1,28 @@
+<!-- ========== index.html ========== -->
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Interaktive Hommage an Ozzy Osbourne – Galerie, Quiz, Headbang, Disco & Geister-Sprite!">
+    <meta name="description" content="Fan-Hommage an Ozzy Osbourne – Bio, Galerie, Quiz, Schrein, Memorial & Geister-Sprite! 🤘">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ozzy R.I.P.</title>
+    <title>Ozzy R.I.P. – Fan-Projekt</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap" rel="stylesheet">
 </head>
 <body class="dark-mode">
-
-    <!-- Skip Link -->
-    <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
-
     <!-- Header -->
     <header>
-        <h1>Ozzy The Prince of Darkness</h1>
+        <h1>Ozzy The Prince of Darkness – Fan-Projekt by Alexander Rothe</h1>
+        <p class="fan-tagline">Eine Hommage an die Legende – Für Fans, von Fans. 🤘</p>
 
         <nav aria-label="Hauptnavigation">
+            <a href="#bioSection">Bio</a>
             <a href="#gallerySection">Galerie</a>
             <a href="#quoteSection">Zitat</a>
-            <a href="#headbangSection">Headbang</a>
+            <a href="#shrineSection">Schrein</a>
+            <a href="#memorialSection">Memorial</a>
         </nav>
 
         <div id="buttonContainer" role="group" aria-label="Interaktive Steuerung">
@@ -40,17 +40,95 @@
             <canvas id="flameCanvas"></canvas>
         </section>
 
+        <!-- Bio-Timeline -->
+        <section id="bioSection" class="container">
+            <h2>Ozzys Leben – Timeline einer Legende</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="year">1948</span>
+                    <p>John Michael "Ozzy" Osbourne wird am 3. Dezember in Aston, Birmingham, geboren – als 4. von 6 Kindern in einer armen Familie. Schon früh kämpft er mit Dyslexie und verlässt die Schule mit 16.</p>
+                    <img src="assets/images/Baby Ozzy.jpg" class="bio-image" alt="Baby Ozzy in 1950">
+                </div>
+                <div class="timeline-item">
+                    <span class="year">1968</span>
+                    <p>Gründung von Black Sabbath mit Tony Iommi, Geezer Butler und Bill Ward. Aus "Earth" wird "Black Sabbath" – der Heavy Metal wird geboren. Debütalbum 1970 revolutioniert die Musikwelt.</p>
+                    <img src="assets/images/BandBlackSabbath.jpg" alt="Black Sabbath 1968">
+                </div>
+                <div class="timeline-item">
+                    <span class="year">1979</span>
+                    <p>Entlassung aus Black Sabbath wegen Drogenproblemen. Ozzy startet Solo-Karriere mit "Blizzard of Ozz" (1980) – "Crazy Train" und "Mr. Crowley" werden Hymnen.</p>
+                    <img src="assets/images/OzzySolo.webp" alt="Ozzy Solo-Start">
+                </div>
+                <div class="timeline-item">
+                    <span class="year">1982</span>
+                    <p>Der "Bat-Biting"-Vorfall in Des Moines – Ozzy beißt eine Fledermaus (dachte, sie sei fake). Legendärer Moment, der ihn zum "Prince of Darkness" macht.</p>
+                    <img src="assets/images/BatIncident.webp" alt="Bat Incident">
+                </div>
+                <div class="timeline-item">
+                    <span class="year">1989</span>
+                    <p>Heirat mit Sharon Arden – sie wird seine Managerin. Gemeinsam bauen sie Ozzfest auf (ab 1996), das größte Metal-Festival der Welt.</p>
+                    <img src="assets/images/Hochzeitsfoto Ozzy und Sharon.webp" alt="Ozzy & Sharon">
+                </div>
+                <div class="timeline-item">
+                    <span class="year">2002</span>
+                    <p>"The Osbournes" startet auf MTV – Ozzy wird Reality-Star. Familie (Sharon, Kelly, Jack) erobert die Welt, trotz Chaos und Suchtprobleme.</p>
+                    <img src="assets/images/The-Osbournes-1280x720.webp" alt="The Osbournes">
+                </div>
+                <div class="timeline-item">
+                    <span class="year">2010</span>
+                    <p>Diagnose Parkinson – Ozzy kämpft öffentlich, bleibt aber kreativ. Reunion-Tour mit Black Sabbath (2011–2017), letztes Album "13" (2013).</p>
+                    <img src="assets/images/Band Reuion 2010.webp" alt="Ozzy Reunion">
+                </div>
+                <div class="timeline-item">
+                    <span class="year">2022</span>
+                    <p>"Patient Number 9" – letztes Solo-Album mit Gästen wie Tony Iommi, Eric Clapton. Ozzy kündigt Tour-Ende an, aber der Geist lebt weiter.</p>
+                    <img src="assets/images/Ozzyy stellt letztes Album vor.jpg" alt="Patient Number 9">
+                </div>
+                <div class="timeline-item">
+                    <span class="year">2025</span>
+                    <p>Ozzy verlässt uns am 30. Juli – aber sein Vermächtnis als Metal-Gott, Vater, Kämpfer lebt in jedem Riff, jedem Fan-Projekt.</p>
+                    <img src="assets/images/Ozzys legacy.webp" alt="Ozzy Legacy">
+                </div>
+            </div>
+        </section>
+
         <!-- Galerie -->
         <section id="gallerySection" class="container">
-            <h2>Galerie</h2>
+            <h2>Galerie  - Klickt auf ein Bild, und seht was passiet! 🤘🏻</h2>
             <div id="gallery" role="region" aria-label="Ozzy Osbourne Bildergalerie">
-                <img src="assets/images/1407501.jpg" alt="Ozzy Osbourne live auf der Bühne" loading="lazy" class="galleryImage" data-full="assets/images/1407501.jpg">
-                <img src="assets/images/OIP (1).jpg" alt="Ozzy Osbourne auf der Bühne" loading="lazy" class="galleryImage" data-full="assets/images/OIP (1).jpg">
-                <img src="assets/images/OIP (1).webp" alt="Porträt von Ozzy Osbourne" loading="lazy" class="galleryImage" data-full="assets/images/OIP (1).webp">
-                <img src="assets/images/OIP (2).jpg" alt="Ozzy Osbourne mit Gitarre" loading="lazy" class="galleryImage" data-full="assets/images/OIP (2).jpg">
-                <img src="assets/images/OIP (3).jpg" alt="Ozzy Osbourne schreit ins Mikrofon" loading="lazy" class="galleryImage" data-full="assets/images/OIP (3).jpg">
-                <img src="assets/images/OIP (4).jpg" alt="Ozzy Osbourne mit Sharon" loading="lazy" class="galleryImage" data-full="assets/images/OIP (4).jpg">
-                <img src="assets/images/OIP (5).jpg" alt="Ozzy Osbourne als Legende" loading="lazy" class="galleryImage" data-full="assets/images/OIP (5).jpg">
+                <img src="assets/images/Black Sabbath Bandfoto.jpg" alt="Black Sabbath Bandfoto" loading="lazy" class="galleryImage" data-full="assets/images/Black Sabbath Bandfoto.jpg">
+                <img src="assets/images/Black Sabbath.jpg" alt="Karikatur von Black Sabbath" loading="lazy" class="galleryImage" data-full="assets/images/Black Sabbath.jpg">
+                <img src="assets/images/Familien foto der Osbourns palmen.jpg" alt="Familie Osbourne Palmen" loading="lazy" class="galleryImage" data-full="assets/images/Familien foto der Osbourns palmen.jpg">
+                <img src="assets/images/Ozzy alt auf seinem thron sich am kopf krazend.jpg" alt="Ozzy Osbourne auf seinem thron" loading="lazy" class="galleryImage" data-full="assets/images/Ozzy alt auf seinem thron sich am kopf krazend.jpg">
+                <img src="assets/images/Ozzy auf dem thron bei back to beginnig tour 2025.jpg" alt="Ozzy Osbourne lacht bei Hall Of Fame" loading="lazy" class="galleryImage" data-full="assets/images/Ozzy auf dem thron bei back to beginnig tour 2025.jpg">
+                <img src="assets/images/Ozzy auf denn Hund gekommen.jpg" alt="Ozzy mit einem seiner Familien Hunde" loading="lazy" class="galleryImage" data-full="assets/images/Ozzy auf denn Hund gekommen.jpg">
+                <img src="assets/images/Ozzy beim Headbangen.jpg" alt="Ozzy Osbourne bei einem Gig" loading="lazy" class="galleryImage" data-full="assets/images/Ozzy beim Headbangen.jpg">
+                <img src="assets/images/Ozzy funny hat denn durchblick.jpg" alt="Ozzy schaut verkert durch ein Fernglass" loading="lazy" class="galleryImage" data-full="assets/images/Ozzy funny hat denn durchblick.jpg">
+                <img src="assets/images/Ozzy grüßend Hee.jpg" alt="Ozzy Osbourne in einer Pose" loading="lazy" class="galleryImage" data-full="assets/images/Ozzy grüßend Hee.jpg">
+                <img src="assets/images/Ozzy hat fun auf der bühne.jpg" alt="Ozzy hat spaß bei einem Gig" loading="lazy" class="galleryImage" data-full="assets/images/Ozzy hat fun auf der bühne.jpg">
+                <img src="assets/images/Ozzy in pose blauerhintergrund.jpg" alt="Ozzy Porträt" loading="lazy" class="galleryImage" data-full="assets/images/Ozzy in pose blauerhintergrund.jpg">
+                <img src="assets/images/Ozzy lachende pose.jpg" alt="Ozzy Osbourne in einer Pose" loading="lazy" class="galleryImage" data-full="assets/images/Ozzy lachende pose.jpg">
+                <img src="assets/images/Ozzy macht denn travolta.webp" alt="Ozzy in einer Pose wie John Travolta" loading="lazy" class="galleryImage" data-full="assets/images/Ozzy macht denn travolta.webp">
+                <img src="assets/images/Ozzy mit familie schwarzweiß.webp" alt="Ein frühes Familienfoto" loading="lazy" class="galleryImage" data-full="assets/images/Ozzy mit familie schwarzweiß.webp">
+                <img src="assets/images/Ozzy mit Jacks familie.jpg" alt="Ozzy Osbourne als Opa" loading="lazy" class="galleryImage" data-full="assets/images/Ozzy mit Jacks familie.jpg">
+                <img src="assets/images/Ozzy mit weißen harren.jpg" alt="Ozzy Osbourne mit weißen Harren" loading="lazy" class="galleryImage" data-full="assets/images/Ozzy mit weißen harren.jpg">
+                <img src="assets/images/Ozzy nachdenklich auf der Bühne.jpg" alt="Ozzy beim Dreh von Mama" loading="lazy" class="galleryImage" data-full="assets/images/Ozzy nachdenklich auf der Bühne.jpg">
+                <img src="assets/images/Ozzy on stage mit mikro.webp" alt="Ozzy Osbourne on stage" loading="lazy" class="galleryImage" data-full="assets/images/Ozzy on stage mit mikro.webp">
+                <img src="assets/images/Ozzy-Osbourne-Obit-Template-Headshot-Getty-H-2025.webp" alt="Ozzy Osbourne schreit ins Mikrofon" loading="lazy" class="galleryImage" data-full="assets/images/Ozzy-Osbourne-Obit-Template-Headshot-Getty-H-2025.webp">
+                <img src="assets/images/Ozzy-Osbourne-speaks-onstage-during-the-2024-Rock-Roll-Hall-of-Fame-Induction-Ceremony-2024.jpeg" alt="Ozzy Osbourne mit Sharon" loading="lazy" class="galleryImage" data-full="assets/images/Ozzy-Osbourne-speaks-onstage-during-the-2024-Rock-Roll-Hall-of-Fame-Induction-Ceremony-2024.jpeg">
+                <img src="assets/images/ozzy-osbourne-wife-sharon.jpg" alt="Ozzy Osbourne live auf der Bühne" loading="lazy" class="galleryImage" data-full="assets/images/ozzy-osbourne-wife-sharon.jpg">
+                <img src="assets/images/ozzy-und-sharon-osbourne-mit-ihren-drei-kindern-auf-einem-alten-foto.jpg" alt="Ozzy Osbourne auf der Bühne" loading="lazy" class="galleryImage" data-full="assets/images/ozzy-und-sharon-osbourne-mit-ihren-drei-kindern-auf-einem-alten-foto.jpg">
+                <img src="assets/images/Ozzy Osbourn jung.jpg" alt="Porträt von Ozzy Osbourne" loading="lazy" class="galleryImage" data-full="assets/images/Ozzy Osbourn jung.jpg">
+                <img src="assets/images/Ozzy Osbourne Cover.jpg" alt="Ozzy Osbourne mit Gitarre" loading="lazy" class="galleryImage" data-full="assets/images/Ozzy Osbourne Cover.jpg">
+                <img src="assets/images/Ozzy screams with the birds.jpg" alt="Ozzy Osbourne schreit ins Mikrofon" loading="lazy" class="galleryImage" data-full="assets/images/Ozzy screams with the birds.jpg">
+                <img src="assets/images/Ozzy umarmt sharon.webp" alt="Ozzy Osbourne mit Sharon" loading="lazy" class="galleryImage" data-full="assets/images/Ozzy umarmt sharon.webp">
+                <img src="assets/images/Ozzy und der Union Jack.jpg" alt="Ozzy Osbourne live auf der Bühne" loading="lazy" class="galleryImage" data-full="assets/images/Ozzy und der Union Jack.jpg">
+                <img src="assets/images/Ozzy und Sharon backstage.webp" alt="Ozzy Osbourne auf der Bühne" loading="lazy" class="galleryImage" data-full="assets/images/Ozzy und Sharon backstage.webp">
+                <img src="assets/images/Ozzy und Sharon bei Golden Gods.jpg" alt="Porträt von Ozzy Osbourne" loading="lazy" class="galleryImage" data-full="assets/images/Ozzy und Sharon bei Golden Gods.jpg">
+                <img src="assets/images/Ozzy und Sharon jung und alt.jpg" alt="Ozzy Osbourne mit Gitarre" loading="lazy" class="galleryImage" data-full="assets/images/Ozzy und Sharon jung und alt.jpg">
+                <img src="assets/images/Ozzy und Sharon Osbourne.jpg" alt="Ozzy Osbourne schreit ins Mikrofon" loading="lazy" class="galleryImage" data-full="assets/images/Ozzy und Sharon Osbourne.jpg">
+                <img src="assets/images/Ozzy und Sharon selfie.webp" alt="Ozzy Osbourne mit Sharon" loading="lazy" class="galleryImage" data-full="assets/images/Ozzy und Sharon selfie.webp">
+                <img src="assets/images/OzzySolo.webp" alt="Ozzy Osbourne live auf der Bühne" loading="lazy" class="galleryImage" data-full="assets/images/OzzySolo.webp">
             </div>
         </section>
 
@@ -63,6 +141,20 @@
                 <audio id="quoteSound" src="assets/sound/Voicy_Fucking crap It disappears.mp3" preload="auto"></audio>
                 <audio id="crowdSound" src="assets/sound/Voicy_It's a fucking stamp.mp3" preload="auto"></audio>
             </div>
+        </section>
+
+        <!-- Digitaler Schrein – DEIN VIDEO ROCKT! -->
+        <section id="shrineSection" class="container">
+            <h2>Digitaler Schrein – Ehre Ozzy</h2>
+            <p>Klicke auf den Altar, um Ozzy ein Bier zu spendieren!</p>
+            <div id="altar" class="altar">
+                <video src="assets/gif/schrein.mp4" id="altarVideo" class="altar-video" autoplay loop muted></video>
+                <div class="altar-overlay">
+                <div id="easterEffect" class="easter-effect"></div>
+                <div id="offeringsContainer" class="offerings"></div>
+                </div>
+            </div>
+            
         </section>
 
         <!-- Ozzy Sprite -->
@@ -83,16 +175,13 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Alexander Rothe</p>
-        <p><a href="https://ALex83-r0ck.github.io" target="_blank" rel="noopener">Mein Portfolio</a></p>
-        <p><em>Hobby-Projekt – keine kommerzielle Nutzung</em></p>
-        <p class="footer-hint">Tipp: Drücke <kbd>↑ ↑ ↓ ↓ ← → ← → B A</kbd> für ein Geheimnis...</p>
+        <p>&copy; 2025 Alexander Rothe – Fan-Projekt für Ozzy</p>
+        <p>Gerne auch für mehr ideen: <a href="https://ALex83-r0ck.github.io" target="_blank" rel="noopener">Mein Portfolio</a></p>
+        <p><em>Ein Fan-Projekt – geteilt mit Liebe, nicht kommerziell. Share mit #OzzyFanTribute</em></p>
         <p>Version 1.0</p>
     </footer>
 
     <!-- Scripts -->
-    <script src="js/effects.js"></script>
-    <script src="js/sound.js"></script>
-    <script src="js/main.js"></script>
+    <script type="module" src="js/main.js"></script>
 </body>
 </html>

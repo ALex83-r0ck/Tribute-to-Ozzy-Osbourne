@@ -1,40 +1,53 @@
-<!-- pages/concert.html -->
+<!-- ========== pages/concert.html ========== -->
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ozzy Memorial 🤘🏻</title>
+    <title>Ozzy Memorial</title>
     <link rel="stylesheet" href="../css/concert.css">
 </head>
 <body class="dark-mode">
+    <canvas id="flameCanvas"></canvas>
     <header>
         <h1>Ozzy Memorial - Letztes Konzert & Beerdigung</h1>
-        <a href="../index.html">Zurück zur Hauptseite</a>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="../pages/quiz.html">Quiz</a>
+        </nav>
     </header>
     <main>
         <section>
             <h2>Letztes Konzert: Back to the Beginning (5. Juli 2025)</h2>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/r9btGWbhIAM" title="Ozzy Osbourne's emotional final concert" frameborder="0" allowfullscreen></iframe>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/LmUhBU80i-Y" title="Ozzy Osbourne's last gig / Mama I'm Comming Home" frameborder="0" allowfullscreen></iframe>
+            <div id="song-container">
+                <h3>Black Sabbath</h3>
+                <iframe width="1305" height="734" src="https://www.youtube.com/embed/X7UZeHvMYZA?list=RDX7UZeHvMYZA" title="Black Sabbath - Children Of The Grave/Embryo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <iframe width="1305" height="734" src="https://www.youtube.com/embed/0qanF-91aJo?list=PLxA687tYuMWhOc54Vbes_5DgQXEuEUB__" title="BLACK SABBATH - &quot;Paranoid&quot; (Official Video)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <iframe width="1305" height="734" src="https://www.youtube.com/embed/pOfBdvuky1s" title="Iron Man (2012 Remaster)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <br>
+                <h3>Ozzy solo</h3>
+                <iframe width="1305" height="734" src="https://www.youtube.com/embed/9wQTNlyzJcM?list=RD-9yYJ6ZAYns" title="Ozzy Osbourne - Mama, I’m Coming Home (Lyrics)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </section>
+        <section>
+            <h2>Letztes Konzert: Back to the Beginning (5. Juli 2025)</h2>
+            <div id="konzert-container">
+                <h3>Proben und Co.</h3>
+                <iframe width="1427" height="606" src="https://www.youtube.com/embed/ARvgbOCrFz8" title="BLACK SABBATH - &quot;Tomorrow&#39;s Dream&quot; Live In Studio" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <h3>Back to the Beginning</h3>
+                <iframe src="https://www.youtube.com/embed/r9btGWbhIAM" allowfullscreen title="Letztes Konzert: Back to the Beginning"></iframe>
+                <iframe src="https://www.youtube.com/embed/" allowfullscreen title="Letztes Konzert: Back to the Beginning"></iframe>
+            </div>
         </section>
         <section>
             <h2>Beerdigung (30. Juli 2025)</h2>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/n5CSPhovGVE" title="Ozzy Osbourne Laid to Rest" frameborder="0" allowfullscreen></iframe>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/c6wT1-p61NQ" title="Ozzy Osbourne's funeral procession in Birmingham" frameborder="0" allowfullscreen></iframe>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/Kto_n9I2YeY" title="LIVE: Ozzy Osbourne's funeral" frameborder="0" allowfullscreen></iframe>
+            <div id="beerdigung">
+                <iframe src="https://www.youtube.com/embed/n5CSPhovGVE" allowfullscreen title="Beerdigung"></iframe>
+                <iframe src="https://www.youtube.com/embed/c6wT1-p61NQ" allowfullscreen title="letzer fairwell"></iframe>
+                <iframe src="https://www.youtube.com/embed/Kto_n9I2YeY" allowfullscreen title="Beerdigung"></iframe>
+            </div>
         </section>
     </main>
-    <footer>
-        <p>&copy; 2025 Alexander Rothe</p>
-    </footer>
-
-     <!-- JavaScript -->
-    <script src="https://www.youtube.com/iframe_api"></script>
     <script src="../js/effects.js"></script>
-    <script src="../js/gallery.js"></script>
-    <script src="../js/main.js"></script>
-    <script src="../js/quiz.js"></script>
-    <script src="../js/sound.js"></script>
 </body>
 </html>

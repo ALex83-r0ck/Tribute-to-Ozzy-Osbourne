@@ -1,77 +1,60 @@
 /* css/gallery.css */
 #gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 30px 15px;
-    max-width: 1300px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+    max-width: 1400px;
     margin: 0 auto;
-    opacity: 0;
-    animation: fadeInGallery 1.2s ease-out forwards;
-    animation-delay: 0.3s;
-}
-
-@keyframes fadeInGallery {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
 }
 
 .galleryImage {
-    width: 230px;
-    height: 220px;
+    width: 100%;
+    height: 200px;
     object-fit: cover;
-    border-radius: 16px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
-    opacity: 0;
-    transform: scale(0.8) translateY(20px);
-    animation: popIn 0.6s ease-out forwards;
+    border-radius: 12px;
     cursor: pointer;
-    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
     position: relative;
     overflow: hidden;
-    animation: galleryPop 0.8s ease-out forwards;
-}
-
-.galleryImage::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: linear-gradient(45deg, transparent, rgba(255,0,0,0.3));
-    opacity: 0;
-    transition: opacity 0.4s;
 }
 
 .galleryImage:hover {
-    transform: translateY(-20px) rotateY(10deg) scale(1.1);
-    box-shadow: 0 30px 60px rgba(255,0,0,0.4), 0 0 40px rgba(255,0,0,0.6);
-    z-index: 10;
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 0 25px #ff0000;
+    z-index: 5;
 }
 
-.disco-mode .galleryImage {
-    animation: discoPulse 1.5s infinite !important;
-    filter: brightness(1.3) !important;
-    mix-blend-mode: normal !important;
+.galleryImage::after {
+    content: attr(data-title);
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    color: #fff;
+    padding: 1rem 0.5rem 0.5rem;
+    font-size: 0.9rem;
+    opacity: 0;
+    transition: opacity 0.3s;
 }
 
-/* Staggered Animation  */
-.galleryImage:nth-child(1) { animation-delay: 0.1s; }
-.galleryImage:nth-child(2) { animation-delay: 0.2s; }
-.galleryImage:nth-child(3) { animation-delay: 0.3s; }
-.galleryImage:nth-child(4) { animation-delay: 0.4s; }
-.galleryImage:nth-child(5) { animation-delay: 0.5s; }
-.galleryImage:nth-child(6) { animation-delay: 0.6s; }
-.galleryImage:nth-child(7) { animation-delay: 0.7s; }
-
-@keyframes popIn {
-    to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
+.galleryImage:hover::after {
+    opacity: 1;
 }
 
-@keyframes galleryPop {
-    from { opacity: 0; transform: translateY(50px) rotateY(30deg); }
-    to { opacity: 1; transform: translateY(0) rotateY(0); }
+.buy-link {
+    position: absolute;
+    top: 8px; right: 8px;
+    background: #ff0000;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    text-decoration: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.galleryImage:hover .buy-link {
+    opacity: 1;
 }

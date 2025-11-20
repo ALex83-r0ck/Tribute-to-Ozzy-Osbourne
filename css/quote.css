@@ -1,13 +1,13 @@
 /* css/quote.css */
+/* === QUOTE === */
 #quoteContainer {
     background: rgba(0,0,0,0.7);
     padding: 30px;
     border-radius: 20px;
-    border: 2px solid var(--color-accent-dark);
+    border: 2px solid #ff0000;
     box-shadow: 0 0 30px rgba(255,0,0,0.5);
     animation: quotePulse 3s infinite;
 }
-
 #quote {
     font-size: 1.4em;
     font-style: italic;
@@ -15,7 +15,6 @@
     text-shadow: 0 0 10px #ff0000;
     min-height: 60px;
 }
-
 @keyframes quotePulse {
     0%, 100% { box-shadow: 0 0 30px rgba(255,0,0,0.5); }
     50% { box-shadow: 0 0 50px rgba(255,0,0,0.8); }
