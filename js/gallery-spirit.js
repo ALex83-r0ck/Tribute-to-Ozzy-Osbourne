@@ -4,7 +4,7 @@ export function initGallerySpirit() {
     if (!gallerySection) return;
 
     const spirit = document.createElement("img");
-    spirit.src = "assets/gif/91369.gif";
+    spirit.src = "/assets/gif/driving ozzy osbourne.gif";
     spirit.id = "ozzySpirit";
     spirit.style.cssText = `
         position: absolute;

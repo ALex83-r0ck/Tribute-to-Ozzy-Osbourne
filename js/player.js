@@ -12,7 +12,7 @@ export function initGlobalPlayer() {
     `;
     document.body.insertAdjacentHTML("beforeend", playerHTML);
 
-    const audio = new Audio("assets/sound/assets/Complete Songs/CS Ozzy Osbourne - Mama-i-m-coming-home.mp3");
+    const audio = new Audio("/assets/sound/assets/Complete Songs/CS Ozzy Osbourne - Mama-i-m-coming-home.mp3");
     audio.loop = true;
     const playBtn = document.getElementById("playPauseBtn");
     const progress = document.getElementById("progress");
