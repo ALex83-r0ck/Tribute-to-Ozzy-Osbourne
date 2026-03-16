@@ -1,25 +1,44 @@
-# Ozzy Osbourne Tribute – The Ultimate Metal Experience
+# 🤘 Ozzy Osbourne – Legendary Fan Tribute (v2.0)
 
-![CI](https://github.com/ALex83-r0ck/Tribute-to-Ozzy-Osbourne/actions/workflows/ci.yml/badge.svg)
-[![Coverage](https://codecov.io/gh/ALex83-r0ck/Tribute-to-Ozzy-Osbourne/branch/main/graph/badge.svg)](https://codecov.io/gh/ALex83-r0ck)
-[![Live Demo](https://img.shields.io/badge/live-ozzy-red)](https://alex83-r0ck.github.io/Tribute-to-Ozzy-Osbourne)
+Willkommen im **Ozzy Empire**! Dies ist eine hochgradig interaktive Fan-Hommage an den Prince of Darkness, Ozzy Osbourne. Entwickelt mit Leidenschaft, HTML5, CSS3 und modernem JavaScript.
 
-**Ein interaktives Heavy-Metal-Museum für den Prince of Darkness – gebaut in <2 Stunden mit Vibe Coding (Grok/xAI).**
+## 🚀 Features
 
-## Features
-- **Bio-Timeline** (1948–2025) mit Bildern
-- **30+ Bildergalerie** mit Hover-Effekten
-- **Quiz** mit 10 Fragen, Hints, Highscore
-- **Digitaler Schrein** – Klick = Bier spenden
-- **Geister-Sprites** – Ozzy fährt & headbangt
-- **Sound-Effekte** – Zitate, Riffs, Crowd
-- **Disco, Headbang, Theme Toggle**
-- **100 % getestet & CI/CD**
+### 🎸 Hauptseite (The Dashboard)
 
-## Live Demo
-[https://alex83-r0ck.github.io/Tribute-to-Ozzy-Osbourne](https://alex83-r0ck.github.io/Tribute-to-Ozzy-Osbourne)
+- **Bio-Timeline:** Ein dynamisches Zick-Zack-Layout durch Ozzys Leben.
+- **Virtual Tribute Wall:** Zünde digitale Kerzen (🕯️) für Ozzy an.
+- **Digitaler Schrein:** Interaktive "Offerings" (Bier, Blut, Fledermäuse) mit visuellen Effekten.
+- **Crazy Train Scroll-Indicator:** Eine Lokomotive (🚂) begleitet dich vertikal durch die Seite.
+- **Design-Modi:** Toggelt zwischen Light Mode, Dark Mode, Moonlight Mode und einem wilden Disco Mode.
+- **Ghost Ozzy Sprite:** Ein geisterhafter Ozzy (👻), der zufällig erscheint und gerufen werden kann.
 
-## Schnellstart
-```bash
-git clone https://github.com/ALex83-r0ck/Tribute-to-Ozzy-Osbourne.git
-cd Tribute-to-Ozzy-Osbourne
+### 🎮 Ultimate Quiz
+
+- **Bat-Lives System:** Du startest mit 3 Leben (🦇). Jede falsche Antwort kostet eine Fledermaus.
+- **Crazy Train Timer:** Nur 15 Sekunden Zeit pro Frage!
+- **Rockstar Ranking:** Erhalte Titel vom "Roadie" bis zum "METAL GOD".
+- **Highscore Hall of Fame:** Speichere deine besten Ergebnisse lokal.
+
+### 💿 Music Empire (Legacy)
+
+- **Vinyl-Masterpieces:** Interaktive Album-Cover mit Vinyl-Spin-Effekt und Tracklisten.
+- **Legendary Tours:** Vote für deine Lieblingstournee.
+- **Stage Light Sync:** Steuere die Bühnenbeleuchtung der gesamten Seite.
+- **Trophy Case:** Eine schwebende Sidebar mit Ozzys größten Auszeichnungen.
+
+## 🛠️ Installation & Start
+
+1. Repository klonen oder ZIP herunterladen.
+2. Die `index.html` einfach in einem modernen Webbrowser öffnen.
+3. **Keine Webserver oder Datenbanken nötig** – alles läuft Client-seitig via LocalStorage!
+
+## 📁 Struktur
+
+- `/assets`: Bilder, Videos und Emojis.
+- `/css`: Modulare Stylesheets (Main, Quiz, Concert).
+- `/js`: Die interaktive Logik (Main, Quiz, Concert).
+- `/pages`: Unterseiten für Quiz, Legacy, Impressum und Datenschutz.
+
+---
+*Erstellt mit 🤘 von Alexander Rothe. Ein Fan-Projekt – nicht kommerziell.*

@@ -1,106 +1,142 @@
-/* css/concert.css */
-body {
-    color: #fff;
-    font-family: 'Open Sans', sans-serif;
-    text-align: center;
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background: #000 url('../assets/images/ozzy-memorial-bg.jpg') center/cover fixed;
-}
-nav {
-    margin: 20px auto;
-    max-width: 1200px;
-    border-radius: solid #ff0000d1 5px;
-    box-shadow: 0 0 20px #ff0000;
-    background: rgba(0,0,0,0.85);
-    background-image: url('../assets/images/RIP.webp');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    padding: 20px;
-}
-header, main, section {
-    background: rgba(0,0,0,0.85);
-    background-image: url('../assets/images/RIP.webp');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    padding: 20px;
-    margin: 10px auto;
-    max-width: 1200px;
-    border-radius: solid #ff0000d1 5px;
-    box-shadow: 0 0 20px #ff0000;
+/* ========== css/concert.css ========== */
+
+:root {
+    --theme-color: #ff0000;
+    --theme-glow: rgba(255, 0, 0, 0.3);
 }
 
-footer {
+body[data-theme="blue"] { --theme-color: #0000ff; --theme-glow: rgba(0, 0, 255, 0.3); }
+body[data-theme="purple"] { --theme-color: #800080; --theme-glow: rgba(128, 0, 128, 0.3); }
+body[data-theme="gold"] { --theme-color: #ffd700; --theme-glow: rgba(255, 215, 0, 0.3); }
+
+/* --- SIDEBAR: TROPHY CASE --- */
+.trophy-case {
+    position: fixed;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 10001;
+}
+
+.trophy-item {
+    width: 50px;
+    height: 50px;
+    background: rgba(0,0,0,0.8);
+    border: 2px solid var(--theme-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 0 10px var(--theme-glow);
+    transition: 0.3s;
+    cursor: help;
+}
+
+.trophy-item:hover {
+    transform: scale(1.2);
+    background: var(--theme-color);
+}
+
+/* --- DASHBOARD CLEANUP --- */
+.dashboard-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem; /* Schlanker als vorher */
+}
+
+.legacy-section {
+    margin-top: 1rem;
+}
+
+/* Tours Grid */
+.legacy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    perspective: 1000px;
+}
+
+.legacy-card {
+    height: 280px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.legacy-card.is-flipped { transform: rotateY(180deg); }
+
+.card-front, .card-back {
+    position: absolute; width: 100%; height: 100%;
+    backface-visibility: hidden;
+    border: 2px solid var(--theme-color);
+    border-radius: 15px;
+    padding: 1rem;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    background: rgba(20,20,20,0.95);
+}
+
+.card-back { transform: rotateY(180deg); background: #111; }
+
+.close-card-btn {
+    margin-top: 10px;
+    background: none; border: 1px solid #444; color: #aaa;
+    padding: 5px 10px; border-radius: 5px; font-size: 0.8rem;
+}
+
+/* Album Grid */
+.album-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+.album-card {
+    width: 180px; height: 180px;
+    border-radius: 10px; overflow: hidden;
+    position: relative; border: 2px solid var(--theme-color);
+}
+
+.vinyl-disc {
+    position: absolute; width: 160px; height: 180px;
+    background: radial-gradient(circle, #000 20%, #111 25%, #000 30%);
+    border-radius: 50%; right: -80px; transition: 0.5s; z-index: 1;
+}
+.album-card:hover .vinyl-disc { right: -5px; transform: rotate(360deg); }
+
+.album-info {
+    position: relative; z-index: 2;
     background: rgba(0,0,0,0.85);
-    background-image: url('../assets/images/RIP.webp');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    padding: 20px;
-    margin: 20px auto;
-    max-width: 1200px;
-    border-radius: solid #ff0000d1 5px;
-    box-shadow: 0 0 20px #ff0000;
+    height: 100%; display: flex; align-items: center; justify-content: center;
 }
-iframe {
-    width: 100%;
-    aspect-ratio: 16/9;
-    max-width: 560px;
-    height: 315px;
-    margin: 10px;
-    border: 3px solid #ff0000;
-    border-radius: 50px;
+
+.album-info h3 { font-size: 1rem; color: #fff; text-align: center; }
+
+/* Features (Cameos) */
+.feat-list { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+.feat-item {
+    padding: 10px 20px; background: rgba(255,255,255,0.05);
+    border-radius: 30px; border-left: 4px solid var(--theme-color);
+    font-size: 0.9rem;
 }
+
+/* Modal */
+.ozzy-modal {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 100000; display: none; align-items: center; justify-content: center;
+}
+.ozzy-modal--open { display: flex; }
+.ozzy-modal__backdrop { position: absolute; width: 100%; height: 100%; background: rgba(0,0,0,0.9); }
+.ozzy-modal__content {
+    position: relative; z-index: 1; background: #111;
+    border: 3px solid var(--theme-color); padding: 2rem; border-radius: 20px;
+    max-width: 400px; width: 90%;
+}
+
+/* Animations */
+.cheer-emoji { position: fixed; bottom: -50px; font-size: 2.5rem; animation: fly 2s forwards; }
+@keyframes fly { to { transform: translateY(-100vh) rotate(360deg); opacity: 0; } }
+
 @media (max-width: 768px) {
-    iframe { height: 200px; }
-}
-
-#song-container {
-    display: flex;
-    background-image: url("../assets/images/BandBlackSabbath.jpg");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    padding: 20px;
-    margin: 10px auto;
-    max-width: 1200px;
-    border-radius: solid #ff0000d1 5px;
-    box-shadow: 0 0 20px #ff0000;
-    flex-direction: column;
-    align-items: center;
-}
-
-#konzert-container {
-    display: flex;
-    background-image: url("../assets/images/ozzy-osbourne-sept-10-2022-billboard-1548.webp");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    padding: 20px;
-    margin: 10px auto;
-    max-width: 1200px;
-    border-radius: solid #ff0000d1 5px;
-    box-shadow: 0 0 20px #ff0000;
-    flex-direction: column;
-    align-items: center;
-}
-
-#beerdigung {
-    background-image: url("../assets/images/ozzy-osbourne-on-stage.png");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    padding: 20px;
-    margin: 10px auto;
-    max-width: 1200px;
-    border-radius: solid #ff0000d1 5px;
-    box-shadow: 0 0 20px #ff0000;
-    flex-direction: column;
-    align-items: center;
+    .trophy-case { flex-direction: row; top: auto; bottom: 10px; left: 50%; transform: translateX(-50%); }
+    .header-nav { display: none; }
 }

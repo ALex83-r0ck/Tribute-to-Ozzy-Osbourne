@@ -1,121 +1,148 @@
 // ========== js/quiz.js ==========
-// === OZZY FAN PROJEKT – QUIZ ===
+// === OZZY FAN PROJEKT – QUIZ (ULTIMATE) ===
 const questions = [
     { 
         question: "Wann wurde Ozzy Osbourne geboren?", 
         options: ["1948", "1950", "1952"], 
         answer: "1948",
-        hint: "Er wurde kurz nach dem Zweiten Weltkrieg geboren – in den späten 40ern."
+        hint: "Er wurde kurz nach dem Zweiten Weltkrieg geboren."
     },
     { 
         question: "Wie hieß Ozzy Osbourne noch?", 
         options: ["Ozzy Osbourne", "Ozzy", "Ozzy Osbourne III"], 
         answer: "Ozzy",
-        hint: "Sein richtiger Name ist John Michael Osbourne – aber alle nennen ihn nur so."
+        hint: "Sein richtiger Name ist John Michael Osbourne."
     },
     { 
         question: "Wie heißt Ozzys erste Band?", 
         options: ["Black Sabbath", "Earth", "Heaven & Hell"], 
         answer: "Black Sabbath",
-        hint: "Die Band hieß zuerst 'Earth', aber dann kam der Name mit dem schwarzen Sabbat..."
+        hint: "Die Band hieß zuerst 'Earth'."
     },
     { 
         question: "Welches Tier biss Ozzy auf der Bühne?", 
         options: ["Fledermaus", "Taube", "Schlange"], 
         answer: "Fledermaus",
-        hint: "1982 in Des Moines – es war keine Absicht, aber es wurde legendär!"
+        hint: "1982 in Des Moines."
     },
     { 
         question: "Wie heißt Ozzy Osbourne's letztes Album?", 
         options: ["Paranoid", "Patient Number 9", "Paranoid II"], 
         answer: "Patient Number 9",
-        hint: "Es kam 2022 raus und hat Gäste wie Jeff Beck und Tony Iommi."
+        hint: "Es kam 2022 raus."
     },
     { 
         question: "In welchem Jahr verließ Ozzy Osbourne Black Sabbath zum ersten Mal?", 
         options: ["1977", "1979", "1981"], 
         answer: "1979",
-        hint: "Es war kurz vor dem Album 'Heaven and Hell' mit neuem Sänger."
+        hint: "Es war kurz vor dem Album 'Heaven and Hell'."
     },
     { 
-        question: "Welcher Song von Ozzy Osbourne wurde durch einen Sample in einem Hip-Hop-Hit berühmt?", 
+        question: "Welcher Song von Ozzy wurde durch Trick Daddy gesampelt?", 
         options: ["Crazy Train", "Iron Man", "Mr. Crowley"], 
         answer: "Crazy Train",
-        hint: "Trick Daddy samplete den Riff in 'Let's Go' – ein absoluter Klassiker!"
+        hint: "Ein absoluter Klassiker mit dem 'Ay-Ay-Ay' Intro."
     },
     { 
-        question: "Wie heißt Ozzys Ehefrau und Managerin?", 
+        question: "Wie heißt Ozzys Ehefrau?", 
         options: ["Sharon Osbourne", "Kelly Osbourne", "Aimee Osbourne"], 
         answer: "Sharon Osbourne",
-        hint: "Sie war die Tochter seines Managers und ist heute seine 'bessere Hälfte'."
+        hint: "Sie war die Tochter seines Managers."
     },
     { 
-        question: "Welche Reality-TV-Show machte die Familie Osbourne weltberühmt?", 
+        question: "Welche MTV-Show machte die Familie weltberühmt?", 
         options: ["The Osbournes", "Ozzy & Friends", "Black Sabbath Family"], 
         answer: "The Osbournes",
-        hint: "MTV, 2002–2005 – mit viel Fluchen, Chaos und Hunden."
+        hint: "MTV, 2002–2005."
     },
     { 
-        question: "Welchen Spitznamen trägt Ozzy Osbourne aufgrund seiner Bühnenshows?", 
+        question: "Welchen Spitznamen trägt Ozzy?", 
         options: ["Prince of Darkness", "King of Rock", "Godfather of Metal"], 
         answer: "Prince of Darkness",
-        hint: "Dunkle Bühne, Fledermäuse, schwarze Kleidung – passt perfekt!"
+        hint: "Dunkle Bühne, Fledermäuse..."
     }
 ];
 
-// === VARIABLEN ===
 let currentQuestion = 0;
 let score = 0;
-let hintUsed = false;
-let hintTimeout = null;
+let lives = 3;
+let timer = null;
+let shuffledQuestions = [];
+const TIME_LIMIT = 15; // Sekunden pro Frage
 
-// === DOM ===
 const startButton = document.getElementById("startButton");
 const quizQuestion = document.getElementById("quizQuestion");
 const quizOptions = document.getElementById("quizOptions");
 const quizResult = document.getElementById("quizResult");
 const quizScore = document.getElementById("quizScore");
+const livesContainer = document.getElementById("livesContainer");
+const timerBar = document.getElementById("timerBar");
 const hintContainer = document.getElementById("hintContainer");
 const hintButton = document.getElementById("hintButton");
 const hintText = document.getElementById("hintText");
 const highscoreToggle = document.getElementById("highscoreToggle");
 const highscoreDiv = document.getElementById("highscore");
 const highscoreList = document.getElementById("highscoreList");
+const playerNameInput = document.getElementById("playerName");
 
-// === EVENTS ===
 startButton?.addEventListener("click", startQuiz);
 highscoreToggle?.addEventListener("click", toggleHighscore);
 
-// === FUNKTIONEN ===
 function startQuiz() {
+    const name = playerNameInput?.value.trim();
+    if (!name) {
+        alert("Bitte gib einen Namen ein! 🤘");
+        return;
+    }
+    
+    shuffledQuestions = [...questions].sort(() => Math.random() - 0.5);
+    document.getElementById("setupArea").style.display = "none";
+    document.getElementById("quizArea").style.display = "block";
+    
     currentQuestion = 0;
     score = 0;
-    quizScore.textContent = "Punkte: 0";
-    quizResult.textContent = "";
-    hintContainer.style.display = "none";
-    highscoreDiv.style.display = "none";
+    lives = 3;
+    updateStatus();
     showQuestion();
 }
 
+function updateStatus() {
+    quizScore.textContent = `Punkte: ${score}`;
+    livesContainer.textContent = "🦇".repeat(lives);
+}
+
+function startTimer() {
+    let timeLeft = TIME_LIMIT;
+    timerBar.style.width = "100%";
+    
+    if (timer) clearInterval(timer);
+    
+    timer = setInterval(() => {
+        timeLeft -= 0.1;
+        const percent = (timeLeft / TIME_LIMIT) * 100;
+        timerBar.style.width = percent + "%";
+        
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            handleWrongAnswer("Zeit abgelaufen!");
+        }
+    }, 100);
+}
+
 function showQuestion() {
-    if (currentQuestion >= questions.length) {
+    if (currentQuestion >= shuffledQuestions.length || lives <= 0) {
         endQuiz();
         return;
     }
-
-    // Reset Hint
-    hintUsed = false;
-    if (hintTimeout) clearTimeout(hintTimeout);
+    
     hintText.style.display = "none";
-    hintButton.textContent = "Tipp anzeigen (-1 Punkt)";
-    hintButton.disabled = false;
-    hintContainer.style.display = "none";
-
-    const q = questions[currentQuestion];
+    hintContainer.style.display = "block";
+    quizResult.textContent = "";
+    
+    const q = shuffledQuestions[currentQuestion];
     quizQuestion.textContent = q.question;
-    quizQuestion.style.display = "block";
-
     quizOptions.innerHTML = "";
+    
     q.options.forEach(option => {
         const btn = document.createElement("button");
         btn.textContent = option;
@@ -123,64 +150,97 @@ function showQuestion() {
         btn.onclick = () => checkAnswer(option);
         quizOptions.appendChild(btn);
     });
-    quizOptions.style.display = "block";
-
-    // Hint-Button nach 2 Sekunden anzeigen
-    hintTimeout = setTimeout(() => {
-        hintContainer.style.display = "block";
-    }, 2000);
-
-    // Hint-Button Click
+    
     hintButton.onclick = () => {
-        if (hintUsed) return;
-        hintUsed = true;
-        hintButton.disabled = true;
-        hintButton.textContent = "Tipp genutzt";
-
         hintText.textContent = q.hint;
         hintText.style.display = "block";
-
-        if (score > 0) {
-            score--;
-            quizScore.textContent = `Punkte: ${score}`;
-        }
+        if (score > 0) { score--; updateStatus(); }
+        hintButton.disabled = true;
     };
+    hintButton.disabled = false;
+    
+    startTimer();
 }
 
 function checkAnswer(selected) {
-    const q = questions[currentQuestion];
-    const correct = q.answer;
-
-    // Hint-Container verstecken
-    hintContainer.style.display = "none";
-
-    if (selected === correct) {
-        if (!hintUsed) score++;  // Nur Punkt, wenn kein Hint
-        quizResult.textContent = "Richtig!";
+    clearInterval(timer);
+    const q = shuffledQuestions[currentQuestion];
+    
+    if (selected === q.answer) {
+        score++;
+        quizResult.textContent = "RICHTIG! 🤘";
+        quizResult.style.color = "#00ff00";
+        createExplosion();
     } else {
-        quizResult.textContent = `Falsch! Richtig: ${correct}`;
+        handleWrongAnswer(`Falsch! Es war: ${q.answer}`);
+        return; // handleWrongAnswer ruft showQuestion auf
     }
-
-    quizScore.textContent = `Punkte: ${score}`;
+    
+    updateStatus();
     currentQuestion++;
     setTimeout(showQuestion, 1500);
 }
 
+function handleWrongAnswer(msg) {
+    lives--;
+    updateStatus();
+    bloodFlash();
+    quizResult.textContent = msg;
+    quizResult.style.color = "#ff0000";
+    
+    if (lives <= 0) {
+        setTimeout(endQuiz, 1500);
+    } else {
+        currentQuestion++;
+        setTimeout(showQuestion, 1500);
+    }
+}
+
+function bloodFlash() {
+    const flash = document.createElement("div");
+    flash.className = "blood-flash";
+    document.body.appendChild(flash);
+    setTimeout(() => flash.remove(), 500);
+}
+
+function createExplosion() {
+    for (let i = 0; i < 10; i++) {
+        const p = document.createElement("div");
+        p.className = "explosion-particle";
+        p.textContent = ["🤘", "🔥", "🎸", "⚡"][Math.floor(Math.random() * 4)];
+        p.style.left = "50%";
+        p.style.top = "50%";
+        p.style.setProperty("--tx", (Math.random() - 0.5) * 400 + "px");
+        p.style.setProperty("--ty", (Math.random() - 0.5) * 400 + "px");
+        document.body.appendChild(p);
+        setTimeout(() => p.remove(), 1000);
+    }
+}
+
 function endQuiz() {
-    quizQuestion.textContent = "Quiz beendet!";
-    quizOptions.style.display = "none";
-    hintContainer.style.display = "none";
-    quizResult.textContent = `Dein Endstand: ${score} von ${questions.length} Punkten`;
+    clearInterval(timer);
+    document.getElementById("quizArea").style.display = "none";
+    document.getElementById("setupArea").style.display = "block";
+    
+    const ranking = getRanking(score);
     saveHighscore();
-    loadHighscore(); // Zeige Highscore direkt an
+    loadHighscore();
+    alert(`Quiz beendet!\nPunkte: ${score}\nDein Rang: ${ranking}`);
+}
+
+function getRanking(s) {
+    if (s <= 3) return "Roadie 🛠️";
+    if (s <= 7) return "Bassist 🎸";
+    if (s <= 9) return "Prince of Darkness 🦇";
+    return "METAL GOD 🤘🔥";
 }
 
 function saveHighscore() {
-    const playerName = document.getElementById("playerName")?.value.trim() || "Unbekannt";
+    const playerName = playerNameInput?.value.trim() || "Unbekannt";
     const highscore = JSON.parse(localStorage.getItem("ozzyHighscore") || "[]");
     highscore.push({ name: playerName, score, date: new Date().toLocaleDateString() });
     highscore.sort((a, b) => b.score - a.score);
-    highscore.splice(10); // Nur Top 10
+    highscore.splice(10);
     localStorage.setItem("ozzyHighscore", JSON.stringify(highscore));
 }
 
@@ -189,23 +249,13 @@ function loadHighscore() {
     highscoreList.innerHTML = "";
     highscore.forEach((entry, i) => {
         const li = document.createElement("li");
-        li.textContent = `${i + 1}. ${entry.name} – ${entry.score} Punkte (${entry.date})`;
+        li.innerHTML = `<span>${i + 1}. ${entry.name}</span> <span>${entry.score} Pkt.</span>`;
         highscoreList.appendChild(li);
     });
     highscoreDiv.style.display = "block";
-    highscoreToggle.textContent = "Highscore verstecken";
 }
 
 function toggleHighscore() {
-    if (highscoreDiv.style.display === "none" || !highscoreDiv.style.display) {
-        loadHighscore();
-    } else {
-        highscoreDiv.style.display = "none";
-        highscoreToggle.textContent = "Highscore anzeigen";
-    }
+    highscoreDiv.style.display = (highscoreDiv.style.display === "none") ? "block" : "none";
+    if (highscoreDiv.style.display === "block") loadHighscore();
 }
-
-// Beim Laden: Highscore-Button-Text setzen
-document.addEventListener("DOMContentLoaded", () => {
-    highscoreToggle.textContent = "Highscore anzeigen";
-});

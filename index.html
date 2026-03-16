@@ -12,28 +12,40 @@
     <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap" rel="stylesheet">
 </head>
 <body class="dark-mode">
+    <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
+    
+    <!-- Crazy Train Scroll Indicator -->
+    <div id="scrollProgressContainer">
+        <div id="scrollProgressBar">
+            <span id="trainEmoji">🚂</span>
+        </div>
+    </div>
+
+    <!-- Prince of Darkness Vignette -->
+    <div class="vignette-overlay"></div>
+
     <!-- Header -->
-    <header>
-        <h1>Ozzy The Prince of Darkness – Fan-Projekt by Alexander Rothe</h1>
-        <p class="fan-tagline">Eine Hommage an die Legende – Für Fans, von Fans. 🤘</p>
-
-        <nav aria-label="Hauptnavigation">
-            <a href="#bioSection">Bio</a>
-            <a href="#gallerySection">Galerie</a>
-            <a href="#quoteSection">Zitat</a>
-            <a href="#shrineSection">Schrein</a>
-            <a href="#memorialSection">Memorial</a>
-        </nav>
-
-        <div id="buttonContainer" role="group" aria-label="Interaktive Steuerung">
-            <button id="themeToggle" class="modern-btn" aria-pressed="false">Light Mode</button>
-            <button id="discoToggle" class="modern-btn" aria-pressed="false">Disco: Aus</button>
-            <button id="headbangToggle" class="modern-btn" aria-pressed="false">Headbang: Aus</button>
-            <button id="soundToggle" class="modern-btn" aria-pressed="false">Ton: Aus</button>
+    <header class="slim-header">
+        <div class="header-main">
+            <h1 class="metal-text-small">Ozzy Tribute</h1>
+            <nav aria-label="Hauptnavigation" class="header-nav">
+                <a href="#bioSection">Bio</a>
+                <a href="#gallerySection">Galerie</a>
+                <a href="#tributeSection">Wall</a>
+                <a href="#shrineSection">Schrein</a>
+            </nav>
+            <div id="buttonContainer" class="icon-buttons">
+                <button id="themeToggle" class="icon-btn" title="Light/Dark Mode">🌓</button>
+                <button id="moonToggle" class="icon-btn" title="Moon Mode">🌙</button>
+                <button id="discoToggle" class="icon-btn" title="Disco Mode">🕺</button>
+            </div>
+        </div>
+        <div id="statsContainer">
+            <p>🦇 <span id="batCounter">0</span></p>
         </div>
     </header>
 
-    <main id="main-content">
+    <main id="main-content" tabindex="-1">
 
         <!-- Hero Canvas -->
         <section id="hero" aria-hidden="true">
@@ -42,85 +54,120 @@
 
         <!-- Bio-Timeline -->
         <section id="bioSection" class="container">
-            <h2>Ozzys Leben – Timeline einer Legende</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <span class="year">1948</span>
-                    <p>John Michael "Ozzy" Osbourne wird am 3. Dezember in Aston, Birmingham, geboren – als 4. von 6 Kindern in einer armen Familie. Schon früh kämpft er mit Dyslexie und verlässt die Schule mit 16.</p>
+            <h2 class="metal-text">Ozzys Leben – Timeline einer Legende</h2>
+            <div class="timeline-v2">
+                <div class="timeline-v2-item left">
+                    <div class="timeline-v2-content">
+                        <span class="year">1948</span>
+                        <h3>👶 Geboren in Birmingham</h3>
+                        <p>John Michael "Ozzy" Osbourne wird in Aston geboren. Ein Arbeiterkind, das die Welt verändern sollte.</p>
+                    </div>
                 </div>
-                <div class="timeline-item">
-                    <span class="year">1968</span>
-                    <p>Gründung von Black Sabbath mit Tony Iommi, Geezer Butler und Bill Ward. Aus "Earth" wird "Black Sabbath" – der Heavy Metal wird geboren. Debütalbum 1970 revolutioniert die Musikwelt.</p>
+                <div class="timeline-v2-item right">
+                    <div class="timeline-v2-content">
+                        <span class="year">1968</span>
+                        <h3>🎸 Black Sabbath</h3>
+                        <p>Die Geburtsstunde des Heavy Metal. Mit düsteren Riffs und Ozzys Stimme beginnt eine neue Ära.</p>
+                    </div>
                 </div>
-                <div class="timeline-item">
-                    <span class="year">1979</span>
-                    <p>Entlassung aus Black Sabbath wegen Drogenproblemen. Ozzy startet Solo-Karriere mit "Blizzard of Ozz" (1980) – "Crazy Train" und "Mr. Crowley" werden Hymnen.</p>
+                <div class="timeline-v2-item left">
+                    <div class="timeline-v2-content">
+                        <span class="year">1979</span>
+                        <h3>🚀 Solo-Karriere</h3>
+                        <p>Nach dem Aus bei Sabbath startet Ozzy mit "Blizzard of Ozz" voll durch. "Crazy Train" wird zur Hymne.</p>
+                    </div>
                 </div>
-                <div class="timeline-item">
-                    <span class="year">1982</span>
-                    <p>Der "Bat-Biting"-Vorfall in Des Moines – Ozzy beißt eine Fledermaus (dachte, sie sei fake). Legendärer Moment, der ihn zum "Prince of Darkness" macht.</p>
+                <div class="timeline-v2-item right">
+                    <div class="timeline-v2-content">
+                        <span class="year">1982</span>
+                        <h3>🦇 Der Fledermaus-Vorfall</h3>
+                        <p>In Des Moines beißt Ozzy einer Fledermaus den Kopf ab – aus Versehen, aber legendär!</p>
+                    </div>
                 </div>
-                <div class="timeline-item">
-                    <span class="year">1989</span>
-                    <p>Heirat mit Sharon Arden – sie wird seine Managerin. Gemeinsam bauen sie Ozzfest auf (ab 1996), das größte Metal-Festival der Welt.</p>
+                <div class="timeline-v2-item left">
+                    <div class="timeline-v2-content">
+                        <span class="year">2002</span>
+                        <h3>📺 The Osbournes</h3>
+                        <p>Ozzy wird zum Reality-TV Star auf MTV. Die ganze Welt liebt das Chaos der Familie Osbourne.</p>
+                    </div>
                 </div>
-                <div class="timeline-item">
-                    <span class="year">2002</span>
-                    <p>"The Osbournes" startet auf MTV – Ozzy wird Reality-Star. Familie (Sharon, Kelly, Jack) erobert die Welt, trotz Chaos und Suchtprobleme.</p>
-                </div>
-                <div class="timeline-item">
-                    <span class="year">2010</span>
-                    <p>Diagnose Parkinson – Ozzy kämpft öffentlich, bleibt aber kreativ. Reunion-Tour mit Black Sabbath (2011–2017), letztes Album "13" (2013).</p>
-                </div>
-                <div class="timeline-item">
-                    <span class="year">2022</span>
-                    <p>"Patient Number 9" – letztes Solo-Album mit Gästen wie Tony Iommi, Eric Clapton. Ozzy kündigt Tour-Ende an, aber der Geist lebt weiter.</p>
-                </div>
-                <div class="timeline-item">
-                    <span class="year">2025</span>
-                    <p>Ozzy verlässt uns am 30. Juli – aber sein Vermächtnis als Metal-Gott, Vater, Kämpfer lebt in jedem Riff, jedem Fan-Projekt.</p>
+                <div class="timeline-v2-item right">
+                    <div class="timeline-v2-content">
+                        <span class="year">2025</span>
+                        <h3>🖤 R.I.P. Prince of Darkness</h3>
+                        <p>Ozzy verlässt die Bühne des Lebens, aber sein Erbe ist in jedem Metal-Riff unsterblich.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Galerie -->
         <section id="gallerySection" class="container">
-            <h2>Galerie  - Klickt auf ein Bild, und seht was passiet! 🤘🏻</h2>
-            <div id="gallery" role="region" aria-label="Bildergalerie">
-                <img src="assets/images/ozzy-osbourne.png" alt="Bandfoto von Black Sabbath" loading="lazy" class="galleryImage" data-full="assets/images/Black Sabbath Bandfoto.jpg">
-                <img src="assets/images/Rest in Power Prince Of Darkness.webp" alt="Karikatur von Black Sabbath" loading="lazy" class="galleryImage" data-full="assets/images/Black Sabbath.jpg">
-               
-            </div>
-        </section>
-
-        <!-- Zitat -->
-        <section id="quoteSection" class="container">
-            <h2>Zitat</h2>
-            <div id="quoteContainer">
-                <p id="quote" aria-live="polite">Klick für ein Ozzy-Zitat!</p>
-                <button id="quoteButton" class="modern-btn">Zitat</button>
-            </div>
-        </section>
-
-        <!-- Digitaler Schrein – DEIN VIDEO ROCKT! -->
-        <section id="shrineSection" class="container">
-            <h2>Digitaler Schrein – Ehre Ozzy</h2>
-            <p>Klicke auf den Altar, um Ozzy ein Bier zu spendieren!</p>
-            <div id="altar" class="altar">
-                <video src="assets/gif/schrein.mp4" id="altarVideo" class="altar-video" autoplay loop muted></video>
-                <div class="altar-overlay">
-                <div id="easterEffect" class="easter-effect"></div>
-                <div id="offeringsContainer" class="offerings"></div>
+            <h2 class="metal-text">Galerie - The Visual Legacy</h2>
+            <div id="gallery" class="gallery-modern">
+                <div class="gallery-card">
+                    <img src="assets/images/ozzy-osbourne.png" alt="Ozzy Portrait" class="galleryImage" data-full="assets/images/ozzy-osbourne.png">
+                    <div class="gallery-info"><span>The Icon</span></div>
+                </div>
+                <div class="gallery-card">
+                    <img src="assets/images/Rest in Power Prince Of Darkness.webp" alt="Ozzy Tribute" class="galleryImage" data-full="assets/images/Rest in Power Prince Of Darkness.webp">
+                    <div class="gallery-info"><span>Prince of Darkness</span></div>
+                </div>
+                <div class="gallery-card">
+                    <img src="assets/images/ozzy-osbourne-on-stage RIP.png" alt="Ozzy on Stage" class="galleryImage" data-full="assets/images/ozzy-osbourne-on-stage RIP.png">
+                    <div class="gallery-info"><span>Live Magic</span></div>
                 </div>
             </div>
-            
+        </section>
+
+        <!-- Dashboard: Wall & Quotes -->
+        <section class="container">
+            <div class="dashboard-grid">
+                <!-- Virtual Tribute Wall -->
+                <div id="tributeSection">
+                    <h2 class="metal-text">Tribute Wall</h2>
+                    <div id="tributeWall">
+                        <button id="lightCandle" class="modern-btn">🔥 Kerze anzünden</button>
+                        <p id="candleCountText">Es brennen <span id="candleCount">0</span> Kerzen.</p>
+                        <div id="candleContainer"></div>
+                    </div>
+                </div>
+
+                <!-- Zitat Box -->
+                <div id="quoteSection">
+                    <h2 class="metal-text">Wisdom of Ozzy</h2>
+                    <div id="quoteContainer">
+                        <p id="quote" aria-live="polite">Klick für ein Ozzy-Zitat!</p>
+                        <button id="quoteButton" class="modern-btn">Neues Zitat</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Digitaler Schrein -->
+        <section id="shrineSection" class="container">
+            <h2 class="metal-text">Digitaler Schrein</h2>
+            <div class="shrine-wrapper">
+                <div id="altar" class="altar-modern">
+                    <video src="assets/gif/schrein.mp4" id="altarVideo" class="altar-video" autoplay loop muted></video>
+                    <div id="easterEffect" class="easter-effect"></div>
+                </div>
+                <div id="offeringsContainer" class="offerings-grid-modern">
+                    <button class="offering-btn" data-id="bier">🍺<br>Bier</button>
+                    <button class="offering-btn" data-id="blood">🩸<br>Blut</button>
+                    <button class="offering-btn" data-id="bat">🦇<br>Bat</button>
+                    <button class="offering-btn" data-id="crazy">🚂<br>Train</button>
+                    <button class="offering-btn" data-id="iron">🤖<br>Iron</button>
+                    <button class="offering-btn" data-id="headbang">🤘<br>Rock</button>
+                </div>
+            </div>
         </section>
 
 
         <!-- Links -->
         <section class="container">
             <a href="pages/quiz.html" class="cta-link">Ready for the Quiz?</a>
-            <a href="pages/concert.html" class="cta-link">Letztes Konzert & Beerdigung</a>
+            <a href="pages/concert.html" class="cta-link">Legendary Live Legacy</a>
         </section>
 
     </main>
@@ -128,7 +175,7 @@
     <!-- Footer -->
     <footer>
     <!-- Copyright & Portfolio -->
-        <p>&copy; 2025 Alexander Rothe – Fan-Projekt für Ozzy | 
+        <p>&copy; 2026 Alexander Rothe – Fan-Projekt für Ozzy | 
         <a href="https://ALex83-r0ck.github.io" target="_blank" rel="noopener">Mein Portfolio</a>
         </p>
 
@@ -140,7 +187,7 @@
         <p><em>Alle verwendeten Bilder sind CC0 / lizenzfreie Stockbilder oder AI-Grafiken.</em></p>
 
         <!-- Impressum & Kontakt -->
-        <p>Impressum: Alexander Rothe, Nürnberg | E-Mail: rothe_alexader[at]t-online[dot]com</p>
+        <p><a href="pages/impressum.html"><u>Impressum</u></a> | <a href="pages/datenschutz.html"><u>Datenschutzerklärung</u></a></p>
 
         <!-- Hinweis / Version -->
         <p><em>Ein Fan-Projekt – erstellt mit 🤘🏻, nicht kommerziell. Version 2.0 | Share mit #OzzyFanTribute</em></p>

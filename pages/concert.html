@@ -4,50 +4,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ozzy Memorial</title>
+    <title>Ozzy's Empire – Legacy</title>
+    <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/concert.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap" rel="stylesheet">
 </head>
-<body class="dark-mode">
-    <canvas id="flameCanvas"></canvas>
-    <header>
-        <h1>Ozzy Memorial - Letztes Konzert & Beerdigung</h1>
-        <nav>
-            <a href="../index.html">Home</a>
-            <a href="../pages/quiz.html">Quiz</a>
-        </nav>
+<body class="dark-mode" data-theme="red">
+    
+    <!-- Sidebar: Hall of Fame -->
+    <aside class="trophy-case">
+        <div class="trophy-item" title="Rock & Roll Hall of Fame">⭐</div>
+        <div class="trophy-item" title="Grammy Winner">🏆</div>
+        <div class="trophy-item" title="Walk of Fame">🎖️</div>
+    </aside>
+
+    <header class="slim-header">
+        <div class="header-main">
+            <h1 class="metal-text-small">Ozzy's Empire</h1>
+            <div class="stage-controls">
+                <button class="light-btn red active" data-color="red"></button>
+                <button class="light-btn blue" data-color="blue"></button>
+                <button class="light-btn purple" data-color="purple"></button>
+                <button class="light-btn gold" data-color="gold"></button>
+                <button id="resetApp" class="icon-btn">🔄</button>
+            </div>
+            <nav class="header-nav">
+                <a href="../index.html">🤘 Home</a>
+            </nav>
+        </div>
     </header>
-    <main>
-        <section>
-            <h2>Letztes Konzert: Back to the Beginning (5. Juli 2025)</h2>
-            <div id="song-container">
-                <h3>Black Sabbath</h3>
-                <iframe width="1305" height="734" src="https://www.youtube.com/embed/X7UZeHvMYZA?list=RDX7UZeHvMYZA" title="Black Sabbath - Children Of The Grave/Embryo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                <iframe width="1305" height="734" src="https://www.youtube.com/embed/0qanF-91aJo?list=PLxA687tYuMWhOc54Vbes_5DgQXEuEUB__" title="BLACK SABBATH - &quot;Paranoid&quot; (Official Video)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                <iframe width="1305" height="734" src="https://www.youtube.com/embed/pOfBdvuky1s" title="Iron Man (2012 Remaster)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                <br>
-                <h3>Ozzy solo</h3>
-                <iframe width="1305" height="734" src="https://www.youtube.com/embed/9wQTNlyzJcM?list=RD-9yYJ6ZAYns" title="Ozzy Osbourne - Mama, I’m Coming Home (Lyrics)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </div>
-        </section>
-        <section>
-            <h2>Letztes Konzert: Back to the Beginning (5. Juli 2025)</h2>
-            <div id="konzert-container">
-                <h3>Proben und Co.</h3>
-                <iframe width="1427" height="606" src="https://www.youtube.com/embed/ARvgbOCrFz8" title="BLACK SABBATH - &quot;Tomorrow&#39;s Dream&quot; Live In Studio" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                <h3>Back to the Beginning</h3>
-                <iframe src="https://www.youtube.com/embed/r9btGWbhIAM" allowfullscreen title="Letztes Konzert: Back to the Beginning"></iframe>
-                <iframe src="https://www.youtube.com/embed/" allowfullscreen title="Letztes Konzert: Back to the Beginning"></iframe>
-            </div>
-        </section>
-        <section>
-            <h2>Beerdigung (30. Juli 2025)</h2>
-            <div id="beerdigung">
-                <iframe src="https://www.youtube.com/embed/n5CSPhovGVE" allowfullscreen title="Beerdigung"></iframe>
-                <iframe src="https://www.youtube.com/embed/c6wT1-p61NQ" allowfullscreen title="letzer fairwell"></iframe>
-                <iframe src="https://www.youtube.com/embed/Kto_n9I2YeY" allowfullscreen title="Beerdigung"></iframe>
-            </div>
-        </section>
+
+    <main class="container">
+        <!-- Live & Studio Dashboard -->
+        <div class="dashboard-wrapper">
+            
+            <!-- Touren -->
+            <section class="legacy-section">
+                <h2 class="metal-text">Legendary Tours</h2>
+                <div class="legacy-grid">
+                    <div class="legacy-card" data-tour="blizzard">
+                        <div class="card-front">
+                            <div class="card-icon">🎸</div>
+                            <h3>Blizzard of Ozz</h3>
+                            <button class="vote-btn">🤘 <span class="vote-count">0</span></button>
+                        </div>
+                        <div class="card-back">
+                            <h4>Top Songs</h4>
+                            <p>Crazy Train, Mr. Crowley</p>
+                            <button class="close-card-btn">Schließen</button>
+                        </div>
+                    </div>
+                    <div class="legacy-card" data-tour="ozzfest">
+                        <div class="card-front">
+                            <div class="card-icon">🤘</div>
+                            <h3>Ozzfest</h3>
+                            <button class="vote-btn">🤘 <span class="vote-count">0</span></button>
+                        </div>
+                        <div class="card-back">
+                            <h4>Highlight</h4>
+                            <p>Black Sabbath 1997</p>
+                            <button class="close-card-btn">Schließen</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Alben -->
+            <section class="legacy-section">
+                <h2 class="metal-text">Vinyl Masterpieces</h2>
+                <div class="album-grid">
+                    <div class="album-card" data-album="blizzard" data-tracks="I Don't Know, Crazy Train, Mr. Crowley">
+                        <div class="vinyl-disc"></div>
+                        <div class="album-info"><h3>Blizzard of Ozz</h3></div>
+                    </div>
+                    <div class="album-card" data-album="nomoretears" data-tracks="No More Tears, Mama I'm Coming Home">
+                        <div class="vinyl-disc"></div>
+                        <div class="album-info"><h3>No More Tears</h3></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Screen & Games -->
+            <section class="legacy-section">
+                <h2 class="metal-text">Cameos</h2>
+                <div class="feat-list">
+                    <div class="feat-item"><span>🎮</span> <strong>Brütal Legend</strong></div>
+                    <div class="feat-item"><span>📺</span> <strong>The Osbournes</strong></div>
+                </div>
+            </section>
+
+        </div>
+
+        <div class="cheer-section">
+            <button id="cheerBtn" class="modern-btn">📢 CROWD CHEER! 🤘</button>
+        </div>
     </main>
-    <script src="../js/effects.js"></script>
+
+    <!-- Album Modal -->
+    <div id="albumModal" class="ozzy-modal">
+        <div class="ozzy-modal__backdrop" id="modalCloseBackdrop"></div>
+        <div class="ozzy-modal__content">
+            <h2 id="modalTitle" class="metal-text">Album</h2>
+            <ul id="trackList"></ul>
+            <button class="modern-btn" id="modalCloseBtn">Schließen</button>
+        </div>
+    </div>
+
+    <script src="../js/concert.js"></script>
 </body>
 </html>

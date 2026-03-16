@@ -4,39 +4,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ozzy Quiz – Fan-Projekt</title>
+    <title>Ozzy Quiz – Test your Knowledge</title>
+    <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/quiz.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap" rel="stylesheet">
 </head>
 <body class="dark-mode">
-    <header>
-        <h1>Ozzy-Fakten-Quiz</h1>
-        <a href="../index.html">← Zurück</a>
+    
+    <!-- Slim Header for Quiz -->
+    <header class="slim-header">
+        <div class="header-main">
+            <h1 class="metal-text-small">Ozzy Quiz</h1>
+            <nav class="header-nav">
+                <a href="../index.html">🤘 Zurück zum Main</a>
+            </nav>
+        </div>
     </header>
-    <main>
-        <section id="quiz">
-            <input type="text" id="playerName" placeholder="Dein Name" maxlength="20">
-            <button id="startButton">Start</button>
 
-            <div id="hintContainer">
-                <button id="hintButton" class="hintBtn">Tipp anzeigen (-1 Punkt)</button>
-                <p id="hintText" class="hintText"></p>
+    <main class="container">
+        <section id="quiz-dashboard" class="quiz-tile">
+            <h2 class="metal-text">Bist du ein wahrer Fan?</h2>
+            
+            <div id="setupArea">
+                <input type="text" id="playerName" placeholder="Dein Name, Rocker..." class="metal-input">
+                <button id="startButton" class="modern-btn">START QUIZ</button>
             </div>
 
-            <p id="quizQuestion"></p>
-            <div id="quizOptions"></div>
-            <p id="quizResult"></p>
-            <p id="quizScore">Punkte: 0</p>
+            <div id="quizArea" style="display:none;">
+                <div class="quiz-status-bar">
+                    <div id="livesContainer" class="lives-display">🦇🦇🦇</div>
+                    <div id="quizScore">Punkte: 0</div>
+                </div>
+                
+                <!-- Crazy Train Timer -->
+                <div class="timer-track">
+                    <div id="timerBar" class="timer-bar">
+                        <span class="timer-train">🚂</span>
+                    </div>
+                </div>
 
-            <button id="highscoreToggle">Highscore anzeigen</button>
-            <div id="highscore">
-                <h3>Highscore</h3>
-                <ul id="highscoreList"></ul>
+                <h3 id="quizQuestion" class="question-text">Frage lädt...</h3>
+                <div id="quizOptions" class="options-grid"></div>
+                <p id="quizResult" class="result-feedback"></p>
+                
+                <div id="hintContainer" class="hint-box" style="display:none;">
+                    <button id="hintButton" class="hint-btn">💡 Tipp (-1 Punkt)</button>
+                    <p id="hintText" style="display:none;"></p>
+                </div>
+            </div>
+
+            <!-- Highscore -->
+            <div id="highscoreArea">
+                <button id="highscoreToggle" class="modern-btn">Highscore anzeigen</button>
+                <div id="highscore" style="display:none;" class="highscore-list-container">
+                    <h3>🏆 Hall of Fame</h3>
+                    <ul id="highscoreList"></ul>
+                </div>
             </div>
         </section>
     </main>
+
     <footer>
-        <p>&copy; 2025 Alexander Rothe – Fan-Projekt</p>
+        <p>&copy; 2026
+             Alexander Rothe – Der Prince of Darkness Quiz-Master</p>
     </footer>
+
     <script src="../js/quiz.js"></script>
 </body>
 </html>
