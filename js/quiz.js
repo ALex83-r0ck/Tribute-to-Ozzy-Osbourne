@@ -237,19 +237,40 @@ function getRanking(s) {
 
 function saveHighscore() {
     const playerName = playerNameInput?.value.trim() || "Unbekannt";
-    const highscore = JSON.parse(localStorage.getItem("ozzyHighscore") || "[]");
+    const highscore = parseHighscore();
     highscore.push({ name: playerName, score, date: new Date().toLocaleDateString() });
     highscore.sort((a, b) => b.score - a.score);
     highscore.splice(10);
     localStorage.setItem("ozzyHighscore", JSON.stringify(highscore));
 }
 
+function parseHighscore() {
+    try {
+        const raw = localStorage.getItem("ozzyHighscore");
+        const parsed = raw ? JSON.parse(raw) : [];
+        return Array.isArray(parsed) ? parsed : [];
+    } catch (error) {
+        console.warn("Highscore data corrupted, resetting storage.", error);
+        return [];
+    }
+}
+
 function loadHighscore() {
-    const highscore = JSON.parse(localStorage.getItem("ozzyHighscore") || "[]");
+    const highscore = parseHighscore();
     highscoreList.innerHTML = "";
     highscore.forEach((entry, i) => {
         const li = document.createElement("li");
-        li.innerHTML = `<span>${i + 1}. ${entry.name}</span> <span>${entry.score} Pkt.</span>`;
+
+        const rank = document.createElement("span");
+        rank.textContent = `${i + 1}. `;
+
+        const name = document.createElement("span");
+        name.textContent = entry.name || "Unbekannt";
+
+        const scoreSpan = document.createElement("span");
+        scoreSpan.textContent = `${entry.score || 0} Pkt.`;
+
+        li.append(rank, name, scoreSpan);
         highscoreList.appendChild(li);
     });
     highscoreDiv.style.display = "block";
