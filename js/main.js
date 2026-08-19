@@ -42,6 +42,66 @@ document.addEventListener("DOMContentLoaded", () => {
   })();
 
   // -------------------------
+  // MOBILE NAV + BACK TO TOP
+  // -------------------------
+  (function initNavigation() {
+    const navToggle = document.getElementById("mobileNavToggle");
+    const nav = document.getElementById("mainHeaderNav");
+    const backToTop = document.getElementById("backToTop");
+
+    navToggle?.addEventListener("click", () => {
+      const isOpen = nav?.classList.toggle("nav-open");
+      navToggle.setAttribute("aria-expanded", String(Boolean(isOpen)));
+      navToggle.setAttribute("aria-label", isOpen ? "Menü schließen" : "Menü öffnen");
+    });
+
+    nav?.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        nav.classList.remove("nav-open");
+        navToggle?.setAttribute("aria-expanded", "false");
+        navToggle?.setAttribute("aria-label", "Menü öffnen");
+      });
+    });
+
+    const toggleBackToTop = () => {
+      if (!backToTop) return;
+      const shouldShow = window.scrollY > 300;
+      backToTop.classList.toggle("visible", shouldShow);
+    };
+
+    toggleBackToTop();
+    window.addEventListener("scroll", toggleBackToTop, { passive: true });
+
+    backToTop?.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  })();
+
+  // -------------------------
+  // REVEAL ANIMATIONS
+  // -------------------------
+  (function initRevealAnimations() {
+    const elements = document.querySelectorAll('.reveal-on-scroll');
+    if (!elements.length) return;
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+
+      elements.forEach((element) => observer.observe(element));
+      return;
+    }
+
+    elements.forEach((element) => element.classList.add('is-visible'));
+  })();
+
+  // -------------------------
   // BUTTONS & MODES
   // -------------------------
   (function initButtons() {

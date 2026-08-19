@@ -122,3 +122,35 @@ describe('main.js – Tribute Wall use case', () => {
     expect(document.querySelectorAll('.candle-emoji').length).toBe(2);
   });
 });
+
+describe('main.js – navigation improvements', () => {
+  test('mobile navigation toggle exists and toggles the nav state', () => {
+    loadDashboard();
+    const navToggle = document.getElementById('mobileNavToggle');
+    const nav = document.getElementById('mainHeaderNav');
+
+    expect(navToggle).not.toBeNull();
+    expect(nav).not.toBeNull();
+    expect(navToggle.getAttribute('aria-expanded')).toBe('false');
+
+    navToggle.click();
+    expect(nav.classList.contains('nav-open')).toBe(true);
+    expect(navToggle.getAttribute('aria-expanded')).toBe('true');
+
+    navToggle.click();
+    expect(nav.classList.contains('nav-open')).toBe(false);
+    expect(navToggle.getAttribute('aria-expanded')).toBe('false');
+  });
+
+  test('Back-to-top button scrolls to the top when clicked', () => {
+    loadDashboard();
+    const backToTop = document.getElementById('backToTop');
+    const scrollSpy = jest.spyOn(window, 'scrollTo').mockImplementation(() => {});
+
+    expect(backToTop).not.toBeNull();
+    backToTop.click();
+
+    expect(scrollSpy).toHaveBeenCalledWith({ top: 0, behavior: 'smooth' });
+    scrollSpy.mockRestore();
+  });
+});

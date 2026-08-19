@@ -267,6 +267,8 @@ a:focus:not(:focus-visible) {
 .header-nav {
     display: flex;
     gap: 0.5rem;
+    align-items: center;
+    transition: all 0.25s ease;
 }
 
 .header-nav a {
@@ -279,6 +281,51 @@ a:focus:not(:focus-visible) {
 }
 
 .header-nav a:hover { background: rgba(255,0,0,0.2); color: #ff0000; }
+
+.mobile-nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.28rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    border: 1px solid #444;
+    background: rgba(255, 255, 255, 0.02);
+    padding: 0.5rem;
+}
+
+.mobile-nav-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: #fff;
+    border-radius: 2px;
+}
+
+.back-to-top {
+    position: fixed;
+    right: 1.25rem;
+    bottom: 1.25rem;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff0000, #8b0000);
+    color: #fff;
+    font-size: 1.5rem;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.45);
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
 
 .icon-buttons {
     display: flex;
@@ -304,6 +351,62 @@ a:focus:not(:focus-visible) {
     background: #ff0000;
     transform: scale(1.1);
     border-color: #fff;
+}
+
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.highlights-section {
+    margin-top: 2rem;
+}
+
+.highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.highlight-card {
+    background: rgba(17, 17, 17, 0.76);
+    border: 1px solid rgba(255, 0, 0, 0.4);
+    border-radius: 18px;
+    padding: 1.5rem 1rem;
+    box-shadow: 0 18px 32px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(8px);
+}
+
+.highlight-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(255, 0, 0, 0.12);
+    font-size: 1.7rem;
+    margin-bottom: 0.7rem;
+}
+
+.highlight-card h3 {
+    font-family: 'Metal Mania', cursive;
+    color: #ff3b30;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.highlight-card p {
+    color: #d8d8d8;
+    line-height: 1.5;
+    font-size: 0.95rem;
 }
 
 #statsContainer {
@@ -405,7 +508,7 @@ body::before {
     content: '💀';
     position: absolute;
     width: 38px; height: 38px;
-    right: -19px;
+    right: -31px;
     background: radial-gradient(circle, #2d2424 0%, #0d0d0d 100%);
     border: 3px solid #5c0000;
     top: 25px;
@@ -428,7 +531,7 @@ body::before {
 
 .left { left: 0; text-align: right; }
 .right { left: 50%; text-align: left; }
-.right::after { left: -19px; }
+.right::after { left: -31px; }
 
 /* Gotische Grabstein-Karten */
 .timeline-v2-content {
@@ -779,9 +882,27 @@ body.disco-mode { animation: disco 0.5s infinite; }
 
     /* Header & Navigation */
     .slim-header { padding: 0.8rem 1rem; }
-    .header-main { flex-direction: column; gap: 0.8rem; }
-    .header-nav { flex-wrap: wrap; justify-content: center; gap: 0.3rem;}
-    .header-nav a { padding: 0.3rem 0.6rem; font-size: 0.85rem; }
+    .header-main { flex-direction: row; flex-wrap: wrap; gap: 0.8rem; }
+    .mobile-nav-toggle { display: flex; }
+    .header-nav {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        background: rgba(18, 18, 18, 0.97);
+        border: 1px solid rgba(255, 0, 0, 0.45);
+        border-radius: 12px;
+        padding: 0.6rem;
+        order: 4;
+    }
+    .header-nav.nav-open { display: flex; }
+    .header-nav a {
+        width: 100%;
+        text-align: center;
+        padding: 0.8rem 0.6rem;
+        font-size: 0.9rem;
+        border-radius: 8px;
+    }
     .icon-btn { margin: 0.2rem; }
     #scrollProgressContainer { display: none !important; }
 
@@ -813,7 +934,7 @@ body.disco-mode { animation: disco 0.5s infinite; }
     
     /* 4. Die Totenköpfe (Layer 3 - Ganz oben) */
     .timeline-v2-item::after { 
-        left: 7px !important; /* Zentriert auf der 12px breiten Kette bei 20px Left-Position */
+        left: 12px !important; /* Kette und Schädel getrennt, nicht überlagert */
         right: auto !important;
         top: 25px !important;
         z-index: 3 !important; /* Absolut im Vordergrund */
@@ -821,7 +942,7 @@ body.disco-mode { animation: disco 0.5s infinite; }
     
     /* Fix für die rechten Elemente auf Mobile */
     .right::after { 
-        left: 7px !important;
+        left: 12px !important;
         right: auto !important;
         z-index: 3 !important;
     }
@@ -1303,13 +1424,52 @@ kbd {
 
 /* ===========================================
    === V3.2 HERO UPGRADES === */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .hero-content {
     animation: fadeIn 2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
 }
+
+.hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.7rem;
+    pointer-events: none;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.45rem 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.25);
+    color: #f9d8d8;
+    font-size: 0.72rem;
+    letter-spacing: 0.18rem;
+    text-transform: uppercase;
+    backdrop-filter: blur(6px);
+}
+
 .hero-title {
     font-size: 4rem;
     line-height: 1.1;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     text-shadow: 0 5px 15px rgba(255, 0, 0, 0.8), 0 -2px 10px rgba(0, 0, 0, 0.9);
     transform: perspective(500px) rotateX(10deg);
 }
@@ -1319,9 +1479,98 @@ kbd {
     color: #ccc;
     min-height: 2rem;
 }
+
+.final-banner {
+    position: relative;
+    overflow: hidden;
+    margin: 2.5rem auto 3rem;
+    padding: 2.6rem 1.5rem;
+    width: min(1100px, calc(100% - 2rem));
+    border-radius: 24px;
+    border: 1px solid rgba(255, 0, 0, 0.4);
+    background: linear-gradient(135deg, rgba(18, 0, 0, 0.95), rgba(30, 14, 14, 0.9), rgba(11, 11, 11, 0.96));
+    box-shadow: 0 20px 60px rgba(255, 0, 0, 0.22), inset 0 0 30px rgba(255, 108, 0, 0.08);
+    text-align: center;
+}
+
+.final-banner-glow {
+    position: absolute;
+    inset: -30% auto auto 50%;
+    width: 420px;
+    height: 420px;
+    transform: translateX(-50%);
+    background: radial-gradient(circle, rgba(255, 0, 0, 0.35), transparent 62%);
+    pointer-events: none;
+}
+
+.final-banner-kicker {
+    position: relative;
+    z-index: 1;
+    font-size: 0.8rem;
+    letter-spacing: 0.35rem;
+    color: #ffb2b2;
+    margin-bottom: 0.8rem;
+    font-weight: 700;
+}
+
+.final-banner h2 {
+    position: relative;
+    z-index: 1;
+    font-family: 'Metal Mania', cursive;
+    font-size: clamp(2rem, 5vw, 4rem);
+    line-height: 1.05;
+    margin-bottom: 0.7rem;
+    color: #fff;
+    text-shadow: 0 0 18px rgba(255, 0, 0, 0.6);
+}
+
+.final-banner p {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+    margin: 0 auto;
+    color: #e1dada;
+    font-size: 1rem;
+}
+
+.banner-actions {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.banner-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 0.9rem 1.4rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.12);
+}
+
+.ghost-btn {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    text-decoration: none;
+}
+
+.ghost-btn:hover {
+    background: rgba(255,255,255,0.05);
+}
+
 @media (max-width: 768px) {
     .hero-title { font-size: 2.5rem; }
     .hero-subtitle { font-size: 1.2rem; }
+    .hero-badge { letter-spacing: 0.12rem; font-size: 0.62rem; }
+    .final-banner { padding: 2rem 1rem; }
+    .banner-actions { flex-direction: column; }
+    .banner-btn { width: 100%; }
 }
 
 /* ===========================================
