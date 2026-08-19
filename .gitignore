@@ -1,16 +1,17 @@
-package-lock.json
-package.json
-struktur.txt
-__tests__/
-coverage/
+# Dependencies & install artifacts
 node_modules/
 
-# Snyk Security Extension - AI Rules (auto-generated)
-.github\
+# Coverage / test output
+coverage/
 
+# Local notes
+struktur.txt
 
-# Snyk Security Extension - AI Rules (auto-generated)
-.github\instructions\snyk_rules.instructions.md
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
 
-# Snyk Security Extension - AI Rules (auto-generated)
-.cursor\rules\snyk_rules.mdc
+# Snyk Security Extension – AI rules only (keep workflows!)
+.github/instructions/snyk_rules.instructions.md
+.cursor/rules/snyk_rules.mdc

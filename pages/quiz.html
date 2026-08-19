@@ -10,44 +10,71 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap" rel="stylesheet">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#8b0000" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 </head>
 <body class="dark-mode">
+    <a href="#quiz-dashboard" class="skip-link">Zum Hauptinhalt springen</a>
     
     <!-- Slim Header for Quiz -->
     <header class="slim-header">
         <div class="header-main">
             <h1 class="metal-text-small">Ozzy Quiz</h1>
-            <nav class="header-nav">
+            <nav class="header-nav" aria-label="Navigation">
                 <a href="../index.html">🤘 Zurück zum Main</a>
             </nav>
         </div>
     </header>
 
     <main class="container">
-        <section id="quiz-dashboard" class="quiz-tile">
+        <section class="quiz-hero">
+            <h2 class="metal-text quiz-hero-title">⚡ The Ultimate Ozzy Quiz ⚡</h2>
+            <p class="quiz-hero-subtitle">Nur wahre Fans überleben alle Fragen. Traust du dich?</p>
+        </section>
+
+        <section id="quiz-dashboard" class="quiz-tile" tabindex="-1">
             <h2 class="metal-text">Bist du ein wahrer Fan?</h2>
             
             <div id="setupArea">
-                <input type="text" id="playerName" placeholder="Dein Name, Rocker..." class="metal-input">
-                <button id="startButton" class="modern-btn">START QUIZ</button>
+                <div class="quiz-rules">
+                    <div class="rule-item"><span class="rule-icon">🦇</span><span>3 Fledermaus-Leben</span></div>
+                    <div class="rule-item"><span class="rule-icon">⏱️</span><span>15 Sekunden pro Frage</span></div>
+                    <div class="rule-item"><span class="rule-icon">💡</span><span>Hinweis kostet 1 Punkt</span></div>
+                    <div class="rule-item"><span class="rule-icon">🏆</span><span>Hall of Fame wartet</span></div>
+                </div>
+                <label for="playerName" class="sr-only">Spielername</label>
+                <input type="text" id="playerName" placeholder="Dein Name, Rocker..." class="metal-input" maxlength="40" autocomplete="nickname" aria-required="true">
+                <button type="button" id="startButton" class="modern-btn">START QUIZ</button>
             </div>
 
-            <div id="quizArea" style="display:none;">
+            <div id="quizArea" style="display:none;" aria-live="polite">
+                <div id="quizLiveRegion" class="sr-only" aria-live="assertive" aria-atomic="true"></div>
+                
+                <div class="quiz-progress">
+                    <span id="progressText">Frage 1 von 10</span>
+                    <div class="progress-track"><div id="progressBar" class="progress-fill"></div></div>
+                </div>
+
                 <div class="quiz-status-bar">
-                    <div id="livesContainer" class="lives-display">🦇🦇🦇</div>
+                    <div id="livesContainer" class="lives-display" aria-label="3 Leben">🦇🦇🦇</div>
                     <div id="quizScore">Punkte: 0</div>
                 </div>
                 
+                <div id="streakContainer" class="streak-display" style="display:none;">
+                    <span id="streakText">🔥 0 richtig in Folge!</span>
+                </div>
+                
                 <!-- Crazy Train Timer -->
-                <div class="timer-track">
+                <div class="timer-track" role="progressbar" aria-label="Verbleibende Zeit" aria-valuemin="0" aria-valuemax="15">
                     <div id="timerBar" class="timer-bar">
-                        <span class="timer-train">🚂</span>
+                        <span class="timer-train" aria-hidden="true">🚂</span>
                     </div>
                 </div>
 
                 <h3 id="quizQuestion" class="question-text">Frage lädt...</h3>
-                <div id="quizOptions" class="options-grid"></div>
-                <p id="quizResult" class="result-feedback"></p>
+                <div id="quizOptions" class="options-grid" role="group" aria-label="Antwortmöglichkeiten"></div>
+                <p id="quizResult" class="result-feedback" aria-live="polite"></p>
                 
                 <div id="hintContainer" class="hint-box" style="display:none;">
                     <button id="hintButton" class="hint-btn">💡 Tipp (-1 Punkt)</button>
@@ -67,10 +94,57 @@
     </main>
 
     <footer>
-        <p>&copy; 2026
-             Alexander Rothe – Der Prince of Darkness Quiz-Master</p>
+        <div class="cta-grid quiz-footer-ctas">
+            <a href="../index.html" class="cta-card">
+                <div class="cta-card-icon">🤘</div>
+                <div class="cta-card-body"><h3>Zurück zum Dashboard</h3><p>Erkunde den Rest des Ozzy Empire.</p></div>
+                <span class="cta-arrow">→</span>
+            </a>
+            <a href="concert.html" class="cta-card">
+                <div class="cta-card-icon">💿</div>
+                <div class="cta-card-body"><h3>Legendary Live Legacy</h3><p>Alben, Tourneen und das unsterbliche Erbe.</p></div>
+                <span class="cta-arrow">→</span>
+            </a>
+        </div>
+        <p>&copy; 2026 Alexander Rothe – Der Prince of Darkness Quiz-Master</p>
+        <p><em>Inoffizielle, nicht-kommerzielle Fan-Hommage.</em></p>
     </footer>
 
+    <!-- Custom Modal: Validation Warning -->
+    <div id="validationModal" class="ozzy-modal" role="dialog" aria-modal="true" aria-labelledby="validationTitle" aria-hidden="true">
+        <div class="ozzy-modal__backdrop" id="validationBackdrop"></div>
+        <div class="ozzy-modal__content">
+            <button type="button" class="ozzy-modal__close" id="validationCloseCross" aria-label="Schließen">✕</button>
+            <h2 id="validationTitle" class="metal-text" style="color: #ff3333; margin-bottom: 1rem;">Achtung!</h2>
+            <p id="validationMsg" style="font-size: 1.2rem; margin-bottom: 2rem;">Bitte gib einen Namen ein! 🤘</p>
+            <button type="button" class="modern-btn" id="validationCloseBtn">OK</button>
+        </div>
+    </div>
+
+    <!-- Custom Modal: End Game -->
+    <div id="endGameModal" class="ozzy-modal" role="dialog" aria-modal="true" aria-labelledby="endGameTitle" aria-hidden="true">
+        <div class="ozzy-modal__backdrop" id="endGameBackdrop"></div>
+        <div class="ozzy-modal__content">
+            <button type="button" class="ozzy-modal__close" id="endGameCloseCross" aria-label="Schließen">✕</button>
+            <h2 id="endGameTitle" class="metal-text" style="color: #ff0000; margin-bottom: 1.5rem;">Quiz Beendet!</h2>
+            <div class="end-game-details" style="background: rgba(0,0,0,0.5); padding: 1.5rem; border-radius: 10px; border: 1px solid #333; margin-bottom: 1.5rem; text-align: left;">
+                <p style="margin-bottom: 0.5rem; font-size: 1.1rem;">Rocker: <strong id="endPlayerName" style="color: #fff;"></strong></p>
+                <p style="margin-bottom: 0.5rem; font-size: 1.1rem;">Ergebnis: <strong id="endPlayerScore" style="color: #00ff00;"></strong> Punkte</p>
+                <p style="font-size: 1.1rem;">Dein Rang: <strong id="endPlayerRank" style="color: #ff3333; text-shadow: 0 0 10px rgba(255,0,0,0.5);"></strong></p>
+            </div>
+            
+            <div class="highscore-modal-section" style="margin-bottom: 1.5rem;">
+                <h3 class="metal-text" style="font-size: 1.5rem; margin-bottom: 0.5rem;">🏆 Hall of Fame</h3>
+                <ul id="modalHighscoreList" class="modal-highscore-list"></ul>
+            </div>
+            
+            <button type="button" class="modern-btn" id="endGameCloseBtn">Erneut spielen</button>
+        </div>
+    </div>
+
+    <script src="../js/utils.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/quiz-data.js"></script>
     <script src="../js/quiz.js"></script>
 </body>
 </html>

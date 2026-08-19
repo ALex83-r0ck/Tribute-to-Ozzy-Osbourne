@@ -25,17 +25,18 @@
     </style>
 </head>
 <body class="dark-mode">
+    <a href="#legal-content" class="skip-link">Zum Hauptinhalt springen</a>
     
     <header class="slim-header">
         <div class="header-main">
             <h1 class="metal-text-small">Datenschutz</h1>
-            <nav class="header-nav">
+            <nav class="header-nav" aria-label="Navigation">
                 <a href="../index.html">🤘 Zurück</a>
             </nav>
         </div>
     </header>
 
-    <main class="container">
+    <main class="container" id="legal-content" tabindex="-1">
         <section class="legal-tile">
             <h2 class="metal-text">1. Datenschutz auf einen Blick</h2>
             <p>Diese Website ist ein privates Projekt. Wir erheben keine personenbezogenen Daten von Besuchern, außer denen, die technisch für die Bereitstellung der Seite notwendig sind (Logfiles des Hosters).</p>
@@ -61,5 +62,19 @@
     <footer>
         <p>&copy; 2026 Alexander Rothe – Deine Daten sind sicher, Rocker!</p>
     </footer>
+
+    <script>
+        (function syncTheme() {
+            const savedTheme = localStorage.getItem("ozzyTheme") || "dark-mode";
+            document.body.classList.remove("light-mode", "dark-mode", "moon-mode");
+            if (savedTheme === "light-mode") {
+                document.body.classList.add("light-mode");
+            } else if (savedTheme === "moon-mode") {
+                document.body.classList.add("dark-mode", "moon-mode");
+            } else {
+                document.body.classList.add("dark-mode");
+            }
+        })();
+    </script>
 </body>
 </html>

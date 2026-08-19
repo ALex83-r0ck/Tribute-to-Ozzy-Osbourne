@@ -1,0 +1,30 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Prepare publish directory
+        run: |
+          mkdir -p publish
+          cp index.html publish/
+          cp -r css js pages assets publish/
+          # Optional docs landing
+          if [ -f README.md ]; then cp README.md publish/; fi
+          # Do NOT publish node_modules, coverage, tests, .git
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./publish

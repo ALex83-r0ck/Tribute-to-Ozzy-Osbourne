@@ -1,0 +1,15 @@
+{
+  "name": "Ozzy Osbourne Tribute",
+  "short_name": "Ozzy Tribute",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#8b0000",
+  "icons": [
+    {
+      "src": "assets/images/ozzy-osbourne.png",
+      "sizes": "192x192 512x512",
+      "type": "image/png"
+    }
+  ]
+}
