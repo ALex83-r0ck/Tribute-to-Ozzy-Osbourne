@@ -54,11 +54,15 @@
     <header class="slim-header">
         <div class="header-main">
             <h1 class="metal-text-small">Ozzy Tribute</h1>
-            <nav aria-label="Hauptnavigation" class="header-nav">
+            <button type="button" id="mobileNavToggle" class="mobile-nav-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mainHeaderNav">
+                <span></span><span></span><span></span>
+            </button>
+            <nav id="mainHeaderNav" aria-label="Hauptnavigation" class="header-nav">
                 <a href="#bioSection">Bio</a>
                 <a href="#gallerySection">Galerie</a>
                 <a href="#tributeSection">Wall</a>
                 <a href="#shrineSection">Schrein</a>
+                <a href="pages/quiz.html">Quiz</a>
             </nav>
             <div id="buttonContainer" class="icon-buttons">
                 <button type="button" id="themeToggle" class="icon-btn" title="Light/Dark Mode" aria-label="Light oder Dark Mode umschalten">🌓</button>
@@ -77,8 +81,33 @@
         <section id="hero" aria-hidden="true" style="display: flex; align-items: center; justify-content: center; position: relative; width: 100vw; height: 100vh;">
             <canvas id="flameCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></canvas>
             <div class="hero-content" style="z-index: 10; text-align: center; pointer-events: none;">
+                <div class="hero-badges" aria-label="Ozzy Legenden-Merkmale">
+                    <span class="hero-badge">HEAVY METAL</span>
+                    <span class="hero-badge">LEGEND</span>
+                    <span class="hero-badge">LIVE ICON</span>
+                </div>
                 <h1 class="hero-title metal-text">TRIBUTE TO THE<br>PRINCE OF DARKNESS</h1>
                 <p id="heroSubtitle" class="hero-subtitle"></p>
+            </div>
+        </section>
+
+        <section class="container highlights-section" aria-label="Legendenhafte Highlights">
+            <div class="highlights-grid">
+                <article class="highlight-card reveal-on-scroll">
+                    <span class="highlight-icon">🕯️</span>
+                    <h3>Legendary Legacy</h3>
+                    <p>Eine Reise durch die wichtigsten Momente, aus denen Ozzys Erbe entstanden ist.</p>
+                </article>
+                <article class="highlight-card reveal-on-scroll">
+                    <span class="highlight-icon">🎤</span>
+                    <h3>Metal Kultur</h3>
+                    <p>Verbindung von Musik, Bühne und geschichtlichen Höhepunkten in einem stimmungsvollen Erlebnis.</p>
+                </article>
+                <article class="highlight-card reveal-on-scroll">
+                    <span class="highlight-icon">🏆</span>
+                    <h3>Quiz Challenge</h3>
+                    <p>Teste dein Wissen in einer schnellen, intensiven und spannenden Rock-Show mit Highscore.</p>
+                </article>
             </div>
         </section>
 
@@ -87,7 +116,7 @@
             <h2 class="metal-text">Timeline einer Legende</h2>
             <div class="timeline-v2">
 
-                <div class="timeline-v2-item left" data-icon="👶">
+                <div class="timeline-v2-item left reveal-on-scroll" data-icon="👶">
                     <div class="timeline-v2-content">
                         <span class="badge badge-life">Lebensabschnitt</span>
                         <span class="year">1948</span>
@@ -96,7 +125,7 @@
                     </div>
                 </div>
 
-                <div class="timeline-v2-item right" data-icon="🎸">
+                <div class="timeline-v2-item right reveal-on-scroll" data-icon="🎸">
                     <div class="timeline-v2-content">
                         <span class="badge badge-music">Musikalische Ära</span>
                         <span class="year">1968</span>
@@ -105,7 +134,7 @@
                     </div>
                 </div>
 
-                <div class="timeline-v2-item left" data-icon="🚀">
+                <div class="timeline-v2-item left reveal-on-scroll" data-icon="🚀">
                     <div class="timeline-v2-content">
                         <span class="badge badge-music">Musikalische Ära</span>
                         <span class="year">1979</span>
@@ -115,7 +144,7 @@
                     </div>
                 </div>
 
-                <div class="timeline-v2-item right" data-icon="🦇">
+                <div class="timeline-v2-item right reveal-on-scroll" data-icon="🦇">
                     <div class="timeline-v2-content">
                         <span class="badge badge-cult">Kult-Moment</span>
                         <span class="year">1982</span>
@@ -124,7 +153,7 @@
                     </div>
                 </div>
 
-                <div class="timeline-v2-item left" data-icon="🤘">
+                <div class="timeline-v2-item left reveal-on-scroll" data-icon="🤘">
                     <div class="timeline-v2-content">
                         <span class="badge badge-music">Musikalische Ära</span>
                         <span class="year">1996</span>
@@ -133,7 +162,7 @@
                     </div>
                 </div>
 
-                <div class="timeline-v2-item right" data-icon="📺">
+                <div class="timeline-v2-item right reveal-on-scroll" data-icon="📺">
                     <div class="timeline-v2-content">
                         <span class="badge badge-media">Medien & Kultur</span>
                         <span class="year">2002</span>
@@ -142,7 +171,7 @@
                     </div>
                 </div>
 
-                <div class="timeline-v2-item left" data-icon="👑">
+                <div class="timeline-v2-item left reveal-on-scroll" data-icon="👑">
                     <div class="timeline-v2-content">
                         <span class="badge badge-legacy">Vermächtnis</span>
                         <span class="year">2025</span>
@@ -158,28 +187,28 @@
         <section id="gallerySection" class="container">
             <h2 class="metal-text">Galerie - The Visual Legacy</h2>
             <div id="gallery" class="gallery-modern">
-                <div class="gallery-card">
-                    <img src="assets/images/gothic_skull_crown.jpg" alt="Metal-Schädel mit Dornenkrone" class="galleryImage" data-full="assets/images/gothic_skull_crown.jpg">
+                <div class="gallery-card reveal-on-scroll">
+                    <img src="assets/images/gothic_skull_crown.jpg" alt="Metal-Schädel mit Dornenkrone" class="galleryImage" data-full="assets/images/gothic_skull_crown.jpg" loading="lazy" decoding="async" fetchpriority="low">
                     <div class="gallery-info"><span>The Icon</span></div>
                 </div>
-                <div class="gallery-card">
-                    <img src="assets/images/gothic_bat_moon.jpg" alt="Fledermaus vor rotem Mond" class="galleryImage" data-full="assets/images/gothic_bat_moon.jpg">
+                <div class="gallery-card reveal-on-scroll">
+                    <img src="assets/images/gothic_bat_moon.jpg" alt="Fledermaus vor rotem Mond" class="galleryImage" data-full="assets/images/gothic_bat_moon.jpg" loading="lazy" decoding="async" fetchpriority="low">
                     <div class="gallery-info"><span>Prince of Darkness</span></div>
                 </div>
-                <div class="gallery-card">
-                    <img src="assets/images/gothic_rock_stage.jpg" alt="Gothic-Bühne im Nebel" class="galleryImage" data-full="assets/images/gothic_rock_stage.jpg">
+                <div class="gallery-card reveal-on-scroll">
+                    <img src="assets/images/gothic_rock_stage.jpg" alt="Gothic-Bühne im Nebel" class="galleryImage" data-full="assets/images/gothic_rock_stage.jpg" loading="lazy" decoding="async" fetchpriority="low">
                     <div class="gallery-info"><span>Live Magic</span></div>
                 </div>
-                <div class="gallery-card">
-                    <img src="assets/images/Rest%20in%20Power%20Prince%20Of%20Darkness.webp" alt="Rest in Power – Prince of Darkness Memorial" class="galleryImage" data-full="assets/images/Rest%20in%20Power%20Prince%20Of%20Darkness.webp">
+                <div class="gallery-card reveal-on-scroll">
+                    <img src="assets/images/Rest%20in%20Power%20Prince%20Of%20Darkness.webp" alt="Rest in Power – Prince of Darkness Memorial" class="galleryImage" data-full="assets/images/Rest%20in%20Power%20Prince%20Of%20Darkness.webp" loading="lazy" decoding="async" fetchpriority="low">
                     <div class="gallery-info"><span>Rest in Peace</span></div>
                 </div>
-                <div class="gallery-card">
-                    <img src="assets/images/ozzy-osbourne.png" alt="Porträt von Ozzy Osbourne" class="galleryImage" data-full="assets/images/ozzy-osbourne.png">
+                <div class="gallery-card reveal-on-scroll">
+                    <img src="assets/images/ozzy-osbourne.png" alt="Porträt von Ozzy Osbourne" class="galleryImage" data-full="assets/images/ozzy-osbourne.png" loading="lazy" decoding="async" fetchpriority="low">
                     <div class="gallery-info"><span>Ozzy 2025</span></div>
                 </div>
-                <div class="gallery-card">
-                    <img src="assets/images/ozzy-osbourne-on-stage-rip.png" alt="Ozzy Osbourne auf der Bühne" class="galleryImage" data-full="assets/images/ozzy-osbourne-on-stage-rip.png">
+                <div class="gallery-card reveal-on-scroll">
+                    <img src="assets/images/ozzy-osbourne-on-stage-rip.png" alt="Ozzy Osbourne auf der Bühne" class="galleryImage" data-full="assets/images/ozzy-osbourne-on-stage-rip.png" loading="lazy" decoding="async" fetchpriority="low">
                     <div class="gallery-info"><span>Ozzy on Stage</span></div>
                 </div>
             </div>
@@ -269,6 +298,17 @@
             </div>
         </section>
 
+        <section class="final-banner reveal-on-scroll" aria-label="Abschlussbanner">
+            <div class="final-banner-glow"></div>
+            <p class="final-banner-kicker">THE LEGACY NEVER DIES</p>
+            <h2>Rock on. Keep the flame alive.</h2>
+            <p>Ozzy lebt in den Riffs, in den Stimmen und in jedem Moment, an dem Heavy Metal weiterlebt.</p>
+            <div class="banner-actions">
+                <a href="pages/quiz.html" class="modern-btn banner-btn">Quiz starten</a>
+                <a href="#bioSection" class="ghost-btn banner-btn">Zurück nach vorn</a>
+            </div>
+        </section>
+
     </main>
 
     <!-- Footer -->
@@ -291,6 +331,8 @@
         <!-- Hinweis / Version -->
         <p><em>Ein Fan-Projekt – erstellt mit 🤘🏻, nicht kommerziell. Version 3.1 | Share mit #OzzyFanTribute</em></p>
     </footer>
+
+    <button type="button" id="backToTop" class="back-to-top" aria-label="Nach oben scrollen">↑</button>
 
 
     <!-- Scripts (order matters: utils → theme → main) -->
