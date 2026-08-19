@@ -1,0 +1,1641 @@
+/* ===========================================
+   === OZZY FAN PROJEKT – KOMPLETTES MODERNES CSS ===
+   =========================================== */
+
+/* ===========================================
+   === RESET & BASE === */
+*, *::before, *::after { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0;
+     
+}
+
+img { 
+    max-width: 100%; 
+    display: block; 
+}
+
+a { 
+    text-decoration: none; 
+    color: inherit; 
+    transition: color 0.3s; 
+}
+
+button { 
+    font: inherit; 
+    cursor: pointer; 
+    border: none; 
+    outline: none; 
+}
+
+ul { 
+    list-style: none; 
+}
+
+/* ===========================================
+   === MODERN LIGHTBOX MODAL === */
+.ozzy-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    z-index: 100000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.ozzy-modal-content {
+    position: relative;
+    max-width: 900px;
+    width: 100%;
+    background: #111;
+    border: 2px solid #8b0000;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 0 40px rgba(255, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ozzy-modal__body {
+    text-align: center;
+    width: 100%;
+}
+
+.ozzy-modal__body img {
+    max-height: 75vh;
+    max-width: 100%;
+    border-radius: 6px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.8);
+    margin: 0 auto;
+}
+
+.ozzy-modal__body p {
+    color: #ff3333;
+    font-family: 'Metal Mania', cursive;
+    font-size: 1.3rem;
+    margin-top: 15px;
+    letter-spacing: 1px;
+}
+
+/* Close & Navigation Buttons */
+.ozzy-modal__close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: color 0.3s;
+}
+
+.ozzy-modal__close:hover {
+    color: #ff0000;
+}
+
+.ozzy-modal__prev,
+.ozzy-modal__next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(139, 0, 0, 0.8);
+    color: #fff;
+    border: 1px solid #ff0000;
+    font-size: 1.5rem;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 10;
+    transition: all 0.3s;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ozzy-modal__prev:hover,
+.ozzy-modal__next:hover {
+    background: #ff0000;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.ozzy-modal__prev { left: -20px; }
+.ozzy-modal__next { right: -20px; }
+
+@media (max-width: 768px) {
+    .ozzy-modal__prev { left: 5px; }
+    .ozzy-modal__next { right: 5px; }
+}
+
+/* === BARRIEREFREIHEIT === */
+.skip-link {
+    position: absolute;
+    top: -60px;
+    left: 10px;
+    background: #ff0000;
+    color: #000;
+    padding: 12px 20px;
+    z-index: 10000;
+    font-weight: bold;
+    border-radius: 0 0 8px 8px;
+    transition: top 0.3s;
+}
+.skip-link:focus { top: 0; }
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+:focus-visible {
+    outline: 3px solid #ff6600;
+    outline-offset: 3px;
+}
+
+button:focus:not(:focus-visible),
+a:focus:not(:focus-visible) {
+    outline: none;
+}
+
+.icon-btn:focus-visible,
+.offering-btn:focus-visible,
+.modern-btn:focus-visible,
+.gallery-card:focus-visible {
+    outline: 3px solid #ff6600;
+    outline-offset: 3px;
+}
+
+/* Easter text (was previously inline styles via JS) */
+.easter-text {
+    color: #ff0000;
+    font-size: clamp(1.2rem, 4vw, 2rem);
+    font-weight: bold;
+    text-shadow: 2px 2px #000;
+    text-align: center;
+}
+
+.ozzy-toast--hide {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* Highscore modal rows */
+.modal-highscore-list {
+    text-align: left;
+    max-height: 150px;
+    overflow-y: auto;
+    background: rgba(0,0,0,0.3);
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #222;
+}
+.highscore-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px solid #333;
+    color: #ccc;
+}
+
+/* Reduced motion: kill heavy animations */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    body.disco-mode { animation: none !important; }
+    .train-shake,
+    .headbang-plus { animation: none !important; transform: none !important; }
+}
+
+/* ===========================================
+   === SLIM HEADER === */
+.slim-header {
+    padding: 0.5rem 1rem;
+    background: rgba(0,0,0,0.95);
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    border-bottom: 2px solid #ff0000;
+    position: sticky;
+    top: 0;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+}
+
+.header-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1300px;
+    gap: 1rem;
+}
+
+.metal-text-small {
+    font-family: 'Metal Mania', cursive;
+    font-size: 1.8rem;
+    color: #ff0000;
+    text-shadow: 0 0 10px #ff0000;
+    text-transform: uppercase;
+}
+
+.header-nav {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.header-nav a {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #eee;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.header-nav a:hover { background: rgba(255,0,0,0.2); color: #ff0000; }
+
+.icon-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.icon-btn {
+    background: #222;
+    border: 1px solid #444;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: 0.3s;
+}
+
+.icon-btn:hover {
+    background: #ff0000;
+    transform: scale(1.1);
+    border-color: #fff;
+}
+
+#statsContainer {
+    font-size: 0.8rem;
+    margin-top: 2px;
+    color: #ff3333;
+    font-weight: bold;
+}
+
+/* ===========================================
+   === BODY & BACKGROUND === */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #121212;
+    color: #eee;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    text-align: center;
+    overflow-x: hidden;
+    transition: background 0.5s ease, color 0.5s ease;
+}
+
+/* Background Image Overlay */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: url('../assets/images/gothic_rock_stage.jpg') center/cover no-repeat fixed;
+    opacity: 0.3;
+    z-index: -2;
+}
+
+#flameCanvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* ===========================================
+   === MAIN CONTENT & SPACING === */
+#main-content {
+    padding-top: 0;
+    margin-top: 0;
+}
+
+#hero { display: none; } /* Canvas is fixed */
+
+.container {
+    padding: 2rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#bioSection {
+    padding-top: 1rem;
+}
+
+/* ===========================================
+   === TIMELINE V2 (GOTHIC ALTAR CHAIN STYLE) === */
+.timeline-v2 {
+    position: relative;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 30px 0;
+}
+
+/* Rostige Eisenkette als Mittellinie */
+.timeline-v2::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    background: repeating-linear-gradient(
+        #3d3131 0px, #2b2222 4px,
+        #1c1515 4px, #1c1515 8px,
+        #4f3e3e 8px, #3d3131 12px
+    );
+    top: 0; bottom: 0;
+    left: 50%;
+    margin-left: -6px;
+    border: 1px solid #1a1515;
+    border-radius: 6px;
+    box-shadow: 0 0 20px rgba(139, 0, 0, 0.6), inset 0 0 6px #000;
+    z-index: 2;
+}
+
+.timeline-v2-item {
+    padding: 15px 45px;
+    position: relative;
+    width: 50%;
+}
+
+/* Eiserne Siegel-Medaillons mit glühendem Totenkopf */
+.timeline-v2-item::after {
+    content: '💀';
+    position: absolute;
+    width: 38px; height: 38px;
+    right: -19px;
+    background: radial-gradient(circle, #2d2424 0%, #0d0d0d 100%);
+    border: 3px solid #5c0000;
+    top: 25px;
+    border-radius: 50%;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    box-shadow: 0 0 15px rgba(0,0,0,0.9), inset 0 0 5px rgba(0,0,0,0.8);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.timeline-v2-item:hover::after {
+    border-color: #ff0000;
+    box-shadow: 0 0 20px #ff0000, inset 0 0 8px rgba(255,0,0,0.5);
+    transform: scale(1.25) rotate(15deg);
+    text-shadow: 0 0 8px #ff0000;
+}
+
+.left { left: 0; text-align: right; }
+.right { left: 50%; text-align: left; }
+.right::after { left: -19px; }
+
+/* Gotische Grabstein-Karten */
+.timeline-v2-content {
+    padding: 20px 30px;
+    background: linear-gradient(135deg, #1f1f1f 0%, #111111 100%);
+    border-radius: 8px;
+    border: 3px solid #322828; /* Dunkler Eisenbeschlag */
+    box-shadow: 0 12px 35px rgba(0,0,0,0.9), inset 0 0 20px rgba(0,0,0,0.85);
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    color: #ccc;
+    z-index: 5;
+}
+
+/* Unregelmäßiger Fackel-Flackereffekt beim Hover */
+@keyframes gothicTorchGlow {
+    0% { box-shadow: 0 15px 35px rgba(139, 0, 0, 0.25), inset 0 0 20px rgba(139, 0, 0, 0.15); }
+    50% { box-shadow: 0 15px 40px rgba(255, 0, 0, 0.35), inset 0 0 25px rgba(139, 0, 0, 0.25); }
+    100% { box-shadow: 0 15px 35px rgba(139, 0, 0, 0.25), inset 0 0 20px rgba(139, 0, 0, 0.15); }
+}
+
+.timeline-v2-content:hover {
+    border-color: #8b0000;
+    transform: translateY(-8px) scale(1.02);
+    animation: gothicTorchGlow 1.5s infinite alternate;
+}
+
+.timeline-v2-content .year {
+    font-family: 'Metal Mania', cursive;
+    font-size: 2.2rem;
+    font-weight: normal;
+    color: #ff0000;
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+    display: inline-block;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.timeline-v2-content h3 {
+    font-family: 'Metal Mania', cursive;
+    font-size: 1.4rem;
+    color: #fff;
+    text-shadow: 1px 1px 3px #000;
+    margin-top: 5px;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+/* ===========================================
+   === MODERN GALLERY === */
+.gallery-modern {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    perspective: 1000px;
+}
+
+.gallery-card {
+    position: relative;
+    width: 300px;
+    height: 400px;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid #333;
+    transition: 0.5s;
+}
+
+.gallery-card:hover {
+    transform: rotateY(5deg) scale(1.02);
+    border-color: #ff0000;
+}
+
+.gallery-card img { width: 100%; height: 100%; object-fit: cover; }
+
+.gallery-info {
+    position: absolute;
+    bottom: 0; left: 0; width: 100%;
+    padding: 15px;
+    background: linear-gradient(to top, rgba(139,0,0,0.9), transparent);
+    transform: translateY(100%);
+    transition: 0.3s;
+    color: #fff;
+    font-weight: bold;
+}
+
+.gallery-card:hover .gallery-info { transform: translateY(0); }
+
+/* ===========================================
+   === SHRINE & OFFERINGS === */
+.shrine-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.altar-modern {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 0 40px rgba(200,0,0,0.5), inset 0 0 20px rgba(0,0,0,0.8);
+    border: 1px solid rgba(255,0,0,0.2);
+    min-height: 250px;
+}
+
+.altar-video {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.altar-video-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Dunkler Filter für Lesbarkeit */
+    z-index: 1;
+}
+
+.altar-arch, .altar-drop-hint, .easter-effect {
+    position: relative;
+    z-index: 2;
+}
+
+.offerings-grid-modern {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    width: 100%;
+    max-width: 500px;
+}
+
+.offering-btn {
+    background: #1a1a1a;
+    border: 1px solid #ff0000;
+    color: #fff;
+    padding: 8px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.offering-btn:hover { background: #ff0000; color: #000; }
+
+/* ===========================================
+   === VERTIKALER CRAZY TRAIN === */
+#scrollProgressContainer {
+    position: fixed;
+    right: 10px;
+    top: 100px; /* Start unter dem Header */
+    bottom: 20px;
+    width: 30px;
+    z-index: 9999;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Die Schiene */
+#scrollProgressContainer::before {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 100%;
+    background: repeating-linear-gradient(
+        #333 0%, #333 10%, 
+        #555 10%, #555 20%
+    );
+    border-radius: 2px;
+    border-left: 2px solid #222;
+    border-right: 2px solid #222;
+}
+
+#scrollProgressBar {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 0%; /* Wird per JS gesteuert */
+    transition: height 0.1s linear;
+}
+
+#trainEmoji {
+    position: absolute;
+    bottom: -15px; /* Sitzt am Ende des Fortschritts */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24px;
+    filter: drop-shadow(0 0 10px #ff0000);
+    text-shadow: 0 0 5px #000;
+}
+
+/* ===========================================
+   === INTERACTIVE TILES (Wall & Quotes) === */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 2rem;
+}
+
+#tributeWall, #quoteContainer {
+    background: linear-gradient(145deg, rgba(30, 30, 30, 0.8), rgba(10, 10, 10, 0.9));
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(139, 0, 0, 0.5);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.8), inset 0 0 25px rgba(139,0,0,0.1);
+    position: relative;
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 350px;
+}
+
+#tributeWall:hover, #quoteContainer:hover {
+    border-color: #ff0000;
+    box-shadow: 0 0 40px rgba(255,0,0,0.2);
+    transform: translateY(-5px);
+}
+
+/* Nieten-Effekt an den Ecken */
+#tributeWall::before, #quoteContainer::before {
+    content: '•';
+    position: absolute;
+    top: 10px; left: 10px;
+    color: #444; font-size: 1.5rem;
+    text-shadow: 1px 1px 0 #000;
+}
+
+/* Zitat-Text Styling */
+#quote {
+    font-family: 'Metal Mania', cursive;
+    font-size: 1.6rem;
+    color: #ff3333;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 10px rgba(255,0,0,0.5);
+    line-height: 1.2;
+}
+
+/* Candle Counter Styling */
+#candleCountText {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 1rem 0;
+    color: #eee;
+}
+
+#candleContainer {
+    background: rgba(255, 255, 255, 0.05);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);    
+    border-radius: 12px;
+    width: 100%;
+    height: 120px;
+    overflow-y: auto;
+    padding: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+}
+
+.candle-input-row {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.modern-btn {
+    background: linear-gradient(180deg, #660000 0%, #330000 100%);
+    border: 1px solid #ff0000;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+}
+
+.modern-btn:hover {
+    background: linear-gradient(180deg, #880000 0%, #440000 100%);
+    box-shadow: 0 0 15px rgba(255,0,0,0.6);
+    transform: translateY(-2px);
+}
+
+.modern-btn:active {
+    transform: translateY(0);
+}
+
+.candle-input {
+    flex-grow: 1;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid #444;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.candle-input:focus {
+    border-color: #ff0000;
+    box-shadow: 0 0 10px rgba(255,0,0,0.3);
+    outline: none;
+}
+
+/* ===========================================
+   === MODES & ANIMATIONS === */
+body.light-mode { background: #eee; color: #111; }
+body.light-mode::before { opacity: 0.05; }
+body.light-mode header { background: rgba(255,255,255,0.95); border-bottom-color: #ccc; }
+body.light-mode .timeline-v2-content { background: #fff; border-color: #ddd; color: #111; }
+
+body.moon-mode { background: #0a0e1a; color: #add8e6; }
+body.moon-mode header { border-bottom-color: #add8e6; }
+body.moon-mode .metal-text-small { color: #add8e6; text-shadow: 0 0 10px #add8e6; }
+
+@keyframes disco {
+    0% { background-color: #ff0000; }
+    33% { background-color: #00ff00; }
+    66% { background-color: #0000ff; }
+    100% { background-color: #ff0000; }
+}
+body.disco-mode { animation: disco 0.5s infinite; }
+
+.ozzy-toast {
+    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+    background: #000; color: #fff; padding: 10px 20px; border-radius: 20px;
+    z-index: 100000; border: 1px solid #ff0000; font-weight: bold;
+}
+
+/* ===========================================
+   === RESPONSIVE === */
+@media (max-width: 768px) {
+
+    /* Header & Navigation */
+    .slim-header { padding: 0.8rem 1rem; }
+    .header-main { flex-direction: column; gap: 0.8rem; }
+    .header-nav { flex-wrap: wrap; justify-content: center; gap: 0.3rem;}
+    .header-nav a { padding: 0.3rem 0.6rem; font-size: 0.85rem; }
+    .icon-btn { margin: 0.2rem; }
+    #scrollProgressContainer { display: none !important; }
+
+    /* --- TIMELINE LAYER & POSITION FIX --- */
+    
+    /* 1. Die Kette (Layer 2) */
+    .timeline-v2::after { 
+        left: 20px !important; 
+        margin: 0 !important;
+        z-index: 2 !important; /* Über den Boxen */
+    }
+    
+    /* 2. Die Items/Container ausrichten */
+    .timeline-v2-item { 
+        width: 100% !important; 
+        padding-left: 75px !important; /* Genug Platz, damit Text nicht unter der Kette liegt */
+        padding-right: 10px !important; 
+        text-align: left !important; 
+        left: 0 !important;
+    }
+    .left { left: 0 !important; }
+    .right { left: 0 !important; }
+
+    /* 3. Die Grabstein-Karten (Layer 1) */
+    .timeline-v2-content {
+        z-index: 1 !important; /* Unter Kette und Schädel */
+        position: relative;
+    }
+    
+    /* 4. Die Totenköpfe (Layer 3 - Ganz oben) */
+    .timeline-v2-item::after { 
+        left: 7px !important; /* Zentriert auf der 12px breiten Kette bei 20px Left-Position */
+        right: auto !important;
+        top: 25px !important;
+        z-index: 3 !important; /* Absolut im Vordergrund */
+    }
+    
+    /* Fix für die rechten Elemente auf Mobile */
+    .right::after { 
+        left: 7px !important;
+        right: auto !important;
+        z-index: 3 !important;
+    }
+
+    /* Gallery Anpassungen */
+    .gallery-card { width: 100%; height: 320px; }
+    .gallery-info { transform: translateY(0); background: linear-gradient(to top, rgba(0,0,0,0.9) 30%, transparent); }
+    
+    /* Dashboard + Offerings Anpassungen */
+    .dashboard-grid { grid-template-columns: 1fr; gap: 20px; }
+    #tributeWall, #quoteContainer { min-height: 0; padding: 1.5rem 1rem; }
+    .offerings-grid-modern { grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 8px;}
+    .offering-btn { padding: 12px 5px; font-size: 0.8rem;}
+}
+
+/* Optimierung für extrem kleine Displays (z.B. ältere iPhones) */
+@media (max-width: 380px) {
+    .metal-text-small {
+        font-size: 1.5rem;
+    }
+    .timeline-v2-content {
+        padding: 15px !important;
+    }
+    .timeline-v2-content .year {
+        font-size: 1.8rem;
+    }
+}
+
+/* ===========================================
+   === OZZY MODAL SYSTEM === */
+.ozzy-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.ozzy-modal.ozzy-modal--open {
+    display: flex;
+}
+
+.ozzy-modal__backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+}
+
+.ozzy-modal__content {
+    position: relative;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0c0c0c 100%);
+    border: 3px solid #ff0000;
+    border-radius: 20px;
+    padding: 2.5rem;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 0 50px rgba(255, 0, 0, 0.4), inset 0 0 20px rgba(0, 0, 0, 0.8);
+    z-index: 2;
+    text-align: center;
+    animation: modalSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes modalSlideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.ozzy-modal__close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.ozzy-modal__close:hover {
+    color: #ff0000;
+    transform: scale(1.1);
+}
+
+.ozzy-modal__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid #444;
+    color: #fff;
+    font-size: 2rem;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 50px;
+}
+
+.ozzy-modal__nav:hover {
+    background: #ff0000;
+    color: #fff;
+    border-color: #ff0000;
+}
+
+.ozzy-modal__nav--prev {
+    left: -70px;
+}
+
+.ozzy-modal__nav--next {
+    right: -70px;
+}
+
+@media (max-width: 768px) {
+    .ozzy-modal__nav {
+        padding: 0.5rem;
+        font-size: 1.5rem;
+        min-width: 40px;
+    }
+    .ozzy-modal__nav--prev { left: -10px; background: rgba(0,0,0,0.7); }
+    .ozzy-modal__nav--next { right: -10px; background: rgba(0,0,0,0.7); }
+}
+
+.ozzy-modal__img {
+    max-height: 70vh;
+    max-width: 100%;
+    border-radius: 10px;
+    border: 2px solid #333;
+    margin-bottom: 1rem;
+}
+
+.ozzy-modal__caption {
+    font-family: 'Metal Mania', cursive;
+    font-size: 1.5rem;
+    color: #ff3333;
+    text-shadow: 0 0 5px #000;
+}
+
+/* ===========================================
+   === TIMELINE BADGES (v3.0) === */
+.badge {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 6px;
+}
+.badge-life    { background: #2a4a2a; color: #7dff7d; border: 1px solid #4caf50; }
+.badge-music   { background: #4a1a1a; color: #ff8080; border: 1px solid #ff0000; }
+.badge-cult    { background: #2a1a4a; color: #b388ff; border: 1px solid #7e57c2; }
+.badge-media   { background: #1a3a4a; color: #80d8ff; border: 1px solid #0288d1; }
+.badge-legacy  { background: #3a3a1a; color: #ffd600; border: 1px solid #f9a825; }
+
+/* Dynamic node icon from data-icon attribute */
+.timeline-v2-item::before {
+    content: attr(data-icon);
+    font-size: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #1a1a1a;
+    border: 3px solid #ff0000;
+    position: absolute;
+    top: 20px;
+    z-index: 2;
+    box-shadow: 0 0 14px rgba(255,0,0,0.6);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.timeline-v2-item.left::before  { right: -26px; }
+.timeline-v2-item.right::before { left: -26px; }
+.timeline-v2-item:hover::before {
+    transform: scale(1.18) rotate(-5deg);
+    box-shadow: 0 0 22px rgba(255,0,0,0.9);
+}
+
+/* ===========================================
+   === GALLERY CARDS HOVER OVERLAY (v3.0) === */
+.gallery-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    cursor: pointer;
+}
+.gallery-card .gallery-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(transparent, rgba(0,0,0,0.85));
+    color: #fff;
+    font-family: 'Metal Mania', cursive;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    padding: 18px 14px 10px;
+    transform: translateY(100%);
+    transition: transform 0.35s ease;
+}
+.gallery-card:hover .gallery-info,
+.gallery-card:focus-within .gallery-info {
+    transform: translateY(0);
+}
+.gallery-card img {
+    transition: transform 0.4s ease, filter 0.4s ease;
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+.gallery-card:hover img {
+    transform: scale(1.06);
+    filter: brightness(0.85);
+}
+
+/* ===========================================
+   === TRIBUTE WALL – CANDLE INPUT (v3.0) === */
+.candle-input-row {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 0.8rem;
+}
+.candle-input {
+    flex: 1;
+    min-width: 130px;
+    padding: 10px 14px;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+.candle-input:focus {
+    border-color: #ff0000;
+    box-shadow: 0 0 8px rgba(255,0,0,0.4);
+}
+
+/* ===========================================
+   === WISDOM OF OZZY – KBD HINT (v3.0) === */
+.quote-hint {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 0.5rem;
+}
+kbd {
+    display: inline-block;
+    padding: 1px 7px;
+    background: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    color: #ccc;
+    font-family: monospace;
+}
+
+/* ===========================================
+   === CSS ALTAR (v3.0) === */
+.shrine-subtitle {
+    text-align: center;
+    color: #888;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+.altar-arch {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 2.5rem;
+    padding: 2rem 1.5rem 1.5rem;
+}
+.altar-flame {
+    width: 32px;
+    height: 60px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+.flame-inner {
+    width: 22px;
+    height: 50px;
+    background: linear-gradient(to top, #ff6600, #ffcc00, #fff6c0);
+    border-radius: 50% 50% 30% 30% / 70% 70% 30% 30%;
+    animation: flicker 1.4s ease-in-out infinite alternate;
+    box-shadow: 0 0 14px #ff6600, 0 0 30px #ff440060;
+    transform-origin: bottom center;
+}
+@keyframes flicker {
+    0%   { transform: scaleY(1)    scaleX(1)    rotate(-2deg); opacity: 1;   }
+    40%  { transform: scaleY(1.08) scaleX(0.94) rotate(1deg);  opacity: 0.9; }
+    100% { transform: scaleY(0.92) scaleX(1.05) rotate(2deg);  opacity: 1;   }
+}
+.altar-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+}
+.altar-eye {
+    font-size: 3rem;
+    animation: pulse-eye 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 8px rgba(255, 0, 0, 0.8));
+}
+@keyframes pulse-eye {
+    0%, 100% { transform: scale(1);    filter: drop-shadow(0 0 8px rgba(255,0,0,0.8)); }
+    50%       { transform: scale(1.12); filter: drop-shadow(0 0 16px rgba(255,80,0,1)); }
+}
+.altar-offering-display {
+    font-size: 2.4rem;
+    min-height: 3rem;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s;
+    opacity: 0;
+}
+.altar-offering-display.visible {
+    opacity: 1;
+    transform: scale(1.2);
+    animation: offering-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+@keyframes offering-pop {
+    0%   { transform: scale(0) rotate(-20deg); }
+    100% { transform: scale(1.2) rotate(0deg); }
+}
+.altar-drop-hint {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #555;
+    margin-top: 0.5rem;
+    letter-spacing: 1px;
+}
+/* Drag-and-drop drop zone highlight */
+.altar-drop-zone.drag-over {
+    border-color: #ffcc00 !important;
+    box-shadow: 0 0 30px rgba(255, 204, 0, 0.5), 0 0 60px rgba(255,204,0,0.2) !important;
+}
+/* Offering button dragging state */
+.offering-btn.dragging {
+    opacity: 0.4;
+    transform: scale(0.95);
+}
+
+/* ===========================================
+   === CTA SECTION – EXPLORE THE EMPIRE (v3.0) === */
+.cta-section { text-align: center; }
+
+.cta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+.cta-card {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    background: linear-gradient(135deg, #1a0000, #2a1a1a);
+    border: 1px solid #ff0000;
+    border-radius: 14px;
+    padding: 1.4rem 1.6rem;
+    text-decoration: none;
+    color: #fff;
+    transition: transform 0.28s, box-shadow 0.28s, border-color 0.28s;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+.cta-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    border-color: #ff6600;
+    box-shadow: 0 12px 40px rgba(255,0,0,0.35);
+}
+.cta-card-icon {
+    font-size: 2.8rem;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 6px rgba(255,100,0,0.7));
+    transition: transform 0.3s;
+}
+.cta-card:hover .cta-card-icon {
+    transform: rotate(-8deg) scale(1.15);
+}
+.cta-card-body h3 {
+    font-family: 'Metal Mania', cursive;
+    font-size: 1.25rem;
+    color: #ff3333;
+    margin-bottom: 0.3rem;
+}
+.cta-card-body p {
+    font-size: 0.85rem;
+    color: #aaa;
+    line-height: 1.4;
+}
+.cta-arrow {
+    margin-left: auto;
+    font-size: 1.5rem;
+    color: #ff0000;
+    transition: transform 0.25s;
+}
+.cta-card:hover .cta-arrow {
+    transform: translateX(5px);
+}
+
+/* ===========================================
+   === RESPONSIVE TWEAKS (v3.0+) === */
+@media (max-width: 600px) {
+    .candle-input-row { flex-direction: column; }
+    .candle-input { width: 100%; }
+    .altar-arch { gap: 1rem; padding: 1rem; }
+    .altar-eye { font-size: 2rem; }
+    .altar-flame { height: 40px; }
+    .flame-inner { height: 36px; width: 18px; }
+    .cta-card { flex-direction: column; text-align: center; gap: 0.8rem; }
+    .cta-arrow { margin: 0 auto; }
+    .badge { font-size: 0.6rem; }
+
+    .header-main {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+    }
+    .metal-text-small { font-size: 1.45rem; }
+    .header-nav {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .header-nav a {
+        min-height: 40px;
+        display: inline-flex;
+        align-items: center;
+    }
+    .icon-buttons { justify-content: center; width: 100%; }
+    .container { padding-left: 1rem; padding-right: 1rem; }
+    .gallery-modern {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    .gallery-card { height: 260px; }
+    .offerings-grid-modern {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .offering-btn {
+        min-height: 72px;
+        font-size: 0.75rem;
+    }
+    .cta-grid { grid-template-columns: 1fr; }
+    .modern-btn {
+        min-height: 44px;
+        width: 100%;
+        max-width: 100%;
+    }
+    footer { padding: 1.5rem 1rem; font-size: 0.85rem; }
+}
+
+@media (max-width: 480px) {
+    .timeline-v2-item { padding-left: 48px !important; }
+    .timeline-v2-content h3 { font-size: 1.05rem; }
+    .cta-card-body h3 { font-size: 1.1rem; }
+    .offerings-grid-modern {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* ===========================================
+   === V3.2 HERO UPGRADES === */
+.hero-content {
+    animation: fadeIn 2s ease-in-out;
+}
+.hero-title {
+    font-size: 4rem;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    text-shadow: 0 5px 15px rgba(255, 0, 0, 0.8), 0 -2px 10px rgba(0, 0, 0, 0.9);
+    transform: perspective(500px) rotateX(10deg);
+}
+.hero-subtitle {
+    font-size: 1.5rem;
+    font-family: 'Metal Mania', cursive;
+    color: #ccc;
+    min-height: 2rem;
+}
+@media (max-width: 768px) {
+    .hero-title { font-size: 2.5rem; }
+    .hero-subtitle { font-size: 1.2rem; }
+}
+
+/* ===========================================
+   === V3.2 TIMELINE PULSE === */
+@keyframes timelinePulse {
+    0% { box-shadow: 0 0 10px rgba(139, 0, 0, 0.6), inset 0 0 6px #000; }
+    50% { box-shadow: 0 0 30px rgba(255, 0, 0, 0.9), inset 0 0 15px rgba(255, 0, 0, 0.5); }
+    100% { box-shadow: 0 0 10px rgba(139, 0, 0, 0.6), inset 0 0 6px #000; }
+}
+.timeline-v2::after {
+    animation: timelinePulse 3s infinite;
+}
+
+/* ===========================================
+   === V3.2 3D GALLERY === */
+.gallery-card {
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease-out, border-color 0.5s;
+}
+
+/* ===========================================
+   === V3.2 CRYSTAL BALL === */
+.crystal-ball {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #444, #000);
+    border: 2px solid #555;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1), inset -10px -10px 20px rgba(0,0,0,0.8);
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin: 0 auto 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.crystal-ball:hover {
+    box-shadow: 0 0 40px rgba(255, 0, 0, 0.6), inset -10px -10px 20px rgba(0,0,0,0.8);
+    border-color: #8b0000;
+}
+.crystal-glow {
+    width: 60%;
+    height: 60%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,0,0,0.5) 0%, transparent 70%);
+    opacity: 0.5;
+    transition: opacity 0.3s, transform 0.3s;
+    animation: crystalPulse 4s infinite alternate;
+}
+.crystal-ball:hover .crystal-glow {
+    opacity: 1;
+    transform: scale(1.2);
+}
+@keyframes crystalPulse {
+    0% { opacity: 0.3; transform: scale(0.9); }
+    100% { opacity: 0.7; transform: scale(1.1); }
+}
+.glitch-text {
+    animation: glitch 0.5s linear infinite;
+    color: #fff !important;
+}
+@keyframes glitch {
+    2%, 64% { transform: translate(2px,0) skew(0deg); }
+    4%, 60% { transform: translate(-2px,0) skew(0deg); }
+    62% { transform: translate(0,0) skew(5deg); }
+}
+
+/* ===========================================
+   === V3.2 CANDLE PARTICLES & FLICKER === */
+.candle-emoji {
+    display: inline-block;
+    animation: flicker 2s infinite alternate;
+}
+@keyframes flicker {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(0.95); }
+    25%, 75% { opacity: 0.9; }
+}
+.candle-spark {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #ffaa00;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: spark-fly 0.8s ease-out forwards;
+}
+@keyframes spark-fly {
+    0% { opacity: 1; transform: translate(0, 0) scale(1); }
+    100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(0); }
+}
+
+/* ===========================================
+    font-size: 1.25rem;
+    color: #ff3333;
+    margin-bottom: 0.3rem;
+}
+.cta-card-body p {
+    font-size: 0.85rem;
+    color: #aaa;
+    line-height: 1.4;
+}
+.cta-arrow {
+    margin-left: auto;
+    font-size: 1.5rem;
+    color: #ff0000;
+    transition: transform 0.25s;
+}
+.cta-card:hover .cta-arrow {
+    transform: translateX(5px);
+}
+
+/* ===========================================
+   === RESPONSIVE TWEAKS (v3.0+) === */
+@media (max-width: 600px) {
+    .candle-input-row { flex-direction: column; }
+    .candle-input { width: 100%; }
+    .altar-arch { gap: 1rem; padding: 1rem; }
+    .altar-eye { font-size: 2rem; }
+    .altar-flame { height: 40px; }
+    .flame-inner { height: 36px; width: 18px; }
+    .cta-card { flex-direction: column; text-align: center; gap: 0.8rem; }
+    .cta-arrow { margin: 0 auto; }
+    .badge { font-size: 0.6rem; }
+
+    .header-main {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+    }
+    .metal-text-small { font-size: 1.45rem; }
+    .header-nav {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .header-nav a {
+        min-height: 40px;
+        display: inline-flex;
+        align-items: center;
+    }
+    .icon-buttons { justify-content: center; width: 100%; }
+    .container { padding-left: 1rem; padding-right: 1rem; }
+    .gallery-modern {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    .gallery-card { height: 260px; }
+    .offerings-grid-modern {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .offering-btn {
+        min-height: 72px;
+        font-size: 0.75rem;
+    }
+    .cta-grid { grid-template-columns: 1fr; }
+    .modern-btn {
+        min-height: 44px;
+        width: 100%;
+        max-width: 100%;
+    }
+    footer { padding: 1.5rem 1rem; font-size: 0.85rem; }
+}
+
+@media (max-width: 480px) {
+    .timeline-v2-item { padding-left: 65px !important; }
+    .timeline-v2-content h3 { font-size: 1.05rem; }
+    .cta-card-body h3 { font-size: 1.1rem; }
+    .offerings-grid-modern {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* ===========================================
+   === V3.2 HERO UPGRADES === */
+.hero-content {
+    animation: fadeIn 2s ease-in-out;
+}
+.hero-title {
+    font-size: 4rem;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    text-shadow: 0 5px 15px rgba(255, 0, 0, 0.8), 0 -2px 10px rgba(0, 0, 0, 0.9);
+    transform: perspective(500px) rotateX(10deg);
+}
+.hero-subtitle {
+    font-size: 1.5rem;
+    font-family: 'Metal Mania', cursive;
+    color: #ccc;
+    min-height: 2rem;
+}
+@media (max-width: 768px) {
+    .hero-title { font-size: 2.5rem; }
+    .hero-subtitle { font-size: 1.2rem; }
+}
+
+/* ===========================================
+   === V3.2 TIMELINE PULSE === */
+@keyframes timelinePulse {
+    0% { box-shadow: 0 0 10px rgba(139, 0, 0, 0.6), inset 0 0 6px #000; }
+    50% { box-shadow: 0 0 30px rgba(255, 0, 0, 0.9), inset 0 0 15px rgba(255, 0, 0, 0.5); }
+    100% { box-shadow: 0 0 10px rgba(139, 0, 0, 0.6), inset 0 0 6px #000; }
+}
+.timeline-v2::after {
+    animation: timelinePulse 3s infinite;
+}
+
+/* ===========================================
+   === V3.2 3D GALLERY === */
+.gallery-card {
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease-out, border-color 0.5s;
+}
+
+/* ===========================================
+   === V3.2 CRYSTAL BALL === */
+.crystal-ball {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #444, #000);
+    border: 2px solid #555;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1), inset -10px -10px 20px rgba(0,0,0,0.8);
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin: 0 auto 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.crystal-ball:hover {
+    box-shadow: 0 0 40px rgba(255, 0, 0, 0.6), inset -10px -10px 20px rgba(0,0,0,0.8);
+    border-color: #8b0000;
+}
+.crystal-glow {
+    width: 60%;
+    height: 60%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,0,0,0.5) 0%, transparent 70%);
+    opacity: 0.5;
+    transition: opacity 0.3s, transform 0.3s;
+    animation: crystalPulse 4s infinite alternate;
+}
+.crystal-ball:hover .crystal-glow {
+    opacity: 1;
+    transform: scale(1.2);
+}
+@keyframes crystalPulse {
+    0% { opacity: 0.3; transform: scale(0.9); }
+    100% { opacity: 0.7; transform: scale(1.1); }
+}
+.glitch-text {
+    animation: glitch 0.5s linear infinite;
+    color: #fff !important;
+}
+@keyframes glitch {
+    2%, 64% { transform: translate(2px,0) skew(0deg); }
+    4%, 60% { transform: translate(-2px,0) skew(0deg); }
+    62% { transform: translate(0,0) skew(5deg); }
+}
+
+/* ===========================================
+   === V3.2 CANDLE PARTICLES & FLICKER === */
+.candle-emoji {
+    display: inline-block;
+    animation: flicker 2s infinite alternate;
+}
+@keyframes flicker {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(0.95); }
+    25%, 75% { opacity: 0.9; }
+}
+.candle-spark {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #ffaa00;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: spark-fly 0.8s ease-out forwards;
+}
+@keyframes spark-fly {
+    0% { opacity: 1; transform: translate(0, 0) scale(1); }
+    100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(0); }
+}
+
+/* ===========================================
+   === V3.2 VAMPIRE MODE === */
+body.vampire-mode {
+    background: #2a0000;
+    color: #ffcccc;
+}
+body.vampire-mode::before {
+    background: url('../assets/images/gothic_rock_stage.jpg') center/cover no-repeat fixed;
+    opacity: 0.5;
+    filter: sepia(1) hue-rotate(-50deg) saturate(3);
+}
+
+/* ===========================================
+   === V3.2 MOBILE RESPONSIVE TWEAKS === */
+@media (max-width: 600px) {
+    .crystal-ball {
+        width: 80px;
+        height: 80px;
+    }
+}
+@media (max-width: 380px) {
+    .hero-title {
+        font-size: 1.8rem;
+    }
+}
+.crystal-ball:active .crystal-glow {
+    opacity: 1;
+    transform: scale(1.2);
+}

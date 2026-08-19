@@ -1,0 +1,209 @@
+<!-- ========== pages/concert.html ========== -->
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ozzy's Empire – Legacy</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/concert.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap" rel="stylesheet">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#8b0000" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+</head>
+<body class="dark-mode" data-theme="red">
+    <a href="#concert-content" class="skip-link">Zum Hauptinhalt springen</a>
+    
+    <!-- Sidebar: Hall of Fame -->
+    <aside class="trophy-case">
+        <div class="trophy-item" title="Rock & Roll Hall of Fame">⭐</div>
+        <div class="trophy-item" title="Grammy Winner">🏆</div>
+        <div class="trophy-item" title="Walk of Fame">🎖️</div>
+    </aside>
+
+    <header class="slim-header">
+        <div class="header-main">
+            <h1 class="metal-text-small">Ozzy's Empire</h1>
+            <div class="stage-controls" role="group" aria-label="Bühnenbeleuchtung">
+                <button type="button" class="light-btn red active" data-color="red" title="Rote Bühnenbeleuchtung" aria-label="Rote Bühnenbeleuchtung" aria-pressed="true"></button>
+                <button type="button" class="light-btn blue" data-color="blue" title="Blaue Bühnenbeleuchtung" aria-label="Blaue Bühnenbeleuchtung" aria-pressed="false"></button>
+                <button type="button" class="light-btn purple" data-color="purple" title="Lila Bühnenbeleuchtung" aria-label="Lila Bühnenbeleuchtung" aria-pressed="false"></button>
+                <button type="button" class="light-btn gold" data-color="gold" title="Goldene Bühnenbeleuchtung" aria-label="Goldene Bühnenbeleuchtung" aria-pressed="false"></button>
+                <button type="button" id="resetApp" class="icon-btn" title="Reset app" aria-label="App zurücksetzen">🔄</button>
+            </div>
+            <nav class="header-nav">
+                <a href="../index.html">🤘 Home</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="legacy-hero">
+      <h2 class="metal-text legacy-hero-title">💿 Legendary Live Legacy</h2>
+      <p class="legacy-hero-subtitle">Alben, Tourneen und das unsterbliche Erbe des Prince of Darkness</p>
+    </section>
+
+    <main class="container" id="concert-content" tabindex="-1">
+        <!-- Live & Studio Dashboard -->
+        <div class="dashboard-wrapper">
+            
+            <!-- Touren -->
+            <section class="legacy-section">
+                <h2 class="metal-text">Legendary Tours</h2>
+                <div class="legacy-grid">
+                    <div class="legacy-card" data-tour="blizzard" tabindex="0">
+                      <div class="card-front">
+                        <div class="card-icon">🎸</div>
+                        <h3>Blizzard of Ozz Tour</h3>
+                        <p class="card-year">1980 – 1981</p>
+                        <button class="vote-btn">🤘 <span class="vote-count">0</span></button>
+                      </div>
+                      <div class="card-back">
+                        <h4>Blizzard of Ozz Tour</h4>
+                        <p class="card-back-year">1980 – 1981</p>
+                        <p>Die erste Solo-Tournee mit dem legendären Randy Rhoads. Songs wie "Crazy Train" und "Mr. Crowley" elektrisieren die Massen.</p>
+                        <button class="close-card-btn">Schließen</button>
+                      </div>
+                    </div>
+                    <div class="legacy-card" data-tour="ozzfest" tabindex="0">
+                        <div class="card-front">
+                            <div class="card-icon">🤘</div>
+                            <h3>Ozzfest</h3>
+                            <button class="vote-btn">🤘 <span class="vote-count">0</span></button>
+                        </div>
+                        <div class="card-back">
+                            <h4>Highlight</h4>
+                            <p>Black Sabbath 1997</p>
+                            <button class="close-card-btn">Schließen</button>
+                        </div>
+                    </div>
+                    <div class="legacy-card" data-tour="bark" tabindex="0">
+                      <div class="card-front">
+                        <div class="card-icon">🐺</div>
+                        <h3>Bark at the Moon Tour</h3>
+                        <p class="card-year">1983 – 1984</p>
+                        <button class="vote-btn">🤘 <span class="vote-count">0</span></button>
+                      </div>
+                      <div class="card-back">
+                        <h4>Bark at the Moon Tour</h4>
+                        <p class="card-back-year">1983 – 1984</p>
+                        <p>Die Werwolf-Bühnenshow! Jake E. Lee an der Gitarre. 'Bark at the Moon' wird zur Stadion-Hymne.</p>
+                        <button class="close-card-btn">Schließen</button>
+                      </div>
+                    </div>
+                    <div class="legacy-card" data-tour="farewell" tabindex="0">
+                      <div class="card-front">
+                        <div class="card-icon">🖤</div>
+                        <h3>No More Tours 2</h3>
+                        <p class="card-year">2018 – 2023</p>
+                        <button class="vote-btn">🤘 <span class="vote-count">0</span></button>
+                      </div>
+                      <div class="card-back">
+                        <h4>No More Tours 2</h4>
+                        <p class="card-back-year">2018 – 2023</p>
+                        <p>Die letzte große Farewell-Tournee. Emotionale Abschiede, legendäre Setlists, ein würdiges Finale.</p>
+                        <button class="close-card-btn">Schließen</button>
+                      </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Alben -->
+            <section class="legacy-section">
+                <h2 class="metal-text">Vinyl Masterpieces</h2>
+                <div class="album-grid">
+                    <div class="album-card" data-album="blizzard" data-tracks="I Don't Know, Crazy Train, Mr. Crowley, Goodbye to Romance" data-year="1980">
+                      <div class="album-icon">⚡</div>
+                      <div class="vinyl-disc"></div>
+                      <div class="album-info"><h3>Blizzard of Ozz</h3><span class="album-year">1980</span></div>
+                      <button class="album-vote-btn" data-album-id="blizzard">🤘 <span class="album-vote-count">0</span></button>
+                    </div>
+                    <div class="album-card" data-album="diary" data-tracks="Flying High Again, Over the Mountain, Diary of a Madman" data-year="1981">
+                      <div class="album-icon">📖</div>
+                      <div class="vinyl-disc"></div>
+                      <div class="album-info"><h3>Diary of a Madman</h3><span class="album-year">1981</span></div>
+                      <button class="album-vote-btn" data-album-id="diary">🤘 <span class="album-vote-count">0</span></button>
+                    </div>
+                    <div class="album-card" data-album="bark" data-tracks="Bark at the Moon, Rock 'n' Roll Rebel, So Tired" data-year="1983">
+                      <div class="album-icon">🌙</div>
+                      <div class="vinyl-disc"></div>
+                      <div class="album-info"><h3>Bark at the Moon</h3><span class="album-year">1983</span></div>
+                      <button class="album-vote-btn" data-album-id="bark">🤘 <span class="album-vote-count">0</span></button>
+                    </div>
+                    <div class="album-card" data-album="nomoretears" data-tracks="No More Tears, Mama I'm Coming Home, Road to Nowhere" data-year="1991">
+                      <div class="album-icon">💧</div>
+                      <div class="vinyl-disc"></div>
+                      <div class="album-info"><h3>No More Tears</h3><span class="album-year">1991</span></div>
+                      <button class="album-vote-btn" data-album-id="nomoretears">🤘 <span class="album-vote-count">0</span></button>
+                    </div>
+                    <div class="album-card" data-album="ozzmosis" data-tracks="Perry Mason, See You on the Other Side, Thunder Underground" data-year="1995">
+                      <div class="album-icon">🔮</div>
+                      <div class="vinyl-disc"></div>
+                      <div class="album-info"><h3>Ozzmosis</h3><span class="album-year">1995</span></div>
+                      <button class="album-vote-btn" data-album-id="ozzmosis">🤘 <span class="album-vote-count">0</span></button>
+                    </div>
+                    <div class="album-card" data-album="blackrain" data-tracks="I Don't Wanna Stop, Not Going Away, Lay Your World on Me" data-year="2007">
+                      <div class="album-icon">🌧️</div>
+                      <div class="vinyl-disc"></div>
+                      <div class="album-info"><h3>Black Rain</h3><span class="album-year">2007</span></div>
+                      <button class="album-vote-btn" data-album-id="blackrain">🤘 <span class="album-vote-count">0</span></button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Screen & Games -->
+            <section class="legacy-section">
+                <h2 class="metal-text">Cameos</h2>
+                <div class="feat-list">
+                   <div class="feat-item"><span>🎮</span> <strong>Brütal Legend</strong> <em>(2009)</em></div>
+                   <div class="feat-item"><span>📺</span> <strong>The Osbournes</strong> <em>(2002–2005)</em></div>
+                   <div class="feat-item"><span>🎤</span> <strong>WWE WrestleMania</strong> <em>(2007)</em></div>
+                   <div class="feat-item"><span>🎬</span> <strong>Little Nicky</strong> <em>(2000)</em></div>
+                   <div class="feat-item"><span>🎮</span> <strong>Guitar Hero / Rock Band</strong></div>
+                   <div class="feat-item"><span>🎵</span> <strong>Tony Iommi – Reunion</strong> <em>(1997)</em></div>
+                </div>
+            </section>
+
+        </div>
+
+        <div class="cheer-section">
+            <h3 class="metal-text">Show Your Love</h3>
+            <p class="cheer-subtitle">Lass die Crowd toben!</p>
+            <button id="cheerBtn" class="modern-btn">📢 CROWD CHEER! 🤘</button>
+        </div>
+    </main>
+
+    <!-- Album Modal -->
+    <div id="albumModal" class="ozzy-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+        <div class="ozzy-modal__backdrop" id="modalCloseBackdrop"></div>
+        <div class="ozzy-modal__content">
+            <h2 id="modalTitle" class="metal-text">Album</h2>
+            <ul id="trackList"></ul>
+            <button type="button" class="modern-btn" id="modalCloseBtn">Schließen</button>
+        </div>
+    </div>
+
+    <footer>
+      <div class="cta-grid legacy-footer-ctas">
+        <a href="../index.html" class="cta-card">
+          <div class="cta-card-icon">🤘</div>
+          <div class="cta-card-body"><h3>Zurück zum Dashboard</h3><p>Erkunde den Rest des Ozzy Empire.</p></div>
+          <span class="cta-arrow">→</span>
+        </a>
+        <a href="quiz.html" class="cta-card">
+          <div class="cta-card-icon">🎸</div>
+          <div class="cta-card-body"><h3>Ultimate Quiz</h3><p>Teste dein Wissen über den Prince of Darkness.</p></div>
+          <span class="cta-arrow">→</span>
+        </a>
+      </div>
+      <p>&copy; 2026 Alexander Rothe – Fan-Projekt für Ozzy</p>
+      <p><em>Inoffizielle, nicht-kommerzielle Fan-Hommage.</em></p>
+    </footer>
+
+    <script src="../js/utils.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/concert.js"></script>
+</body>
+</html>

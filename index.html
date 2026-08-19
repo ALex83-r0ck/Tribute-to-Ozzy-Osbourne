@@ -1,0 +1,301 @@
+<!-- ========== index.html ========== -->
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Fan-Hommage an Ozzy Osbourne – Bio, Galerie, Quiz, Schrein, Memorial & Geister-Sprite! 🤘">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ozzy Osbourne – Legendary Fan Tribute</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap" rel="stylesheet">
+    <link rel="manifest" href="./manifest.json">
+    <style>
+        #hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #flameCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-content {
+            z-index: 10;
+            text-align: center;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
+    
+    <!-- Crazy Train Scroll Indicator -->
+    <div id="scrollProgressContainer">
+        <div id="scrollProgressBar">
+            <span id="trainEmoji">🚂</span>
+        </div>
+    </div>
+
+    <!-- Prince of Darkness Vignette -->
+    <div class="vignette-overlay"></div>
+
+    <!-- Header -->
+    <header class="slim-header">
+        <div class="header-main">
+            <h1 class="metal-text-small">Ozzy Tribute</h1>
+            <nav aria-label="Hauptnavigation" class="header-nav">
+                <a href="#bioSection">Bio</a>
+                <a href="#gallerySection">Galerie</a>
+                <a href="#tributeSection">Wall</a>
+                <a href="#shrineSection">Schrein</a>
+            </nav>
+            <div id="buttonContainer" class="icon-buttons">
+                <button type="button" id="themeToggle" class="icon-btn" title="Light/Dark Mode" aria-label="Light oder Dark Mode umschalten">🌓</button>
+                <button type="button" id="moonToggle" class="icon-btn" title="Moon Mode" aria-label="Moonlight Mode umschalten">🌙</button>
+                <button type="button" id="discoToggle" class="icon-btn" title="Disco Mode" aria-label="Disco Mode umschalten">🕺</button>
+            </div>
+        </div>
+        <div id="statsContainer">
+            <p>🦇 <span id="batCounter">0</span></p>
+        </div>
+    </header>
+
+    <main id="main-content" tabindex="-1">
+
+        <!-- Hero Canvas & Overlay -->
+        <section id="hero" aria-hidden="true" style="display: flex; align-items: center; justify-content: center; position: relative; width: 100vw; height: 100vh;">
+            <canvas id="flameCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></canvas>
+            <div class="hero-content" style="z-index: 10; text-align: center; pointer-events: none;">
+                <h1 class="hero-title metal-text">TRIBUTE TO THE<br>PRINCE OF DARKNESS</h1>
+                <p id="heroSubtitle" class="hero-subtitle"></p>
+            </div>
+        </section>
+
+        <!-- Bio-Timeline -->
+        <section id="bioSection" class="container">
+            <h2 class="metal-text">Timeline einer Legende</h2>
+            <div class="timeline-v2">
+
+                <div class="timeline-v2-item left" data-icon="👶">
+                    <div class="timeline-v2-content">
+                        <span class="badge badge-life">Lebensabschnitt</span>
+                        <span class="year">1948</span>
+                        <h3>👶 Geboren in Birmingham</h3>
+                        <p>John Michael "Ozzy" Osbourne wird in Aston geboren. Ein Arbeiterkind, das die Welt verändern sollte.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-v2-item right" data-icon="🎸">
+                    <div class="timeline-v2-content">
+                        <span class="badge badge-music">Musikalische Ära</span>
+                        <span class="year">1968</span>
+                        <h3>🎸 Black Sabbath</h3>
+                        <p>Die Geburtsstunde des Heavy Metal. Mit düsteren Riffs und Ozzys Stimme beginnt eine neue Ära.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-v2-item left" data-icon="🚀">
+                    <div class="timeline-v2-content">
+                        <span class="badge badge-music">Musikalische Ära</span>
+                        <span class="year">1979</span>
+                        <h3>🚀 Solo-Karriere</h3>
+                        <p>Nach dem Aus bei Sabbath startet Ozzy mit "Blizzard of Ozz" voll durch. "Crazy Train" wird zur Hymne.</p>
+                        <p><strong>Randy Rhoads</strong> prägt als Gitarren-Genie den unverkennbaren Sound, bis er <em>1982</em> tragisch verunglückt.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-v2-item right" data-icon="🦇">
+                    <div class="timeline-v2-content">
+                        <span class="badge badge-cult">Kult-Moment</span>
+                        <span class="year">1982</span>
+                        <h3>🦇 Der Fledermaus-Vorfall</h3>
+                        <p>In Des Moines beißt Ozzy einer Fledermaus den Kopf ab – aus Versehen, aber legendär für die Ewigkeit!</p>
+                    </div>
+                </div>
+
+                <div class="timeline-v2-item left" data-icon="🤘">
+                    <div class="timeline-v2-content">
+                        <span class="badge badge-music">Musikalische Ära</span>
+                        <span class="year">1996</span>
+                        <h3>🤘 Das Ozzfest</h3>
+                        <p>Ozzy gründet zusammen mit Sharon das legendäre Ozzfest und schafft damit die größte globale Bühne für Newcomer und Giganten des Heavy Metal.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-v2-item right" data-icon="📺">
+                    <div class="timeline-v2-content">
+                        <span class="badge badge-media">Medien & Kultur</span>
+                        <span class="year">2002</span>
+                        <h3>📺 The Osbournes</h3>
+                        <p>Ozzy wird zum Reality-TV Star auf MTV. Die ganze Welt liebt das Chaos der Familie Osbourne.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-v2-item left" data-icon="👑">
+                    <div class="timeline-v2-content">
+                        <span class="badge badge-legacy">Vermächtnis</span>
+                        <span class="year">2025</span>
+                        <h3>👑 R.I.P. Prince of Darkness</h3>
+                        <p>Ozzy verlässt die Bühne des Lebens, aber sein Erbe ist in jedem Metal-Riff unsterblich. Forever in our hearts. 🖤</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Galerie -->
+        <section id="gallerySection" class="container">
+            <h2 class="metal-text">Galerie - The Visual Legacy</h2>
+            <div id="gallery" class="gallery-modern">
+                <div class="gallery-card">
+                    <img src="assets/images/gothic_skull_crown.jpg" alt="Metal-Schädel mit Dornenkrone" class="galleryImage" data-full="assets/images/gothic_skull_crown.jpg">
+                    <div class="gallery-info"><span>The Icon</span></div>
+                </div>
+                <div class="gallery-card">
+                    <img src="assets/images/gothic_bat_moon.jpg" alt="Fledermaus vor rotem Mond" class="galleryImage" data-full="assets/images/gothic_bat_moon.jpg">
+                    <div class="gallery-info"><span>Prince of Darkness</span></div>
+                </div>
+                <div class="gallery-card">
+                    <img src="assets/images/gothic_rock_stage.jpg" alt="Gothic-Bühne im Nebel" class="galleryImage" data-full="assets/images/gothic_rock_stage.jpg">
+                    <div class="gallery-info"><span>Live Magic</span></div>
+                </div>
+                <div class="gallery-card">
+                    <img src="assets/images/Rest%20in%20Power%20Prince%20Of%20Darkness.webp" alt="Rest in Power – Prince of Darkness Memorial" class="galleryImage" data-full="assets/images/Rest%20in%20Power%20Prince%20Of%20Darkness.webp">
+                    <div class="gallery-info"><span>Rest in Peace</span></div>
+                </div>
+                <div class="gallery-card">
+                    <img src="assets/images/ozzy-osbourne.png" alt="Porträt von Ozzy Osbourne" class="galleryImage" data-full="assets/images/ozzy-osbourne.png">
+                    <div class="gallery-info"><span>Ozzy 2025</span></div>
+                </div>
+                <div class="gallery-card">
+                    <img src="assets/images/ozzy-osbourne-on-stage-rip.png" alt="Ozzy Osbourne auf der Bühne" class="galleryImage" data-full="assets/images/ozzy-osbourne-on-stage-rip.png">
+                    <div class="gallery-info"><span>Ozzy on Stage</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard: Wall & Quotes -->
+        <section class="container">
+            <div class="dashboard-grid">
+                <!-- Virtual Tribute Wall -->
+                <div id="tributeSection">
+                    <h2 class="metal-text">Tribute Wall</h2>
+                    <div id="tributeWall">
+                        <div class="candle-input-row">
+                            <input type="text" id="candleName" placeholder="Dein Name..." class="candle-input" maxlength="20" aria-label="Dein Name für die Kerze">
+                            <button id="lightCandle" class="modern-btn">🔥 Kerze anzünden</button>
+                        </div>
+                        <p id="candleCountText">Es brennen <span id="candleCount">0</span> Kerzen.</p>
+                        <div id="candleContainer"></div>
+                    </div>
+                </div>
+
+                <!-- Zitat Box -->
+                <div id="quoteSection">
+                    <h2 class="metal-text">Wisdom of Ozzy</h2>
+                    <div id="quoteContainer">
+                        <p id="quote" aria-live="polite">Klick die Kugel für ein Ozzy-Zitat!</p>
+                        <div id="quoteButton" class="crystal-ball" role="button" aria-label="Neues Zitat" tabindex="0">
+                            <div class="crystal-glow"></div>
+                        </div>
+                        <p class="quote-hint">Oder drücke <kbd>Q</kbd></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Digitaler Schrein -->
+        <section id="shrineSection" class="container">
+            <h2 class="metal-text">Digitaler Schrein</h2>
+            <p class="shrine-subtitle">Ziehe eine Gabe auf den Altar oder klicke sie an</p>
+            <div class="shrine-wrapper">
+                <!-- CSS Altar -->
+                <div id="altar" class="altar-modern altar-drop-zone" aria-label="Altar – Gaben hier ablegen">
+                    <video autoplay loop muted class="altar-video">
+                        <source src="assets/gif/schrein.mp4" type="video/mp4">
+                    </video>
+                    <div class="altar-video-overlay"></div>
+                    <div class="altar-arch">
+                        <div class="altar-center">
+                            <div id="altarOfferingDisplay" class="altar-offering-display"></div>
+                        </div>
+                    </div>
+                    <div id="easterEffect" class="easter-effect"></div>
+                    <p class="altar-drop-hint">⬇ Gabe hier ablegen</p>
+                </div>
+
+                <div id="offeringsContainer" class="offerings-grid-modern">
+                    <button class="offering-btn" data-id="bier" draggable="true" aria-label="Bier opfern">🍺<br>Bier</button>
+                    <button class="offering-btn" data-id="blood" draggable="true" aria-label="Blut opfern">🩸<br>Blut</button>
+                    <button class="offering-btn" data-id="bat" draggable="true" aria-label="Fledermaus opfern">🦇<br>Bat</button>
+                    <button class="offering-btn" data-id="crazy" draggable="true" aria-label="Crazy Train opfern">🚂<br>Train</button>
+                    <button class="offering-btn" data-id="iron" draggable="true" aria-label="Iron Man opfern">🤖<br>Iron</button>
+                    <button class="offering-btn" data-id="headbang" draggable="true" aria-label="Rock on opfern">🤘<br>Rock</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA – Links zum Quiz & Legacy -->
+        <section class="container cta-section">
+            <h2 class="metal-text">Explore the Empire</h2>
+            <div class="cta-grid">
+                <a href="pages/quiz.html" class="cta-card">
+                    <div class="cta-card-icon">🎸</div>
+                    <div class="cta-card-body">
+                        <h3>Ultimate Quiz</h3>
+                        <p>Teste dein Wissen über den Prince of Darkness. Bist du ein Metal God?</p>
+                    </div>
+                    <span class="cta-arrow">→</span>
+                </a>
+                <a href="pages/concert.html" class="cta-card">
+                    <div class="cta-card-icon">🤘</div>
+                    <div class="cta-card-body">
+                        <h3>Legendary Live Legacy</h3>
+                        <p>Tourneen, Alben, Auftritte – das unsterbliche Erbe auf der Bühne.</p>
+                    </div>
+                    <span class="cta-arrow">→</span>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+    <!-- Copyright & Portfolio -->
+        <p>&copy; 2026 Alexander Rothe – Fan-Projekt für Ozzy | 
+        <a href="https://ALex83-r0ck.github.io" target="_blank" rel="noopener">Mein Portfolio</a>
+        </p>
+
+        <!-- Disclaimer -->
+        <p><em>Inoffizielle, nicht-kommerzielle Fan-Hommage an Ozzy Osbourne. 
+        Keine Verbindung zu Ozzy Osbourne, seiner Familie oder Management.</em></p>
+
+        <!-- Bildlizenz / Quellen -->
+        <p><em>Alle verwendeten Bilder sind CC0 / lizenzfreie Stockbilder oder AI-Grafiken.</em></p>
+
+        <!-- Impressum & Kontakt -->
+        <p><a href="pages/impressum.html"><u>Impressum</u></a> | <a href="pages/datenschutz.html"><u>Datenschutzerklärung</u></a></p>
+
+        <!-- Hinweis / Version -->
+        <p><em>Ein Fan-Projekt – erstellt mit 🤘🏻, nicht kommerziell. Version 3.1 | Share mit #OzzyFanTribute</em></p>
+    </footer>
+
+
+    <!-- Scripts (order matters: utils → theme → main) -->
+    <script src="js/utils.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

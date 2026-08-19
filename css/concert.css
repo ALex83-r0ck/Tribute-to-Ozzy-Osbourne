@@ -1,0 +1,412 @@
+/* ========== css/concert.css ========== */
+
+:root {
+    --theme-color: #ff0000;
+    --theme-glow: rgba(255, 0, 0, 0.3);
+}
+
+body[data-theme="blue"] { --theme-color: #0000ff; --theme-glow: rgba(0, 0, 255, 0.3); }
+body[data-theme="purple"] { --theme-color: #800080; --theme-glow: rgba(128, 0, 128, 0.3); }
+body[data-theme="gold"] { --theme-color: #ffd700; --theme-glow: rgba(255, 215, 0, 0.3); }
+
+/* --- SIDEBAR: TROPHY CASE --- */
+.trophy-case {
+    position: fixed;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 10001;
+}
+
+.trophy-item {
+    width: 50px;
+    height: 50px;
+    background: rgba(0,0,0,0.8);
+    border: 2px solid var(--theme-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 0 10px var(--theme-glow);
+    transition: 0.3s;
+    cursor: help;
+}
+
+.trophy-item:hover {
+    transform: scale(1.2);
+    background: var(--theme-color);
+}
+
+/* --- DASHBOARD CLEANUP --- */
+.dashboard-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem; /* Schlanker als vorher */
+}
+
+.legacy-section {
+    margin-top: 1rem;
+}
+
+/* Tours Grid */
+.legacy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    perspective: 1000px;
+}
+
+.legacy-card {
+    height: 280px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.legacy-card:hover {
+    transform: translateY(-5px);
+}
+
+.legacy-card.is-flipped { transform: translateY(-5px) rotateY(180deg); }
+
+.legacy-card:focus {
+    outline: 3px solid var(--theme-color);
+    outline-offset: 5px;
+    border-radius: 15px;
+}
+
+.card-front, .card-back {
+    position: absolute; width: 100%; height: 100%;
+    backface-visibility: hidden;
+    border: 2px solid var(--theme-color);
+    border-radius: 15px;
+    padding: 1rem;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    background: rgba(20,20,20,0.95);
+}
+
+.card-back { transform: rotateY(180deg); background: #111; }
+
+.close-card-btn {
+    margin-top: 10px;
+    background: none; border: 1px solid #444; color: #aaa;
+    padding: 5px 10px; border-radius: 5px; font-size: 0.8rem;
+}
+
+/* Album Grid */
+.album-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+.album-card {
+    width: 180px; height: 180px;
+    border-radius: 10px; overflow: hidden;
+    position: relative; border: 2px solid var(--theme-color);
+}
+
+.vinyl-disc {
+    position: absolute; width: 160px; height: 180px;
+    background: radial-gradient(circle, #000 20%, #111 25%, #000 30%);
+    border-radius: 50%; right: -80px; transition: 0.5s; z-index: 1;
+}
+.album-card:hover .vinyl-disc { right: -5px; transform: rotate(360deg); }
+
+.album-info {
+    position: relative; z-index: 2;
+    background: rgba(0,0,0,0.85);
+    height: 100%; display: flex; align-items: center; justify-content: center;
+}
+
+.album-info h3 { font-size: 1rem; color: #fff; text-align: center; }
+
+/* Features (Cameos) */
+.feat-list { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+.feat-item {
+    padding: 10px 20px; background: rgba(255,255,255,0.05);
+    border-radius: 30px; border-left: 4px solid var(--theme-color);
+    font-size: 0.9rem;
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
+}
+.feat-item:hover {
+    transform: translateY(-3px) scale(1.05);
+    background: rgba(255,255,255,0.15);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+
+/* Modal styles moved and expanded in styles.css for global availability */
+
+/* Animations */
+.cheer-emoji { position: fixed; bottom: -50px; font-size: 2.5rem; animation: fly 2s forwards; }
+@keyframes fly { to { transform: translateY(-100vh) rotate(360deg); opacity: 0; } }
+
+.vote-btn {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0.5rem 0.9rem;
+}
+.vote-btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+.close-card-btn {
+    min-height: 40px;
+    padding: 8px 14px;
+}
+.light-btn {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    min-height: 36px;
+    border-radius: 50%;
+    border: 2px solid #fff3;
+    cursor: pointer;
+}
+.light-btn:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 2px;
+}
+.stage-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .trophy-case {
+        flex-direction: row;
+        top: auto;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        gap: 8px;
+    }
+    .trophy-item {
+        width: 42px;
+        height: 42px;
+        font-size: 1.2rem;
+    }
+    .header-main {
+        flex-direction: column;
+        gap: 0.6rem;
+    }
+    .header-nav { display: flex !important; }
+    .legacy-grid {
+        grid-template-columns: 1fr;
+    }
+    .legacy-card { height: 240px; }
+    .album-card {
+        width: min(100%, 200px);
+        height: 180px;
+    }
+    .dashboard-wrapper { gap: 2rem; padding-bottom: 4rem; }
+    .cheer-section { padding: 0 1rem 2rem; }
+    .cheer-section .modern-btn { width: 100%; min-height: 48px; }
+}
+
+@media (max-width: 480px) {
+    .metal-text-small { font-size: 1.3rem; }
+    .feat-item { width: 100%; text-align: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .legacy-card { transition: none; }
+    .legacy-card.is-flipped { transform: none; }
+    .card-back { position: static; transform: none; display: none; }
+    .legacy-card.is-flipped .card-back { display: flex; }
+    .legacy-card.is-flipped .card-front { display: none; }
+    .album-card:hover .vinyl-disc { transform: none; }
+    .cheer-emoji { animation: none; display: none; }
+}
+
+/* === LEGACY HERO (v3.1) === */
+.legacy-hero {
+    text-align: center;
+    padding: 2.5rem 1rem 1.5rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, rgba(139,0,0,0.12), rgba(0,0,0,0.5));
+    border-radius: 16px;
+    border: 1px solid rgba(139,0,0,0.25);
+}
+.legacy-hero-title {
+    font-size: 2.8rem;
+    letter-spacing: 3px;
+    text-shadow: 0 0 20px rgba(255,0,0,0.5), 0 0 40px rgba(255,0,0,0.2);
+    margin-bottom: 0.5rem;
+}
+.legacy-hero-subtitle {
+    font-size: 1.05rem;
+    color: #999;
+    font-style: italic;
+}
+
+/* === CARD YEAR LABELS === */
+.card-year {
+    font-size: 0.8rem;
+    color: #888;
+    margin-top: 0.3rem;
+}
+.card-back-year {
+    font-size: 0.85rem;
+    color: var(--theme-color);
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+.card-back p {
+    font-size: 0.85rem;
+    color: #bbb;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+}
+.card-back h4 {
+    font-family: 'Metal Mania', cursive;
+    font-size: 1.2rem;
+    color: var(--theme-color);
+    margin-bottom: 0.3rem;
+}
+
+/* === ALBUM CARD UPGRADES === */
+.album-card {
+    width: 200px;
+    height: 240px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.album-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 30px rgba(255,0,0,0.3);
+}
+.album-icon {
+    position: absolute;
+    top: 8px;
+    left: 10px;
+    font-size: 1.6rem;
+    z-index: 3;
+    filter: drop-shadow(0 0 4px rgba(255,100,0,0.6));
+}
+.album-year {
+    display: block;
+    font-size: 0.75rem;
+    color: #bbb;
+    margin-top: 2px;
+}
+.album-vote-btn {
+    position: absolute;
+    bottom: 6px;
+    right: 8px;
+    background: rgba(0,0,0,0.7);
+    border: 1px solid var(--theme-color);
+    color: #fff;
+    padding: 3px 10px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    z-index: 3;
+    transition: background 0.3s, transform 0.3s;
+}
+.album-vote-btn:hover {
+    background: var(--theme-color);
+    transform: scale(1.1);
+}
+.album-vote-btn:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+/* === FEAT ITEM UPGRADES === */
+.feat-item em {
+    color: #bbb;
+    font-size: 0.85rem;
+    margin-left: 0.3rem;
+    font-style: normal;
+}
+
+/* === CHEER SECTION === */
+.cheer-section {
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 2rem;
+}
+.cheer-subtitle {
+    color: #888;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+/* === SCROLL REVEAL === */
+.legacy-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.legacy-section.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* === FOOTER CTAs === */
+.legacy-footer-ctas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem auto;
+    max-width: 800px;
+}
+
+footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    border-top: 1px solid #222;
+    margin-top: 3rem;
+    color: #888;
+}
+footer p { margin: 0.3rem 0; }
+
+/* === STAGE LIGHT BUTTONS === */
+.light-btn {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid #444;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.light-btn:hover { transform: scale(1.2); }
+.light-btn.red { background: #ff0000; }
+.light-btn.blue { background: #0000ff; }
+.light-btn.purple { background: #800080; }
+.light-btn.gold { background: #ffd700; }
+.light-btn.active { box-shadow: 0 0 12px var(--theme-color); border-color: #fff; }
+
+/* === RESPONSIVE ENHANCEMENTS === */
+@media (max-width: 768px) {
+    .trophy-case { 
+        position: fixed;
+        flex-direction: row; 
+        top: auto; 
+        bottom: 10px; 
+        left: 50%; 
+        transform: translateX(-50%);
+        background: rgba(0,0,0,0.9);
+        padding: 8px 16px;
+        border-radius: 30px;
+        border: 1px solid #333;
+        gap: 10px;
+    }
+    .trophy-item { width: 36px; height: 36px; font-size: 1.1rem; }
+    .legacy-hero-title { font-size: 1.8rem; }
+    .album-grid { gap: 12px; }
+    .album-card { width: 150px; height: 200px; }
+    .legacy-footer-ctas { grid-template-columns: 1fr; }
+    .legacy-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+    .stage-controls { gap: 4px; }
+    .light-btn { width: 20px; height: 20px; }
+}
