@@ -1,79 +1,83 @@
 # 🤘 Tribute to Ozzy Osbourne
 
-Eine interaktive, stilvoll gestaltete Fan-Hommage an Ozzy Osbourne mit einer Bio-Timeline, Galerie, Tribute-Wall, Quiz und einem digitalen Schrein.
+Eine düster-epische Fan-Hommage an Ozzy Osbourne mit einer Bio-Timeline, Galerie, Tribute-Wall, Quiz, Schrein und einem starken Heavy-Metal-Charakter.
 
 > Inoffizielle, nicht-kommerzielle Fan-Projektseite ohne Verbindung zu Ozzy Osbourne, seiner Familie oder seinem Management.
 
 ## Überblick
 
-Diese Website ist ein statisches Frontend-Projekt, das mit HTML, CSS und Vanilla JavaScript umgesetzt wurde. Es vereint mehrere thematische Bereiche in einer dunklen, gothic-metaligen Erlebniswelt:
+Diese Seite ist ein statisches Frontend-Projekt aus HTML, CSS und Vanilla JavaScript. Sie bündelt eine komplette Tribute-Experience in einem dunklen, rockigen Stil:
 
-- Bio-/Lebenszeitlinie der Legende
-- Galerie mit Modal-Ansicht
-- Virtuelle Tribute-Wall mit personalisierten Kerzen
-- Quiz mit Zeitlimit, Highscore und Lebenssystem
-- Digitaler Schrein mit visuellen Effekten
-- Dark-/Light-/Moon-/Disco-Theme-Wechsel
+- Hero-Startsektion mit Feuermotiv und Bühnenatmosphäre
+- Lebenszeitlinie mit symbolischen Metal-Marken
+- Galerie mit Hover-Effekten und Bild-Details
+- Virtuelle Tribute-Wall mit Kerzen und LocalStorage
+- Quiz mit Highscore, Timer, Leben und Punktesystem
+- Digitaler Schrein mit Drag-and-Drop-Gaben
+- Theme-Wechsel zwischen Dark, Light, Moon und Disco
+- Scroll-Progress, Reveal-Animationen und Back-to-Top-Button
 
-## Funktionen
+## Hauptmerkmale
 
-### Hauptseite
+### Landingpage
 
-- Bio-Timeline mit unterschiedlichen Kategorien und Icons
-- Galerie mit Hover-Effekten und Lightbox-Ansicht
-- Tribute Wall mit Namen, Kerzen und LocalStorage-Persistenz
-- "Wisdom of Ozzy"-Zitatbereich mit Tastenkürzel
-- Digitaler Schrein mit CSS-Animationen und Drag-and-Drop
-- Visueller Scroll-Fortschritt und dynamische Theme-Optionen
+- Stilvolle, dunkle Hero-Section mit starkem Festival-Feeling
+- Timeline mit Jahren, Kategorien, Symbolen und metallic Look
+- Interaktive Tribute-Wall-Elemente mit personalisierten Kerzen
+- Abschlussbanner mit starkem Finale und emotionalem Abschluss
+- Responsive Layout für Desktop und mobile Darstellung
 
 ### Quiz
 
-- 3 Leben mit Fledermaus-System
-- 15 Sekunden pro Frage
-- Punktesystem mit Streaks und Rangfolge
-- Highscore-Speicherung im Browser
-- Zufällige Reihenfolge der Fragen und Antwortoptionen
+- Zufällige Fragen und Antwortoptionen pro Runde
+- Countdown je Frage
+- Drei Leben mit Fledermaus-Mechanik
+- Punkte- und Streak-System
+- Browser-Highscore mit Persistenz
+- Ergebnis- und Neustart-Logik
 
 ### Weitere Seiten
 
-- Quiz-Seite in `pages/quiz.html`
-- Album-/Tour-/Legacy-Bereich in `pages/concert.html`
-- Datenschutz- und Impressumsseiten in `pages/`
+- Quizseite: `pages/quiz.html`
+- Konzert-/Legacy-Seite: `pages/concert.html`
+- Datenschutz: `pages/datenschutz.html`
+- Impressum: `pages/impressum.html`
 
-## Technologie
+## Technologien
 
 - HTML5
 - CSS3
 - Vanilla JavaScript
-- Jest + JSDOM für Tests
+- Jest + JSDOM für Frontend-Tests
 - Kein Build- oder Bundling-Schritt nötig
 
 ## Projektstruktur
 
 ```text
 .
-├── index.html                  # Startseite / Haupt-Dashboard
+├── index.html                  # Startseite / Hauptseite
+├── README.md                   # Projektbeschreibung
 ├── IMPROVEMENTS.md             # Qualitäts- und Verbesserungsplan
 ├── manifest.json               # Web-App-Manifest
 ├── sw.js                       # Service Worker
-├── mkdocs.yml                  # Dokumentations-Konfiguration
-├── package.json                # Projekt-Definition und Test-Skripte
-├── README.md                   # Projektbeschreibung
+├── mkdocs.yml                  # MkDocs-Konfiguration
+├── package.json                # Skripte und Projekt-Abhängigkeiten
+├── LICENCE                     # Lizenz
 ├── css/
-│   ├── styles.css              # Haupt-Styling
-│   ├── quiz.css                # Quiz-Styling
-│   └── cert.css                # Zertifikat-/Concert-Styles
+│   ├── styles.css              # Haupt-Styling der Landingpage
+│   ├── quiz.css                # Styling der Quizseite
+│   └── cert.css                # Styling der Konzert-/Legacy-Seite
 ├── js/
 │   ├── main.js                 # Hauptseiten-Logik
 │   ├── theme.js                # Theme-Handling
-│   ├── quiz-data.js            # Quiz-Daten und Logik
+│   ├── quiz-data.js            # Quiz-Daten und Fragen
 │   ├── quiz.js                 # Quiz-Interaktion
-│   ├── cert.js                 # Album-/Concert-Logik
-│   ├── utils.js                # Shared Helper
+│   ├── cert.js                 # Konzert-/Legacy-Logik
+│   ├── utils.js                # Hilfsfunktionen
 │   └── ...
 ├── pages/
-│   ├── quiz.html               # Quiz-Seite
-│   ├── concert.html            # Legacy-/Concert-Seite
+│   ├── quiz.html               # Quizseite
+│   ├── cert.html               # Zertifikat-/Konzertseite
 │   ├── impressum.html          # Impressum
 │   └── datenschutz.html        # Datenschutz
 ├── assets/
@@ -89,8 +93,9 @@ Diese Website ist ein statisches Frontend-Projekt, das mit HTML, CSS und Vanilla
 │   ├── theme.test.js
 │   ├── utils.test.js
 │   └── cert.test.js
-├── coverage/                   # Test-Abdeckung (bei Ausführung erzeugt)
-└── LICENSE                     # Lizenz
+├── coverage/                   # Test-Ergebnisse
+├── .gitignore                  # Git-Ignorierung
+└── LICENSE                     # zusätzlich hinterlegte Lizenzdatei
 ```
 
 ## Installation und Start
@@ -114,16 +119,15 @@ npm install
 npm test
 ```
 
-### 4. Projekt lokal öffnen
+### 4. Projekt lokal starten
 
 Da es sich um eine statische Website handelt, kann sie direkt im Browser geöffnet werden:
 
 ```bash
-# einfach im Browser öffnen
 index.html
 ```
 
-Alternativ kann ein lokaler Webserver verwendet werden:
+Alternativ über einen lokalen Webserver:
 
 ```bash
 python -m http.server 8000
@@ -133,18 +137,18 @@ Danach im Browser auf `http://localhost:8000` gehen.
 
 ## Dokumentation
 
-- Projektplan und Qualitäts-Verbesserungen: [IMPROVEMENTS.md](IMPROVEMENTS.md)
+- Qualitätsplan und Verbesserungen: [IMPROVEMENTS.md](IMPROVEMENTS.md)
 - MkDocs-Dokumentation: [docs/index.md](docs/index.md)
 
 ## Hinweise
 
-- Das Projekt ist rein fanorientiert und nicht kommerziell.
-- Die Inhalte sind für eine hommageschaffende, nicht gewerbliche Nutzung gedacht.
-- Bilder und Inhalte wurden je nach Quelle als frei nutzbar oder KI-generiert gekennzeichnet.
+- Das Projekt ist eine inoffizielle Fan-Hommage und kein offizieller Ozzy-Osbourne-Auftritt.
+- Die Seite dient rein zu Bildungs-, Fan- und Hobbyzwecken.
+- Inhalte, Bilder und visuelle Elemente wurden je nach Quelle entsprechend genutzt bzw. als Teil der Tribute-Umgebung eingesetzt.
 
 ## Lizenz
 
-Das Projekt verwendet die in der Repository-Lizenz hinterlegte Open-Source-Lizenz. Bitte die Datei [LICENCE](LICENCE) beachten.
+Bitte die Lizenzdatei im Repository beachten. Das Projekt wird unter der hinterlegten Lizenz veröffentlicht.
 
 ---
 
