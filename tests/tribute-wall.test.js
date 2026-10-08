@@ -59,14 +59,25 @@ describe('tribute-wall – Supabase-Adapter', () => {
     const fetch = jest.fn(async () =>
       mockResponse([{ id: 1, name: 'Sharon', message: 'Love you', created_at: '2026-01-01T00:00:00Z' }], { 'content-range': '0-0/777' })
     );
-    const store = W.createSupabaseStore({ url: 'https://x.supabase.co/', key: 'anon', fetch });
+    const store = W.createSupabaseStore({ url: 'https://x.supabase.co/', key: 'eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYW5vbiJ9.sig', fetch });
     const res = await store.list();
     expect(res.total).toBe(777);
     expect(res.entries[0]).toMatchObject({ id: '1', name: 'Sharon', message: 'Love you' });
     const [url, init] = fetch.mock.calls[0];
     expect(url).toMatch(/^https:\/\/x\.supabase\.co\/rest\/v1\/candles\?select=/);
-    expect(init.headers.apikey).toBe('anon');
-    expect(init.headers.Authorization).toBe('Bearer anon');
+    expect(init.headers.apikey).toBe('eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYW5vbiJ9.sig');
+    expect(init.headers.Authorization).toBe('Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYW5vbiJ9.sig');
+  });
+
+  test('Publishable Keys (sb_publishable_…) gehen nur in den apikey-Header', async () => {
+    expect(W.isJwt('sb_publishable_abc')).toBe(false);
+    expect(W.isJwt('eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYW5vbiJ9.sig')).toBe(true);
+    const fetch = jest.fn(async () => mockResponse([], { 'content-range': '*/0' }));
+    const store = W.createSupabaseStore({ url: 'https://x.supabase.co', key: 'sb_publishable_abc', fetch });
+    await store.list();
+    const { headers } = fetch.mock.calls[0][1];
+    expect(headers.apikey).toBe('sb_publishable_abc');
+    expect(headers.Authorization).toBeUndefined();
   });
 
   test('add() postet nur name und message', async () => {

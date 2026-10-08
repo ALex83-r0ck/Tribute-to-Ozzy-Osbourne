@@ -83,6 +83,10 @@
     return "gerade eben";
   }
 
+  function isJwt(key) {
+    return /^eyJ[\w-]*\.[\w-]+\.[\w-]*$/.test(String(key || ""));
+  }
+
   function cooldownLeft(lastAt, now, ms) {
     const last = Number(lastAt) || 0;
     return Math.max(0, last + (ms == null ? COOLDOWN_MS : ms) - now);
@@ -134,7 +138,9 @@
     const base = String(options.url || "").replace(/\/+$/, "") + "/rest/v1/candles";
     const key = options.key;
     const doFetch = options.fetch || (typeof fetch === "function" ? fetch.bind(globalThis) : null);
-    const headers = { apikey: key, Authorization: "Bearer " + key };
+    // Neue Keys (sb_publishable_…) sind keine JWTs → nur als apikey senden.
+    // Legacy anon Keys (JWT, "eyJ…") zusätzlich als Bearer-Token.
+    const headers = isJwt(key) ? { apikey: key, Authorization: "Bearer " + key } : { apikey: key };
     const select = "select=id,name,message,created_at&order=created_at.desc";
 
     async function request(url, init) {
@@ -474,6 +480,7 @@
     sanitizeMessage,
     normalizeEntry,
     parseContentRange,
+    isJwt,
     relativeTime,
     cooldownLeft,
     createLocalStore,
