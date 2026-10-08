@@ -38,6 +38,7 @@
     { id: "recorder", icon: "📼", title: "Studio Session", desc: "Nimm ein eigenes Riff auf und spiel es ab.", action: "riffPlayback", goal: 1 },
     { id: "headbang", icon: "🤘", title: "Nackenbrecher", desc: "Bring das Headbang-o-Meter auf 100 %.", action: "headbang", goal: 1 },
     { id: "vinyl", icon: "💿", title: "Plattensammler", desc: "Lege 5 verschiedene Alben auf den Plattenspieler.", action: "vinyl", goal: 5, unique: true },
+    { id: "collector", icon: "🎧", title: "Echter Sammler", desc: "Spiel eine Platte aus deiner eigenen Sammlung ab.", action: "ownVinyl", goal: 1 },
     { id: "liner", icon: "📖", title: "Liner Notes", desc: "Dreh 10 verschiedene Album-Cover um.", action: "albumFlip", goal: 10, unique: true },
     { id: "historian", icon: "📜", title: "Zeitreisender", desc: "Nutze jeden Filter der Timeline.", action: "timelineFilter", goal: 5, unique: true },
     { id: "konami", icon: "🎮", title: "Cheat Code", desc: "↑ ↑ ↓ ↓ ← → ← → B A", action: "konami", goal: 1, secret: true },

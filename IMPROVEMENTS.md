@@ -99,6 +99,8 @@ Stand: 2026-10-08 · Version **4.1.0**
 | P7-07 | Plattenspieler mit drehender Platte, Tonarm und Knister-Sound (Web Audio) | ✅ | `discography.test.js` |
 | P7-08 | Lieblingsalben (localStorage) + 3 neue Erfolge (Botschafter, Plattensammler, Liner Notes) | ✅ | `discography.test.js` |
 | P7-09 | Deploy: `sw.js` + `manifest.json` werden jetzt mit veröffentlicht | ✅ | — |
+| P7-10 | Supabase-Projekt verbunden, neue Publishable Keys (`sb_publishable_…`) unterstützt | ✅ | `tribute-wall.test.js` |
+| P7-11 | Plattenspieler: nur eigene Musikdateien abspielbar (lokal, kein Upload), Playlist, Pause/Nächster Titel | ✅ | `discography.test.js` |
 
 ## Phase 6 – Interaktivität (v4.0)
 

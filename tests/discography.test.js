@@ -113,3 +113,94 @@ describe('discography – UI', () => {
     expect(document.getElementById('discoEmpty').hidden).toBe(false);
   });
 });
+
+describe('discography – eigene Platte (nur lokale Dateien)', () => {
+  const file = (name, type) => new File(['x'], name, { type: type == null ? 'audio/mpeg' : type });
+
+  test('buildPlaylist filtert Nicht-Audio, sortiert natürlich und säubert Titel', () => {
+    const list = D.buildPlaylist([
+      file('10 - Shot in the Dark.mp3'),
+      file('cover.jpg', 'image/jpeg'),
+      file('02_Crazy_Train.flac', ''),
+      file('1. I Don\'t Know.m4a', 'audio/mp4'),
+      file('notes.txt', 'text/plain'),
+    ]);
+    expect(list.map((t) => t.title)).toEqual(["I Don't Know", 'Crazy Train', 'Shot in the Dark']);
+  });
+
+  test('buildPlaylist mit leerer Eingabe', () => {
+    expect(D.buildPlaylist(null)).toEqual([]);
+  });
+
+  describe('UI', () => {
+    let ui;
+    let playSpy;
+    beforeEach(() => {
+      localStorage.clear();
+      document.documentElement.innerHTML = htmlContent;
+      global.URL.createObjectURL = jest.fn(() => 'blob:local-1');
+      global.URL.revokeObjectURL = jest.fn();
+      playSpy = jest.spyOn(HTMLMediaElement.prototype, 'play').mockImplementation(() => Promise.resolve());
+      jest.spyOn(HTMLMediaElement.prototype, 'pause').mockImplementation(() => {});
+      ui = D.init();
+    });
+    afterEach(() => jest.restoreAllMocks());
+
+    function chooseFiles(files) {
+      const input = document.getElementById('ownAlbumInput');
+      Object.defineProperty(input, 'files', { value: files, configurable: true });
+      input.dispatchEvent(new Event('change'));
+    }
+
+    test('Bereich ist nur sichtbar, wenn eine Platte aufliegt', () => {
+      const panel = document.getElementById('turntableOwn');
+      expect(panel.hidden).toBe(true);
+      ui.play('blizzard-of-ozz');
+      expect(panel.hidden).toBe(false);
+      ui.play(null);
+      expect(panel.hidden).toBe(true);
+    });
+
+    test('Eigene Dateien werden lokal per Object-URL abgespielt, nichts wird gespeichert', () => {
+      const fetchSpy = jest.fn();
+      global.fetch = fetchSpy;
+      ui.play('blizzard-of-ozz');
+      const before = { ...localStorage };
+      chooseFiles([file('02 Crazy Train.mp3'), file('01 I Don\'t Know.mp3')]);
+      expect(URL.createObjectURL).toHaveBeenCalledTimes(1);
+      expect(document.getElementById('turntableAudio').getAttribute('src')).toBe('blob:local-1');
+      expect(playSpy).toHaveBeenCalled();
+      expect(document.getElementById('ownNowPlaying').textContent).toContain("1/2: I Don't Know");
+      expect(fetchSpy).not.toHaveBeenCalled();
+      expect({ ...localStorage }).toEqual(before);
+      delete global.fetch;
+    });
+
+    test('Nächster Titel und Stopp geben die Object-URL wieder frei', () => {
+      ui.play('paranoid');
+      chooseFiles([file('01 War Pigs.mp3'), file('02 Paranoid.mp3')]);
+      document.getElementById('ownNext').click();
+      expect(document.getElementById('ownNowPlaying').textContent).toContain('2/2: Paranoid');
+      expect(URL.revokeObjectURL).toHaveBeenCalledTimes(1);
+      document.getElementById('turntableStop').click();
+      expect(URL.revokeObjectURL).toHaveBeenCalledTimes(2);
+      expect(document.getElementById('turntableAudio').hasAttribute('src')).toBe(false);
+      expect(ui.own.list).toEqual([]);
+    });
+
+    test('Albumwechsel stoppt die eigene Platte', () => {
+      ui.play('paranoid');
+      chooseFiles([file('01 War Pigs.mp3')]);
+      ui.play('scream');
+      expect(ui.own.index).toBe(-1);
+      expect(document.getElementById('ownNowPlaying').textContent).toContain('Noch keine eigene Datei');
+    });
+
+    test('Nur Nicht-Audio gewählt → Hinweis, nichts wird abgespielt', () => {
+      ui.play('paranoid');
+      chooseFiles([file('cover.jpg', 'image/jpeg')]);
+      expect(playSpy).not.toHaveBeenCalled();
+      expect(document.getElementById('ownNowPlaying').textContent).toContain('Keine Audiodateien');
+    });
+  });
+});
