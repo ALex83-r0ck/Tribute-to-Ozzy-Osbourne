@@ -232,6 +232,17 @@
                         <button type="button" id="turntableShuffle" class="ghost-btn riff-ctrl">🎲 Zufallsplatte</button>
                         <button type="button" id="turntableCrackle" class="ghost-btn riff-ctrl" aria-pressed="true">🔊 Knistern an</button>
                     </div>
+                    <div id="turntableOwn" class="turntable__own" hidden>
+                        <div class="turntable__controls">
+                            <button type="button" id="ownAlbumLoad" class="modern-btn riff-ctrl" aria-describedby="ownAlbumNote">📂 Eigene Platte abspielen</button>
+                            <button type="button" id="ownPlayPause" class="ghost-btn riff-ctrl" disabled>▶ Weiter</button>
+                            <button type="button" id="ownNext" class="ghost-btn riff-ctrl" disabled>⏭ Nächster Titel</button>
+                            <input type="file" id="ownAlbumInput" accept="audio/*,.mp3,.m4a,.flac,.ogg,.opus,.wav" multiple hidden>
+                        </div>
+                        <p id="ownNowPlaying" class="turntable__now" aria-live="polite">Noch keine eigene Datei geladen.</p>
+                        <p id="ownAlbumNote" class="turntable__legal">🔒 Hier läuft nur Musik, die du selbst besitzt: Wähle die Audiodateien deines Albums aus (z. B. MP3 oder FLAC von deiner gekauften CD oder deinem Download). Sie werden nur in deinem Browser abgespielt und nicht hochgeladen oder gespeichert. Diese Seite stellt selbst keine Musik bereit.</p>
+                    </div>
+                    <audio id="turntableAudio" preload="none"></audio>
                 </div>
             </div>
 

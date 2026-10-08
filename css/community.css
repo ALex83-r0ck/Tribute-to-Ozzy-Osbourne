@@ -313,6 +313,18 @@
 
 .turntable__controls { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.9rem; }
 
+.vinyl.is-spinning.is-paused { animation-play-state: paused; }
+
+.turntable__own {
+    margin-top: 0.9rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid rgba(255, 179, 107, 0.2);
+}
+
+.turntable__own .turntable__controls { margin-top: 0; }
+.turntable__now { margin-top: 0.6rem; color: #ffd8a8; font-size: 0.9rem; overflow-wrap: anywhere; }
+.turntable__legal { margin-top: 0.4rem; color: #999; font-size: 0.75rem; line-height: 1.4; }
+
 /* Toolbar */
 .disco-toolbar { display: flex; flex-direction: column; gap: 0.8rem; align-items: center; margin-bottom: 1.2rem; }
 .disco-filter { margin-top: 0; }
