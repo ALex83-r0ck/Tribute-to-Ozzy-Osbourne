@@ -1,0 +1,478 @@
+/* ===========================================
+   === OZZY TRIBUTE v4.1 – GLOBALE TRIBUTE WALL & DISKOGRAFIE ===
+   =========================================== */
+
+/* ---------- TRIBUTE WALL ---------- */
+#tributeWall.tribute-wall {
+    max-width: 1000px;
+    margin: 1.5rem auto 0;
+    align-items: stretch;
+    gap: 1rem;
+    min-height: 0;
+}
+
+#tributeWall.tribute-wall:hover { transform: none; }
+
+.tribute-wall__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+}
+
+.tribute-wall__head #candleCountText { margin: 0; }
+
+.wall-mode {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    border: 1px solid #444;
+    background: rgba(0, 0, 0, 0.4);
+    color: #ccc;
+}
+
+.wall-mode[data-mode="remote"] { border-color: #2e7d32; color: #8fff9a; box-shadow: 0 0 12px rgba(76, 175, 80, 0.3); }
+.wall-mode[data-mode="offline"] { border-color: #f9a825; color: #ffd54f; }
+
+.candle-form { width: 100%; }
+.candle-form .candle-input-row { margin-bottom: 0.6rem; }
+
+.candle-message-row { position: relative; }
+
+.candle-message {
+    width: 100%;
+    resize: vertical;
+    min-height: 56px;
+    font-family: inherit;
+    padding-bottom: 1.6rem;
+}
+
+.candle-message-count {
+    position: absolute;
+    right: 0.8rem;
+    bottom: 0.45rem;
+    font-size: 0.72rem;
+    color: #888;
+    pointer-events: none;
+}
+
+.modern-btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+
+.tribute-wall__body {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    gap: 1rem;
+}
+
+#candleContainer.candle-grid {
+    height: 230px;
+    align-content: flex-start;
+}
+
+.candle-grid .candle-emoji {
+    background: none;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    width: 40px;
+    height: 44px;
+    font-size: 1.5rem;
+    line-height: 1;
+    padding: 0;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.candle-grid .candle-emoji:hover,
+.candle-grid .candle-emoji:focus-visible { transform: scale(1.25); background: rgba(255, 140, 0, 0.12); }
+
+.candle-grid .candle-emoji.has-message::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #ffcc00;
+    box-shadow: 0 0 6px #ffcc00;
+}
+
+.candle-grid .candle-emoji.is-mine { border-color: rgba(255, 0, 0, 0.6); }
+.candle-grid .candle-emoji.is-selected { border-color: #ffcc00; background: rgba(255, 204, 0, 0.15); }
+.candle-grid .candle-emoji.is-new { animation: candleArrive 0.9s cubic-bezier(0.34, 1.56, 0.64, 1); }
+
+@keyframes candleArrive {
+    0% { transform: translateY(-30px) scale(0.2); opacity: 0; filter: brightness(3); }
+    60% { transform: translateY(4px) scale(1.3); opacity: 1; }
+    100% { transform: none; filter: none; }
+}
+
+.candle-spotlight {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 1rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 204, 0, 0.25);
+    background: radial-gradient(circle at 50% 20%, rgba(255, 140, 0, 0.18), rgba(0, 0, 0, 0.5) 70%);
+    min-height: 230px;
+    text-align: center;
+}
+
+.candle-spotlight__hint { color: #888; font-size: 0.9rem; }
+.candle-spotlight__flame { font-size: 2.6rem; animation: flicker 2s infinite alternate; filter: drop-shadow(0 0 12px #ff9900); }
+.candle-spotlight strong { font-family: 'Metal Mania', cursive; font-size: 1.4rem; color: #ffcc66; }
+.candle-spotlight__message { color: #eee; font-style: italic; overflow-wrap: anywhere; }
+.candle-spotlight small { color: #888; }
+
+.candle-feed { text-align: left; }
+
+.candle-feed h3 {
+    font-size: 0.78rem;
+    letter-spacing: 0.15rem;
+    text-transform: uppercase;
+    color: #aaa;
+    margin-bottom: 0.4rem;
+}
+
+.candle-feed ul { display: flex; flex-direction: column; gap: 0.35rem; }
+
+.candle-feed li {
+    padding: 0.45rem 0.7rem;
+    border-left: 3px solid #8b0000;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 0 8px 8px 0;
+    font-size: 0.88rem;
+    color: #ccc;
+    overflow-wrap: anywhere;
+}
+
+.candle-feed li strong { color: #ff6b6b; }
+.candle-feed li small { display: block; color: #777; font-size: 0.72rem; }
+.candle-feed__empty { border-left-color: #444 !important; color: #888 !important; }
+
+#quoteSection #quoteContainer { max-width: 640px; margin: 1.5rem auto 0; min-height: 0; }
+
+/* ---------- DISKOGRAFIE ---------- */
+.disco-stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.6rem;
+    max-width: 800px;
+    margin: 1rem auto 1.5rem;
+}
+
+.disco-stat {
+    display: flex;
+    flex-direction: column;
+    padding: 0.7rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.45);
+}
+
+.disco-stat strong { font-family: 'Metal Mania', cursive; font-size: 1.9rem; color: #ff3333; line-height: 1.1; }
+.disco-stat span { font-size: 0.75rem; color: #aaa; text-transform: uppercase; letter-spacing: 0.08rem; }
+
+/* Plattenspieler */
+.turntable {
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: 1.5rem;
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto 1.5rem;
+    padding: 1.4rem;
+    border-radius: 18px;
+    border: 1px solid #3a2a1a;
+    background:
+        linear-gradient(135deg, rgba(60, 35, 20, 0.9), rgba(20, 12, 8, 0.95)),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.02) 0 2px, transparent 2px 6px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    text-align: left;
+}
+
+.turntable__deck {
+    position: relative;
+    width: 240px;
+    height: 240px;
+    border-radius: 14px;
+    background: #121212;
+    box-shadow: inset 0 0 20px #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vinyl {
+    width: 210px;
+    height: 210px;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle, transparent 0 30%, rgba(255, 255, 255, 0.05) 30.5% 31%, transparent 31.5%),
+        repeating-radial-gradient(circle, #111 0 2px, #1c1c1c 2px 3px),
+        #111;
+    box-shadow: 0 0 0 2px #000, 0 10px 25px rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.vinyl::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: conic-gradient(from 30deg, transparent 0 20%, rgba(255, 255, 255, 0.12) 25%, transparent 30% 70%, rgba(255, 255, 255, 0.08) 75%, transparent 80%);
+}
+
+.vinyl.is-spinning { animation: vinylSpin 1.8s linear infinite; }
+
+@keyframes vinylSpin { to { transform: rotate(360deg); } }
+
+.vinyl__label {
+    width: 74px;
+    height: 74px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #8b0000, #2a0000);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 1;
+}
+
+.vinyl__label::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ccc;
+}
+
+.tonearm {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    width: 12px;
+    height: 150px;
+    border-radius: 6px;
+    background: linear-gradient(90deg, #888, #ddd, #888);
+    transform-origin: 50% 8px;
+    transform: rotate(-28deg);
+    transition: transform 0.8s cubic-bezier(0.34, 1.3, 0.64, 1);
+    z-index: 2;
+}
+
+.tonearm::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: -8px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #ccc, #555);
+}
+
+.tonearm::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: -4px;
+    width: 20px;
+    height: 26px;
+    border-radius: 4px;
+    background: #333;
+}
+
+.tonearm.is-on { transform: rotate(12deg); }
+
+.turntable__kicker { font-size: 0.75rem; letter-spacing: 0.18rem; text-transform: uppercase; color: #ffb36b; }
+.turntable__title { font-family: 'Metal Mania', cursive; font-size: 2rem; color: #fff; line-height: 1.1; margin: 0.2rem 0 0.4rem; }
+.turntable__meta { color: #ccc; font-size: 0.9rem; }
+
+.turntable__tracks {
+    margin: 0.6rem 0 0 1.2rem;
+    list-style: decimal;
+    color: #ddd;
+    font-size: 0.9rem;
+}
+
+.turntable__controls { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.9rem; }
+
+/* Toolbar */
+.disco-toolbar { display: flex; flex-direction: column; gap: 0.8rem; align-items: center; margin-bottom: 1.2rem; }
+.disco-filter { margin-top: 0; }
+.disco-search-row { display: flex; gap: 0.5rem; width: min(560px, 100%); }
+.disco-search-row .candle-input { min-width: 0; }
+
+/* Album-Karten */
+.album-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 1.1rem;
+}
+
+.album {
+    aspect-ratio: 1 / 1.12;
+    perspective: 1000px;
+    animation: albumIn 0.45s ease both;
+}
+
+@keyframes albumIn {
+    from { opacity: 0; transform: translateY(14px) scale(0.97); }
+    to { opacity: 1; transform: none; }
+}
+
+.album__inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+.album.is-flipped .album__inner { transform: rotateY(180deg); }
+
+.album__face {
+    position: absolute;
+    inset: 0;
+    border-radius: 14px;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.6);
+}
+
+.album__front {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    padding: 1rem;
+    color: #fff;
+    background:
+        radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.12), transparent 50%),
+        linear-gradient(160deg, var(--c1), var(--c2));
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.album__front:hover { box-shadow: 0 0 30px rgba(255, 0, 0, 0.35); }
+
+.album__band { font-size: 0.68rem; letter-spacing: 0.2rem; text-transform: uppercase; opacity: 0.7; }
+.album__emoji { font-size: 3.4rem; filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.7)); transition: transform 0.4s; }
+.album__front:hover .album__emoji { transform: scale(1.15) rotate(-6deg); }
+.album__title { font-family: 'Metal Mania', cursive; font-size: 1.35rem; line-height: 1.1; text-shadow: 0 2px 8px #000; }
+.album__year { font-weight: 700; color: rgba(255, 255, 255, 0.75); }
+
+.album__hit {
+    margin-top: 0.3rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    background: rgba(255, 204, 0, 0.2);
+    border: 1px solid #ffcc00;
+    color: #ffe08a;
+    font-size: 0.75rem;
+}
+
+.album.is-playing .album__front::after {
+    content: '♫ läuft';
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    background: #ff0000;
+    font-size: 0.7rem;
+    font-weight: 700;
+    animation: heroHintPulse 1.4s infinite;
+}
+
+.album__back {
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 0.9rem;
+    text-align: left;
+    background: linear-gradient(160deg, rgba(15, 15, 15, 0.98), var(--c2));
+    color: #ddd;
+    overflow-y: auto;
+}
+
+.album__back h3 { font-size: 0.95rem; color: #fff; }
+.album__guitar { font-size: 0.8rem; color: #ffb36b; }
+.album__tracks { font-size: 0.8rem; list-style: none; }
+.album__tracks li::before { content: '♪ '; color: #ff4d4d; }
+.album__tracks li.is-match { color: #ffcc00; font-weight: 700; }
+.album__fact { font-size: 0.75rem; color: #aaa; line-height: 1.35; }
+
+.album__actions { display: flex; gap: 0.4rem; margin-top: auto; }
+
+.album__btn {
+    min-height: 36px;
+    padding: 0.3rem 0.7rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    font-size: 0.8rem;
+}
+
+.album__btn:hover { border-color: #ff2a2a; background: rgba(255, 0, 0, 0.2); }
+.album__btn[data-action="play"] { flex: 1; }
+.album__fav.is-fav { border-color: #ff4d6d; animation: favPop 0.4s ease; }
+
+@keyframes favPop {
+    50% { transform: scale(1.3); }
+}
+
+.disco-empty { text-align: center; color: #aaa; margin-top: 1rem; }
+
+/* ---------- LIGHT MODE ---------- */
+body.light-mode .candle-spotlight,
+body.light-mode .disco-stat { background: #fff; color: #111; }
+body.light-mode .candle-spotlight__message,
+body.light-mode .candle-feed li { color: #222; }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 768px) {
+    .tribute-wall__body { grid-template-columns: 1fr; }
+    .candle-spotlight { min-height: 140px; }
+    #candleContainer.candle-grid { height: 180px; }
+    .turntable { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+    .turntable__tracks { display: inline-block; text-align: left; }
+    .turntable__controls { justify-content: center; }
+    .disco-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 480px) {
+    .album-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.7rem; }
+    .album { aspect-ratio: 1 / 1.35; }
+    .album__emoji { font-size: 2.4rem; }
+    .album__title { font-size: 1.05rem; }
+    .turntable__deck { width: 200px; height: 200px; }
+    .vinyl { width: 175px; height: 175px; }
+    .tonearm { height: 125px; }
+    .turntable__title { font-size: 1.6rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .vinyl.is-spinning, .album, .candle-grid .candle-emoji.is-new, .candle-spotlight__flame { animation: none; }
+    .album__inner { transition: none; }
+}

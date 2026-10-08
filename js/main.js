@@ -12,6 +12,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // Theme + disco restore
   T.initTheme({ includeDisco: true });
 
+  /** Broadcast user actions (achievements etc. listen in interactive.js). */
+  const emit = (type, detail) =>
+    document.dispatchEvent(new CustomEvent("ozzy:action", { detail: { type, ...detail } }));
+
   // -------------------------
   // VERTICAL SCROLL PROGRESS
   // -------------------------
@@ -135,15 +139,18 @@ document.addEventListener("DOMContentLoaded", () => {
     moonBtn?.addEventListener("click", () => {
       const next = T.toggleMoon();
       U.createToast(next === "moon-mode" ? "Moonlight Mode 🌙" : "Standard Mode", 800);
+      if (next === "moon-mode") emit("moon");
     });
 
     discoBtn?.addEventListener("click", () => {
       const active = T.toggleDisco(true);
       U.createToast(active ? "Disco An! 🕺" : "Disco Aus", 800);
+      if (active) emit("disco");
     });
 
     function showRandomQuote() {
       if (!quoteEl) return;
+      emit("quote");
       quoteEl.classList.add('glitch-text');
       setTimeout(() => {
         quoteEl.classList.remove('glitch-text');
@@ -152,6 +159,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     quoteBtn?.addEventListener("click", showRandomQuote);
+    quoteBtn?.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        showRandomQuote();
+      }
+    });
 
     document.addEventListener("keydown", (e) => {
       const tag = document.activeElement?.tagName.toLowerCase();
@@ -172,75 +185,10 @@ document.addEventListener("DOMContentLoaded", () => {
     batScore++;
     if (batCounterEl) batCounterEl.textContent = String(batScore);
     U.safeSet(U.STORAGE_KEYS.batScore, String(batScore));
+    emit("bat", { total: batScore });
   }
 
-  // -------------------------
-  // TRIBUTE WALL
-  // -------------------------
-  (function initTributeWall() {
-    const btn = document.getElementById("lightCandle");
-    const nameInput = document.getElementById("candleName");
-    const countEl = document.getElementById("candleCount");
-    const container = document.getElementById("candleContainer");
-    if (!btn || !countEl || !container) return;
-
-    let candles = U.loadCandles();
-    countEl.textContent = String(candles.length);
-    candles.slice(-50).forEach((name) => addCandleDOM(name));
-
-    function lightCandle(e) {
-      const name = U.sanitizeName(nameInput?.value || "");
-      candles.push(name);
-      candles = U.saveCandles(candles);
-      countEl.textContent = String(candles.length);
-      addCandleDOM(name);
-      
-      if (e && !U.prefersReducedMotion()) {
-        const cx = e.clientX || btn.getBoundingClientRect().left + btn.offsetWidth / 2;
-        const cy = e.clientY || btn.getBoundingClientRect().top + btn.offsetHeight / 2;
-        for (let i = 0; i < 15; i++) {
-          const spark = document.createElement("div");
-          spark.className = "candle-spark";
-          spark.style.left = cx + "px";
-          spark.style.top = cy + "px";
-          const tx = (Math.random() - 0.5) * 100 + "px";
-          const ty = (Math.random() - 1) * 100 + "px";
-          spark.style.setProperty("--tx", tx);
-          spark.style.setProperty("--ty", ty);
-          document.body.appendChild(spark);
-          setTimeout(() => spark.remove(), 800);
-        }
-      }
-
-      if (nameInput) nameInput.value = "";
-      U.createToast(
-        name ? `🕯️ ${name} zündet eine Kerze für Ozzy an!` : "Eine Kerze für Ozzy brennt... 🕯️",
-        1600
-      );
-    }
-
-    btn.addEventListener("click", lightCandle);
-    nameInput?.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        lightCandle();
-      }
-    });
-
-    function addCandleDOM(name) {
-      const c = document.createElement("span");
-      c.className = "candle-emoji";
-      c.textContent = "🕯️";
-      if (name) c.title = name;
-      c.setAttribute("aria-hidden", "true");
-      container.appendChild(c);
-      // Keep DOM light: only last 50
-      while (container.children.length > 50) {
-        container.removeChild(container.firstChild);
-      }
-      container.scrollTop = container.scrollHeight;
-    }
-  })();
+  // Tribute Wall → js/tribute-wall.js
 
   // -------------------------
   // FLAME CANVAS
@@ -266,6 +214,42 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("resize", resize);
 
     let flames = makeFlames(FLAME_COUNT());
+
+    // Interactive embers: follow the pointer, burst on hero click
+    const MAX_EMBERS = 160;
+    const embers = [];
+    function spawnEmber(x, y, vx, vy, size) {
+      if (embers.length >= MAX_EMBERS) embers.shift();
+      embers.push({ x, y, vx, vy, size, life: 1 });
+    }
+
+    const finePointer = window.matchMedia && window.matchMedia("(pointer: fine)").matches;
+    let lastMove = 0;
+    if (finePointer) {
+      window.addEventListener(
+        "pointermove",
+        (e) => {
+          const now = performance.now();
+          if (now - lastMove < 24) return;
+          lastMove = now;
+          spawnEmber(e.clientX, e.clientY, (Math.random() - 0.5) * 1.2, -Math.random() * 1.5 - 0.5, Math.random() * 5 + 3);
+          start();
+        },
+        { passive: true }
+      );
+    }
+
+    document.getElementById("hero")?.addEventListener("pointerdown", (e) => {
+      if (e.target.closest("a, button")) return;
+      const n = isMobile() ? 25 : 45;
+      for (let i = 0; i < n; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = Math.random() * 6 + 2;
+        spawnEmber(e.clientX, e.clientY, Math.cos(angle) * speed, Math.sin(angle) * speed - 2, Math.random() * 8 + 4);
+      }
+      emit("pyro");
+      start();
+    });
 
     function makeFlames(n) {
       return new Array(n).fill(0).map(() => ({
@@ -310,6 +294,22 @@ document.addEventListener("DOMContentLoaded", () => {
           f.size = Math.random() * 14 + 6;
         }
       });
+      for (let i = embers.length - 1; i >= 0; i--) {
+        const em = embers[i];
+        ctx.beginPath();
+        const grad = ctx.createRadialGradient(em.x, em.y, 0, em.x, em.y, em.size * 1.6);
+        grad.addColorStop(0, isMoon ? `rgba(200,230,255,${em.life})` : `rgba(255,${120 + em.life * 120},0,${em.life})`);
+        grad.addColorStop(1, "rgba(0,0,0,0)");
+        ctx.fillStyle = grad;
+        ctx.arc(em.x, em.y, em.size, 0, Math.PI * 2);
+        ctx.fill();
+        em.x += em.vx;
+        em.y += em.vy;
+        em.vx *= 0.97;
+        em.vy = em.vy * 0.97 - 0.06;
+        em.life -= 0.018;
+        if (em.life <= 0) embers.splice(i, 1);
+      }
       rafId = requestAnimationFrame(draw);
     }
 
@@ -397,12 +397,14 @@ document.addEventListener("DOMContentLoaded", () => {
     function applyOffering(id) {
       if (!effects[id]) return;
       effects[id]();
-      
+      emit("offering", { id });
+
       dropHistory.push(id);
       if (dropHistory.length > 3) dropHistory.shift();
       if (dropHistory.join(',') === 'bat,blood,bier') {
         document.body.classList.add('vampire-mode');
         showEasterText("VAMPIRE MODE UNLOCKED!");
+        emit("vampire");
         setTimeout(() => document.body.classList.remove('vampire-mode'), 5000);
         dropHistory = [];
       }
@@ -580,6 +582,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const greet = () => {
       U.createToast("OZZY GHOST: SHAAAARON!!!", 2000);
+      emit("ghost");
       ghost.style.transform = "scale(2) rotate(360deg)";
       setTimeout(() => {
         ghost.style.transform = "scale(1) rotate(0deg)";
@@ -684,33 +687,4 @@ document.addEventListener("DOMContentLoaded", () => {
       heroTw.run(heroSubtitle, "Of all the things I've lost, I miss my mind the most.");
     }, 1500);
   }
-});
-
-// Sammle alle Galerie-Karten für die Lightbox
-document.addEventListener('DOMContentLoaded', () => {
-    const galleryCards = document.querySelectorAll('.gallery-card');
-    
-    // Alle Bilder & Bildunterschriften im Voraus als Array extrahieren
-    const galleryImages = Array.from(galleryCards).map(card => {
-        const img = card.querySelector('img');
-        const info = card.querySelector('.gallery-info');
-        return {
-            src: img ? img.src : '',
-            caption: info ? info.textContent.trim() : (img ? img.alt : 'Ozzy Tribute')
-        };
-    });
-
-    galleryCards.forEach((card, index) => {
-        card.addEventListener('click', () => {
-            const img = card.querySelector('img');
-            if (!img) return;
-            const currentSrc = img.src;
-            const caption = galleryImages[index] ? galleryImages[index].caption : '';
-
-            // Übergabe an unsere neue Lightbox inklusive kompletter Liste & Index
-            if (window.OzzyUtils && window.OzzyUtils.openImageModal) {
-                window.OzzyUtils.openImageModal(currentSrc, caption, galleryImages, index);
-            }
-        });
-    });
 });

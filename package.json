@@ -1,6 +1,6 @@
 {
   "name": "ozzy-tribute",
-  "version": "3.1.0",
+  "version": "4.1.0",
   "description": "Interaktives Fan-Tribute an Ozzy Osbourne",
   "main": "index.html",
   "scripts": {

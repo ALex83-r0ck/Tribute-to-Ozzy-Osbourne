@@ -1,7 +1,7 @@
 # Ozzy Tribute – Verbesserungs-Roadmap
 
 Tracking-Dokument für die systematische Qualitätsarbeit.
-Stand: 2026-07-21 · Version **3.1.0**
+Stand: 2026-10-08 · Version **4.1.0**
 
 ---
 
@@ -86,6 +86,52 @@ Stand: 2026-07-21 · Version **3.1.0**
 | P5-04 | Node 20+ in CI | ✅ |
 | P5-05 | LICENCE MIT-Text | ✅ |
 
+## Phase 7 – Community & Diskografie (v4.1)
+
+| ID | Aufgabe | Status | Tests |
+|----|---------|--------|-------|
+| P7-01 | Tribute Wall: Speicher-Adapter (Supabase REST ↔ localStorage), Auto-Fallback offline | ✅ | `tribute-wall.test.js` |
+| P7-02 | Botschaften (140 Zeichen), Kerzen anklickbar (Spotlight), Feed „Zuletzt angezündet“ | ✅ | `tribute-wall.test.js` |
+| P7-03 | Live-Updates per Polling (30 s), eigene Kerzen markiert, 20 s Cooldown | ✅ | `tribute-wall.test.js` |
+| P7-04 | Migration der v3-Kerzen (nur Namen) | ✅ | `tribute-wall.test.js` |
+| P7-05 | Setup-Anleitung inkl. SQL + Row Level Security | ✅ | `docs/tribute-wall.md` |
+| P7-06 | Diskografie: 21 Studioalben, Wendekarten, Era-Filter, Suche (auch Songs/Gitarristen), Sortierung | ✅ | `discography.test.js` |
+| P7-07 | Plattenspieler mit drehender Platte, Tonarm und Knister-Sound (Web Audio) | ✅ | `discography.test.js` |
+| P7-08 | Lieblingsalben (localStorage) + 3 neue Erfolge (Botschafter, Plattensammler, Liner Notes) | ✅ | `discography.test.js` |
+| P7-09 | Deploy: `sw.js` + `manifest.json` werden jetzt mit veröffentlicht | ✅ | — |
+
+## Phase 6 – Interaktivität (v4.0)
+
+| ID | Aufgabe | Status | Tests |
+|----|---------|--------|-------|
+| P6-01 | Hero: Glut folgt der Maus, Klick/Tap = Feuer-Explosion, Parallax-Titel, Scroll-Cue | ✅ | Browser |
+| P6-02 | Timeline-Filter (Leben/Musik/Kult/Medien/Vermächtnis) + glühende Fortschrittslinie | ✅ | `interactive.test.js` |
+| P6-03 | Riff-Maschine (Web Audio): 6 Power-Chords + Squeal, Tasten 1–7, Visualizer | ✅ | `interactive.test.js` |
+| P6-04 | Riff aufnehmen / abspielen / löschen (localStorage) + Doom-Demo | ✅ | Browser |
+| P6-05 | Headbang-o-Meter | ✅ | `interactive.test.js` |
+| P6-06 | Erfolge-System „Hall of Fame“ (15 Erfolge, davon 3 geheim) via `ozzy:action`-Events | ✅ | `interactive.test.js` |
+| P6-07 | Konami-Code → Fledermaus-Schwarm | ✅ | `interactive.test.js` |
+| P6-08 | Scrollspy: aktiver Nav-Link | ✅ | Browser |
+| P6-09 | Lightbox: Swipe auf Touch-Geräten | ✅ | Browser |
+| P6-10 | Bugfix: Galerie öffnete zwei Lightboxen übereinander (doppelter Handler) | ✅ | — |
+| P6-11 | Bugfix: toter `innerHTML`-Lightbox-Code in `utils.js` entfernt | ✅ | — |
+| P6-12 | Performance: Bilder als WebP (~14 MB → ~0,9 MB) | ✅ | — |
+
+### Nächste Ideen (Vorschläge)
+
+| ID | Idee | Aufwand |
+|----|------|---------|
+| V-01 | Globale Tribute Wall (Kerzen aller Besucher, z. B. Supabase/Firebase) | ✅ v4.1 |
+| V-02 | Teilbare Kerze / Quiz-Ergebnis als Bild (Canvas → PNG, Web Share API) | mittel |
+| V-03 | Interaktive Diskografie: Album-Cover drehen, Tracklist + Jahr, Filter nach Ära | ✅ v4.1 |
+| V-04 | Konzert-Seite: Weltkarte mit Tour-Stationen (SVG, klickbar) | mittel |
+| V-05 | Quiz: Tagesfrage / Daily Challenge mit Streak | klein |
+| V-06 | Sound-Toggle + Ambient-Gewitter-Sound im Hero | klein |
+| V-07 | Erfolge auch auf Quiz- und Concert-Seite (Quiz bestanden, Vote abgegeben) | klein |
+| V-08 | Timeline-Karten aufklappbar mit mehr Details/Zitaten | klein |
+| V-09 | Playwright-E2E für Hero, Riff-Maschine und Erfolge | klein |
+| V-10 | Original-PNGs/JPGs aus dem Repo entfernen (WebP reicht) | klein |
+
 ---
 
 ## Architektur (aktuell)
@@ -95,7 +141,11 @@ js/
   utils.js       ← pure helpers (storage, sanitize, shuffle, toast, modal)
   theme.js       ← Theme apply/load/save + disco
   quiz-data.js   ← Fragen + pure Quiz-Logik
-  main.js        ← Dashboard
+  main.js        ← Dashboard (feuert `ozzy:action`-Events)
+  config.js      ← öffentliche Konfiguration (Supabase URL + anon Key)
+  tribute-wall.js← Globale Tribute Wall (Supabase/lokal)
+  discography.js ← Diskografie + Plattenspieler
+  interactive.js ← Erfolge, Riff-Maschine, Timeline-Filter, Scrollspy, Konami
   quiz.js        ← Quiz UI
   concert.js     ← Legacy page
 tests/
@@ -105,6 +155,9 @@ tests/
   main.test.js
   quiz.test.js
   concert.test.js
+  interactive.test.js
+  tribute-wall.test.js
+  discography.test.js
 ```
 
 Script-Reihenfolge in HTML:
@@ -114,6 +167,7 @@ Script-Reihenfolge in HTML:
 <script src="js/theme.js"></script>
 <!-- + quiz-data.js auf Quiz-Seite -->
 <script src="js/main.js|quiz.js|concert.js"></script>
+<!-- + interactive.js auf der Startseite -->
 ```
 
 ---

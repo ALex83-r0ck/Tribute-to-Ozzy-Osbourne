@@ -19,6 +19,7 @@ jobs:
           mkdir -p publish
           cp index.html publish/
           cp -r css js pages assets publish/
+          cp sw.js manifest.json publish/
           # Optional docs landing
           if [ -f README.md ]; then cp README.md publish/; fi
           # Do NOT publish node_modules, coverage, tests, .git
