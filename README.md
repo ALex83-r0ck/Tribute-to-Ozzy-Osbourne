@@ -24,6 +24,10 @@ Diese Seite ist ein statisches Frontend-Projekt aus HTML, CSS und Vanilla JavaSc
 - Stilvolle, dunkle Hero-Section mit starkem Festival-Feeling
 - Timeline mit Jahren, Kategorien, Symbolen und metallic Look
 - Interaktive Tribute-Wall-Elemente mit personalisierten Kerzen
+- Interaktives Feuer im Hero: Glut folgt der Maus, Klick/Tap löst eine Feuer-Explosion aus
+- Timeline-Filter nach Kategorie mit glühender Fortschrittslinie beim Scrollen
+- Riff-Maschine (Web Audio): Power-Chords per Klick, Touch oder Tasten 1–7, eigene Riffs aufnehmen
+- Headbang-o-Meter und „Hall of Fame“ mit 15 freischaltbaren Erfolgen (inkl. geheimer Easter Eggs)
 - Abschlussbanner mit starkem Finale und emotionalem Abschluss
 - Responsive Layout für Desktop und mobile Darstellung
 

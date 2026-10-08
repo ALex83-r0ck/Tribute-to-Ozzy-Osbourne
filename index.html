@@ -5,37 +5,15 @@
     <meta charset="UTF-8">
     <meta name="description" content="Fan-Hommage an Ozzy Osbourne – Bio, Galerie, Quiz, Schrein, Memorial & Geister-Sprite! 🤘">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#120000">
     <title>Ozzy Osbourne – Legendary Fan Tribute</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/interactive.css">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap" rel="stylesheet">
     <link rel="manifest" href="./manifest.json">
-    <style>
-        #hero {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            width: 100vw;
-            height: 100vh;
-        }
-
-        #flameCanvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .hero-content {
-            z-index: 10;
-            text-align: center;
-            pointer-events: none;
-        }
-    </style>
 </head>
 <body class="dark-mode">
     <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
@@ -62,12 +40,14 @@
                 <a href="#gallerySection">Galerie</a>
                 <a href="#tributeSection">Wall</a>
                 <a href="#shrineSection">Schrein</a>
+                <a href="#riffSection">Riffs</a>
                 <a href="pages/quiz.html">Quiz</a>
             </nav>
             <div id="buttonContainer" class="icon-buttons">
                 <button type="button" id="themeToggle" class="icon-btn" title="Light/Dark Mode" aria-label="Light oder Dark Mode umschalten">🌓</button>
                 <button type="button" id="moonToggle" class="icon-btn" title="Moon Mode" aria-label="Moonlight Mode umschalten">🌙</button>
                 <button type="button" id="discoToggle" class="icon-btn" title="Disco Mode" aria-label="Disco Mode umschalten">🕺</button>
+                <button type="button" id="achievementsToggle" class="icon-btn achievements-btn" title="Erfolge" aria-label="Erfolge anzeigen" aria-haspopup="dialog" aria-controls="achievementsPanel">🏆<span id="achievementCount" class="achievement-count">0</span></button>
             </div>
         </div>
         <div id="statsContainer">
@@ -78,9 +58,9 @@
     <main id="main-content" tabindex="-1">
 
         <!-- Hero Canvas & Overlay -->
-        <section id="hero" aria-hidden="true" style="display: flex; align-items: center; justify-content: center; position: relative; width: 100vw; height: 100vh;">
-            <canvas id="flameCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></canvas>
-            <div class="hero-content" style="z-index: 10; text-align: center; pointer-events: none;">
+        <section id="hero" aria-label="Intro">
+            <canvas id="flameCanvas" aria-hidden="true"></canvas>
+            <div class="hero-content">
                 <div class="hero-badges" aria-label="Ozzy Legenden-Merkmale">
                     <span class="hero-badge">HEAVY METAL</span>
                     <span class="hero-badge">LEGEND</span>
@@ -88,7 +68,12 @@
                 </div>
                 <h1 class="hero-title metal-text">TRIBUTE TO THE<br>PRINCE OF DARKNESS</h1>
                 <p id="heroSubtitle" class="hero-subtitle"></p>
+                <p class="hero-hint">🔥 Klick oder tippe ins Feuer</p>
             </div>
+            <a href="#bioSection" class="hero-scroll-cue" aria-label="Zur Timeline scrollen">
+                <span class="hero-scroll-cue__mouse" aria-hidden="true"></span>
+                <span>Enter the Darkness</span>
+            </a>
         </section>
 
         <section class="container highlights-section" aria-label="Legendenhafte Highlights">
@@ -114,6 +99,14 @@
         <!-- Bio-Timeline -->
         <section id="bioSection" class="container">
             <h2 class="metal-text">Timeline einer Legende</h2>
+            <div class="timeline-filter" role="group" aria-label="Timeline filtern">
+                <button type="button" class="filter-chip is-active" data-filter="all" aria-pressed="true">Alle</button>
+                <button type="button" class="filter-chip" data-filter="life" aria-pressed="false">👶 Leben</button>
+                <button type="button" class="filter-chip" data-filter="music" aria-pressed="false">🎸 Musik</button>
+                <button type="button" class="filter-chip" data-filter="cult" aria-pressed="false">🦇 Kult</button>
+                <button type="button" class="filter-chip" data-filter="media" aria-pressed="false">📺 Medien</button>
+                <button type="button" class="filter-chip" data-filter="legacy" aria-pressed="false">👑 Vermächtnis</button>
+            </div>
             <div class="timeline-v2">
 
                 <div class="timeline-v2-item left reveal-on-scroll" data-icon="👶">
@@ -188,15 +181,15 @@
             <h2 class="metal-text">Galerie - The Visual Legacy</h2>
             <div id="gallery" class="gallery-modern">
                 <div class="gallery-card reveal-on-scroll">
-                    <img src="assets/images/gothic_skull_crown.jpg" alt="Metal-Schädel mit Dornenkrone" class="galleryImage" data-full="assets/images/gothic_skull_crown.jpg" loading="lazy" decoding="async" fetchpriority="low">
+                    <img src="assets/images/gothic_skull_crown.webp" alt="Metal-Schädel mit Dornenkrone" class="galleryImage" data-full="assets/images/gothic_skull_crown.webp" loading="lazy" decoding="async" fetchpriority="low">
                     <div class="gallery-info"><span>The Icon</span></div>
                 </div>
                 <div class="gallery-card reveal-on-scroll">
-                    <img src="assets/images/gothic_bat_moon.jpg" alt="Fledermaus vor rotem Mond" class="galleryImage" data-full="assets/images/gothic_bat_moon.jpg" loading="lazy" decoding="async" fetchpriority="low">
+                    <img src="assets/images/gothic_bat_moon.webp" alt="Fledermaus vor rotem Mond" class="galleryImage" data-full="assets/images/gothic_bat_moon.webp" loading="lazy" decoding="async" fetchpriority="low">
                     <div class="gallery-info"><span>Prince of Darkness</span></div>
                 </div>
                 <div class="gallery-card reveal-on-scroll">
-                    <img src="assets/images/gothic_rock_stage.jpg" alt="Gothic-Bühne im Nebel" class="galleryImage" data-full="assets/images/gothic_rock_stage.jpg" loading="lazy" decoding="async" fetchpriority="low">
+                    <img src="assets/images/gothic_rock_stage.webp" alt="Gothic-Bühne im Nebel" class="galleryImage" data-full="assets/images/gothic_rock_stage.webp" loading="lazy" decoding="async" fetchpriority="low">
                     <div class="gallery-info"><span>Live Magic</span></div>
                 </div>
                 <div class="gallery-card reveal-on-scroll">
@@ -204,11 +197,11 @@
                     <div class="gallery-info"><span>Rest in Peace</span></div>
                 </div>
                 <div class="gallery-card reveal-on-scroll">
-                    <img src="assets/images/ozzy-osbourne.png" alt="Porträt von Ozzy Osbourne" class="galleryImage" data-full="assets/images/ozzy-osbourne.png" loading="lazy" decoding="async" fetchpriority="low">
+                    <img src="assets/images/ozzy-osbourne.webp" alt="Porträt von Ozzy Osbourne" class="galleryImage" data-full="assets/images/ozzy-osbourne.webp" loading="lazy" decoding="async" fetchpriority="low">
                     <div class="gallery-info"><span>Ozzy 2025</span></div>
                 </div>
                 <div class="gallery-card reveal-on-scroll">
-                    <img src="assets/images/ozzy-osbourne-on-stage-rip.png" alt="Ozzy Osbourne auf der Bühne" class="galleryImage" data-full="assets/images/ozzy-osbourne-on-stage-rip.png" loading="lazy" decoding="async" fetchpriority="low">
+                    <img src="assets/images/ozzy-osbourne-on-stage-rip.webp" alt="Ozzy Osbourne auf der Bühne" class="galleryImage" data-full="assets/images/ozzy-osbourne-on-stage-rip.webp" loading="lazy" decoding="async" fetchpriority="low">
                     <div class="gallery-info"><span>Ozzy on Stage</span></div>
                 </div>
             </div>
@@ -275,6 +268,35 @@
             </div>
         </section>
 
+        <!-- Riff-Maschine -->
+        <section id="riffSection" class="container">
+            <h2 class="metal-text">Riff-Maschine</h2>
+            <p class="shrine-subtitle">Spiel Power-Chords mit Maus, Touch oder den Tasten <kbd>1</kbd>–<kbd>7</kbd>. Nimm dein eigenes Riff auf!</p>
+            <div class="riff-machine">
+                <canvas id="riffVisualizer" class="riff-visualizer" aria-hidden="true"></canvas>
+                <div id="riffPads" class="riff-pads">
+                    <button type="button" class="riff-pad" data-note="E" data-key="1"><span class="riff-pad__note">E5</span><kbd>1</kbd></button>
+                    <button type="button" class="riff-pad" data-note="G" data-key="2"><span class="riff-pad__note">G5</span><kbd>2</kbd></button>
+                    <button type="button" class="riff-pad" data-note="A" data-key="3"><span class="riff-pad__note">A5</span><kbd>3</kbd></button>
+                    <button type="button" class="riff-pad" data-note="Bb" data-key="4"><span class="riff-pad__note">B♭5</span><kbd>4</kbd></button>
+                    <button type="button" class="riff-pad" data-note="C" data-key="5"><span class="riff-pad__note">C5</span><kbd>5</kbd></button>
+                    <button type="button" class="riff-pad" data-note="D" data-key="6"><span class="riff-pad__note">D5</span><kbd>6</kbd></button>
+                    <button type="button" class="riff-pad riff-pad--squeal" data-note="squeal" data-key="7"><span class="riff-pad__note">Squeal</span><kbd>7</kbd></button>
+                </div>
+                <div class="riff-controls">
+                    <button type="button" id="riffRecord" class="ghost-btn riff-ctrl" aria-pressed="false">⏺ Aufnehmen</button>
+                    <button type="button" id="riffPlay" class="ghost-btn riff-ctrl" disabled>▶ Abspielen</button>
+                    <button type="button" id="riffDemo" class="ghost-btn riff-ctrl">🎸 Doom-Demo</button>
+                    <button type="button" id="riffClear" class="ghost-btn riff-ctrl" disabled>🗑 Löschen</button>
+                </div>
+                <div class="headbang-meter" aria-label="Headbang-o-Meter">
+                    <span class="headbang-meter__label">Headbang-o-Meter</span>
+                    <div class="headbang-meter__track"><div id="headbangFill" class="headbang-meter__fill"></div></div>
+                </div>
+                <p id="riffStatus" class="riff-status" aria-live="polite">Bereit zum Rocken.</p>
+            </div>
+        </section>
+
         <!-- CTA – Links zum Quiz & Legacy -->
         <section class="container cta-section">
             <h2 class="metal-text">Explore the Empire</h2>
@@ -329,15 +351,28 @@
         <p><a href="pages/impressum.html"><u>Impressum</u></a> | <a href="pages/datenschutz.html"><u>Datenschutzerklärung</u></a></p>
 
         <!-- Hinweis / Version -->
-        <p><em>Ein Fan-Projekt – erstellt mit 🤘🏻, nicht kommerziell. Version 3.1 | Share mit #OzzyFanTribute</em></p>
+        <p><em>Ein Fan-Projekt – erstellt mit 🤘🏻, nicht kommerziell. Version 4.0 | Share mit #OzzyFanTribute</em></p>
     </footer>
+
+    <div id="achievementsPanel" class="achievements-panel" role="dialog" aria-modal="true" aria-labelledby="achievementsTitle" hidden>
+        <div class="achievements-panel__backdrop" data-close></div>
+        <div class="achievements-panel__card">
+            <button type="button" class="achievements-panel__close" aria-label="Erfolge schließen" data-close>✕</button>
+            <h2 id="achievementsTitle" class="metal-text">Hall of Fame</h2>
+            <p class="achievements-panel__progress"><span id="achievementProgressText">0 / 0</span> Erfolge freigeschaltet</p>
+            <div class="headbang-meter__track"><div id="achievementProgressFill" class="headbang-meter__fill"></div></div>
+            <ul id="achievementList" class="achievement-list"></ul>
+            <p class="achievements-panel__hint">Tipp: Manche Erfolge sind geheim. ↑ ↑ ↓ ↓ …</p>
+        </div>
+    </div>
 
     <button type="button" id="backToTop" class="back-to-top" aria-label="Nach oben scrollen">↑</button>
 
 
-    <!-- Scripts (order matters: utils → theme → main) -->
+    <!-- Scripts (order matters: utils → theme → main → interactive) -->
     <script src="js/utils.js"></script>
     <script src="js/theme.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/interactive.js"></script>
 </body>
 </html>

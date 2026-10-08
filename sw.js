@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ozzy-v1';
+const CACHE_NAME = 'ozzy-v2';
 const ASSETS = [
   './',
   './index.html',
@@ -9,13 +9,16 @@ const ASSETS = [
   './css/styles.css',
   './css/concert.css',
   './css/quiz.css',
+  './css/interactive.css',
   './js/utils.js',
   './js/theme.js',
   './js/main.js',
+  './js/interactive.js',
   './js/quiz.js',
   './js/quiz-data.js',
   './js/concert.js',
-  './assets/images/ozzy-osbourne.png'
+  './assets/images/ozzy-osbourne.webp',
+  './assets/images/gothic_rock_stage.webp'
 ];
 
 self.addEventListener('install', (event) => {
