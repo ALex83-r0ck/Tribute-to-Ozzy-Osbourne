@@ -113,6 +113,27 @@
     };
   }
 
+  const AUDIO_EXT = /\.(mp3|m4a|aac|ogg|oga|opus|flac|wav|webm)$/i;
+
+  /**
+   * Eigene Audiodateien → Playlist. Nur Audio, natürlich sortiert (01, 02 … 10),
+   * Titel aus dem Dateinamen ohne Endung und führende Tracknummer.
+   */
+  function buildPlaylist(files) {
+    return Array.from(files || [])
+      .filter((f) => f && ((f.type && f.type.startsWith("audio/")) || AUDIO_EXT.test(f.name || "")))
+      .sort((a, b) => String(a.name).localeCompare(String(b.name), "de", { numeric: true, sensitivity: "base" }))
+      .map((file) => ({
+        file,
+        title:
+          String(file.name)
+            .replace(/\.[^.]+$/, "")
+            .replace(/^\s*\d{1,3}\s*[-._)]*\s*/, "")
+            .replace(/[_]+/g, " ")
+            .trim() || String(file.name),
+      }));
+  }
+
   function toggleFavorite(set, id) {
     const next = new Set(set);
     if (next.has(id)) next.delete(id);
@@ -190,6 +211,13 @@
     const stopBtn = document.getElementById("turntableStop");
     const shuffleBtn = document.getElementById("turntableShuffle");
     const crackleBtn = document.getElementById("turntableCrackle");
+    const ownPanel = document.getElementById("turntableOwn");
+    const ownLoad = document.getElementById("ownAlbumLoad");
+    const ownInput = document.getElementById("ownAlbumInput");
+    const ownPause = document.getElementById("ownPlayPause");
+    const ownNext = document.getElementById("ownNext");
+    const ownNow = document.getElementById("ownNowPlaying");
+    const audioEl = document.getElementById("turntableAudio");
 
     const getJSON = (k, f) => (Utils ? Utils.safeGetJSON(k, f) : f);
     const setJSON = (k, v) => Utils && Utils.safeSetJSON(k, v);
@@ -319,7 +347,92 @@
       renderStats();
     }
 
+    // -------------------------
+    // EIGENE PLATTE (nur lokale Dateien des Nutzers)
+    // -------------------------
+    const own = { list: [], index: -1, url: null };
+
+    function revokeUrl() {
+      if (own.url && typeof URL !== "undefined" && URL.revokeObjectURL) URL.revokeObjectURL(own.url);
+      own.url = null;
+    }
+
+    function updateOwnUI() {
+      const active = own.index >= 0 && own.list.length > 0;
+      const paused = !audioEl || audioEl.paused;
+      if (ownPause) {
+        ownPause.disabled = !active;
+        ownPause.textContent = active && !paused ? "⏸ Pause" : "▶ Weiter";
+      }
+      if (ownNext) ownNext.disabled = !active || own.list.length < 2;
+      if (ownNow) {
+        ownNow.textContent = active
+          ? `🎧 ${own.index + 1}/${own.list.length}: ${own.list[own.index].title}`
+          : "Noch keine eigene Datei geladen.";
+      }
+      vinyl?.classList.toggle("is-paused", Boolean(state.playing) && active && paused);
+    }
+
+    function stopOwn() {
+      if (audioEl) {
+        try {
+          audioEl.pause();
+        } catch (e) {
+          /* jsdom */
+        }
+        audioEl.removeAttribute("src");
+      }
+      revokeUrl();
+      own.list = [];
+      own.index = -1;
+      if (ownInput) ownInput.value = "";
+      updateOwnUI();
+    }
+
+    function playOwn(index) {
+      if (!audioEl || !own.list[index]) return;
+      revokeUrl();
+      own.index = index;
+      own.url = URL.createObjectURL(own.list[index].file);
+      audioEl.src = own.url;
+      const p = audioEl.play && audioEl.play();
+      if (p && typeof p.catch === "function") p.catch(() => updateOwnUI());
+      updateOwnUI();
+    }
+
+    ownLoad?.addEventListener("click", () => ownInput?.click());
+    ownInput?.addEventListener("change", () => {
+      const list = buildPlaylist(ownInput.files);
+      if (!list.length) {
+        if (ownNow) ownNow.textContent = "Keine Audiodateien gefunden (z. B. MP3, FLAC, M4A).";
+        return;
+      }
+      stopOwn();
+      own.list = list;
+      // Knistern leiser, damit die eigene Platte im Vordergrund steht
+      crackle.stop();
+      playOwn(0);
+      emit("ownVinyl", { id: state.playing });
+    });
+    ownPause?.addEventListener("click", () => {
+      if (!audioEl || own.index < 0) return;
+      if (audioEl.paused) {
+        const p = audioEl.play && audioEl.play();
+        if (p && typeof p.catch === "function") p.catch(() => updateOwnUI());
+      } else audioEl.pause();
+      updateOwnUI();
+    });
+    ownNext?.addEventListener("click", () => playOwn((own.index + 1) % own.list.length));
+    audioEl?.addEventListener("ended", () => {
+      if (own.index + 1 < own.list.length) playOwn(own.index + 1);
+      else updateOwnUI();
+    });
+    audioEl?.addEventListener("play", updateOwnUI);
+    audioEl?.addEventListener("pause", updateOwnUI);
+
     function setTurntable(album) {
+      if (!album || album.id !== state.playing) stopOwn();
+      if (ownPanel) ownPanel.hidden = !album;
       state.playing = album ? album.id : null;
       vinyl?.classList.toggle("is-spinning", Boolean(album));
       tonearm?.classList.toggle("is-on", Boolean(album));
@@ -339,7 +452,7 @@
           ttTracks.appendChild(li);
         });
       }
-      if (album && state.crackle) crackle.start();
+      if (album && state.crackle && own.index < 0) crackle.start();
       else crackle.stop();
       if (album) emit("vinyl", { id: album.id });
       render();
@@ -418,12 +531,12 @@
       state.crackle = !state.crackle;
       crackleBtn.setAttribute("aria-pressed", String(state.crackle));
       crackleBtn.textContent = state.crackle ? "🔊 Knistern an" : "🔇 Knistern aus";
-      if (state.crackle && state.playing) crackle.start();
+      if (state.crackle && state.playing && own.index < 0) crackle.start();
       else crackle.stop();
     });
     document.addEventListener("visibilitychange", () => {
       if (document.visibilityState === "hidden") crackle.stop();
-      else if (state.crackle && state.playing) crackle.start();
+      else if (state.crackle && state.playing && own.index < 0) crackle.start();
     });
 
     render();
@@ -431,8 +544,9 @@
       state,
       render,
       play: (id) => setTurntable(ALBUMS.find((a) => a.id === id) || null),
+      own,
     };
   }
 
-  return { ALBUMS, FAV_KEY, normalize, filterAlbums, stats, toggleFavorite, init };
+  return { ALBUMS, FAV_KEY, normalize, filterAlbums, stats, toggleFavorite, buildPlaylist, init };
 });

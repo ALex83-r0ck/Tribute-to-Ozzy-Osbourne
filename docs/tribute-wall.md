@@ -7,7 +7,7 @@ dieselben Kerzen, und neue Kerzen erscheinen alle 30 Sekunden automatisch.
 ## 1. Projekt anlegen
 
 1. Auf supabase.com ein neues Projekt erstellen (der Free Tier reicht).
-2. **Project Settings → API**: die *Project URL* und den *anon public* Key kopieren.
+2. **Project Settings → API Keys**: die *Project URL* und den **Publishable key** (`sb_publishable_…`) kopieren. Ältere Projekte haben stattdessen einen *anon public* Key (`eyJ…`) – beide funktionieren.
 
 ## 2. Tabelle + Rechte anlegen
 
@@ -70,12 +70,12 @@ In `js/config.js` eintragen:
 ```js
 window.OZZY_CONFIG = {
   supabaseUrl: "https://DEIN-PROJEKT.supabase.co",
-  supabaseAnonKey: "eyJ...",
+  supabaseAnonKey: "sb_publishable_...", // oder legacy "eyJ..."
 };
 ```
 
-Der *anon* Key ist für den Browser vorgesehen und darf öffentlich im Repo stehen. Den
-**service_role** Key darfst du dagegen niemals eintragen.
+Der Publishable bzw. anon Key ist für den Browser vorgesehen und darf öffentlich im Repo stehen.
+Den **Secret** Key (`sb_secret_…`) bzw. **service_role** Key darfst du dagegen niemals eintragen.
 
 Nach dem Deploy zeigt die Wall oben **„🌍 Live – Kerzen aus aller Welt“**. Ist Supabase
 nicht erreichbar, schaltet sie automatisch auf **„⚠️ Offline“** um und speichert lokal.
