@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ozzy-v2';
+const CACHE_NAME = 'ozzy-v3';
 const ASSETS = [
   './',
   './index.html',
@@ -10,9 +10,13 @@ const ASSETS = [
   './css/concert.css',
   './css/quiz.css',
   './css/interactive.css',
+  './css/community.css',
   './js/utils.js',
   './js/theme.js',
+  './js/config.js',
   './js/main.js',
+  './js/tribute-wall.js',
+  './js/discography.js',
   './js/interactive.js',
   './js/quiz.js',
   './js/quiz-data.js',

@@ -1,7 +1,7 @@
 # Ozzy Tribute – Verbesserungs-Roadmap
 
 Tracking-Dokument für die systematische Qualitätsarbeit.
-Stand: 2026-10-08 · Version **4.0.0**
+Stand: 2026-10-08 · Version **4.1.0**
 
 ---
 
@@ -86,6 +86,20 @@ Stand: 2026-10-08 · Version **4.0.0**
 | P5-04 | Node 20+ in CI | ✅ |
 | P5-05 | LICENCE MIT-Text | ✅ |
 
+## Phase 7 – Community & Diskografie (v4.1)
+
+| ID | Aufgabe | Status | Tests |
+|----|---------|--------|-------|
+| P7-01 | Tribute Wall: Speicher-Adapter (Supabase REST ↔ localStorage), Auto-Fallback offline | ✅ | `tribute-wall.test.js` |
+| P7-02 | Botschaften (140 Zeichen), Kerzen anklickbar (Spotlight), Feed „Zuletzt angezündet“ | ✅ | `tribute-wall.test.js` |
+| P7-03 | Live-Updates per Polling (30 s), eigene Kerzen markiert, 20 s Cooldown | ✅ | `tribute-wall.test.js` |
+| P7-04 | Migration der v3-Kerzen (nur Namen) | ✅ | `tribute-wall.test.js` |
+| P7-05 | Setup-Anleitung inkl. SQL + Row Level Security | ✅ | `docs/tribute-wall.md` |
+| P7-06 | Diskografie: 21 Studioalben, Wendekarten, Era-Filter, Suche (auch Songs/Gitarristen), Sortierung | ✅ | `discography.test.js` |
+| P7-07 | Plattenspieler mit drehender Platte, Tonarm und Knister-Sound (Web Audio) | ✅ | `discography.test.js` |
+| P7-08 | Lieblingsalben (localStorage) + 3 neue Erfolge (Botschafter, Plattensammler, Liner Notes) | ✅ | `discography.test.js` |
+| P7-09 | Deploy: `sw.js` + `manifest.json` werden jetzt mit veröffentlicht | ✅ | — |
+
 ## Phase 6 – Interaktivität (v4.0)
 
 | ID | Aufgabe | Status | Tests |
@@ -107,9 +121,9 @@ Stand: 2026-10-08 · Version **4.0.0**
 
 | ID | Idee | Aufwand |
 |----|------|---------|
-| V-01 | Globale Tribute Wall (Kerzen aller Besucher, z. B. Supabase/Firebase) | mittel |
+| V-01 | Globale Tribute Wall (Kerzen aller Besucher, z. B. Supabase/Firebase) | ✅ v4.1 |
 | V-02 | Teilbare Kerze / Quiz-Ergebnis als Bild (Canvas → PNG, Web Share API) | mittel |
-| V-03 | Interaktive Diskografie: Album-Cover drehen, Tracklist + Jahr, Filter nach Ära | mittel |
+| V-03 | Interaktive Diskografie: Album-Cover drehen, Tracklist + Jahr, Filter nach Ära | ✅ v4.1 |
 | V-04 | Konzert-Seite: Weltkarte mit Tour-Stationen (SVG, klickbar) | mittel |
 | V-05 | Quiz: Tagesfrage / Daily Challenge mit Streak | klein |
 | V-06 | Sound-Toggle + Ambient-Gewitter-Sound im Hero | klein |
@@ -128,6 +142,9 @@ js/
   theme.js       ← Theme apply/load/save + disco
   quiz-data.js   ← Fragen + pure Quiz-Logik
   main.js        ← Dashboard (feuert `ozzy:action`-Events)
+  config.js      ← öffentliche Konfiguration (Supabase URL + anon Key)
+  tribute-wall.js← Globale Tribute Wall (Supabase/lokal)
+  discography.js ← Diskografie + Plattenspieler
   interactive.js ← Erfolge, Riff-Maschine, Timeline-Filter, Scrollspy, Konami
   quiz.js        ← Quiz UI
   concert.js     ← Legacy page
@@ -139,6 +156,8 @@ tests/
   quiz.test.js
   concert.test.js
   interactive.test.js
+  tribute-wall.test.js
+  discography.test.js
 ```
 
 Script-Reihenfolge in HTML:

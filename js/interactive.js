@@ -25,6 +25,7 @@
   const ACHIEVEMENTS = [
     { id: "candle", icon: "🕯️", title: "Lichtbringer", desc: "Zünde eine Kerze an der Tribute Wall an.", action: "candle", goal: 1 },
     { id: "candle10", icon: "🔥", title: "Flammenmeer", desc: "Zünde 10 Kerzen an.", action: "candle", goal: 10 },
+    { id: "messenger", icon: "✉️", title: "Botschafter", desc: "Hinterlasse eine Botschaft an der Tribute Wall.", action: "candleMessage", goal: 1 },
     { id: "oracle", icon: "🔮", title: "Orakel", desc: "Befrage die Kristallkugel 5-mal.", action: "quote", goal: 5 },
     { id: "bat", icon: "🦇", title: "Fledermausfänger", desc: "Fange eine fliegende Fledermaus.", action: "bat", goal: 1 },
     { id: "priest", icon: "⛪", title: "Hohepriester", desc: "Lege jede der 6 Gaben auf den Altar.", action: "offering", goal: 6, unique: true },
@@ -36,6 +37,8 @@
     { id: "riff", icon: "🎸", title: "Riff Master", desc: "Spiele 30 Power-Chords.", action: "riff", goal: 30 },
     { id: "recorder", icon: "📼", title: "Studio Session", desc: "Nimm ein eigenes Riff auf und spiel es ab.", action: "riffPlayback", goal: 1 },
     { id: "headbang", icon: "🤘", title: "Nackenbrecher", desc: "Bring das Headbang-o-Meter auf 100 %.", action: "headbang", goal: 1 },
+    { id: "vinyl", icon: "💿", title: "Plattensammler", desc: "Lege 5 verschiedene Alben auf den Plattenspieler.", action: "vinyl", goal: 5, unique: true },
+    { id: "liner", icon: "📖", title: "Liner Notes", desc: "Dreh 10 verschiedene Album-Cover um.", action: "albumFlip", goal: 10, unique: true },
     { id: "historian", icon: "📜", title: "Zeitreisender", desc: "Nutze jeden Filter der Timeline.", action: "timelineFilter", goal: 5, unique: true },
     { id: "konami", icon: "🎮", title: "Cheat Code", desc: "↑ ↑ ↓ ↓ ← → ← → B A", action: "konami", goal: 1, secret: true },
   ];
@@ -288,7 +291,7 @@
   // -------------------------
 
   function initTimeline() {
-    const chips = document.querySelectorAll(".filter-chip");
+    const chips = document.querySelectorAll("#bioSection .timeline-filter .filter-chip");
     const items = document.querySelectorAll(".timeline-v2-item");
     const timeline = document.querySelector(".timeline-v2");
 

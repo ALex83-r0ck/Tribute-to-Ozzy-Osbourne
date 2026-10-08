@@ -23,7 +23,8 @@ Diese Seite ist ein statisches Frontend-Projekt aus HTML, CSS und Vanilla JavaSc
 
 - Stilvolle, dunkle Hero-Section mit starkem Festival-Feeling
 - Timeline mit Jahren, Kategorien, Symbolen und metallic Look
-- Interaktive Tribute-Wall-Elemente mit personalisierten Kerzen
+- Globale Tribute Wall: Kerzen mit Namen und Botschaft, live für alle Besucher (Supabase, Einrichtung siehe [docs/tribute-wall.md](docs/tribute-wall.md)) – ohne Konfiguration lokal
+- Interaktive Diskografie: 21 Studioalben als Wendekarten, Suche nach Alben/Songs/Gitarristen, Favoriten und Plattenspieler
 - Interaktives Feuer im Hero: Glut folgt der Maus, Klick/Tap löst eine Feuer-Explosion aus
 - Timeline-Filter nach Kategorie mit glühender Fortschrittslinie beim Scrollen
 - Riff-Maschine (Web Audio): Power-Chords per Klick, Touch oder Tasten 1–7, eigene Riffs aufnehmen

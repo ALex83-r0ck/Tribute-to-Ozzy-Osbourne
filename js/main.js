@@ -188,74 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
     emit("bat", { total: batScore });
   }
 
-  // -------------------------
-  // TRIBUTE WALL
-  // -------------------------
-  (function initTributeWall() {
-    const btn = document.getElementById("lightCandle");
-    const nameInput = document.getElementById("candleName");
-    const countEl = document.getElementById("candleCount");
-    const container = document.getElementById("candleContainer");
-    if (!btn || !countEl || !container) return;
-
-    let candles = U.loadCandles();
-    countEl.textContent = String(candles.length);
-    candles.slice(-50).forEach((name) => addCandleDOM(name));
-
-    function lightCandle(e) {
-      const name = U.sanitizeName(nameInput?.value || "");
-      candles.push(name);
-      candles = U.saveCandles(candles);
-      countEl.textContent = String(candles.length);
-      addCandleDOM(name);
-      emit("candle", { total: candles.length });
-
-      if (e && !U.prefersReducedMotion()) {
-        const cx = e.clientX || btn.getBoundingClientRect().left + btn.offsetWidth / 2;
-        const cy = e.clientY || btn.getBoundingClientRect().top + btn.offsetHeight / 2;
-        for (let i = 0; i < 15; i++) {
-          const spark = document.createElement("div");
-          spark.className = "candle-spark";
-          spark.style.left = cx + "px";
-          spark.style.top = cy + "px";
-          const tx = (Math.random() - 0.5) * 100 + "px";
-          const ty = (Math.random() - 1) * 100 + "px";
-          spark.style.setProperty("--tx", tx);
-          spark.style.setProperty("--ty", ty);
-          document.body.appendChild(spark);
-          setTimeout(() => spark.remove(), 800);
-        }
-      }
-
-      if (nameInput) nameInput.value = "";
-      U.createToast(
-        name ? `🕯️ ${name} zündet eine Kerze für Ozzy an!` : "Eine Kerze für Ozzy brennt... 🕯️",
-        1600
-      );
-    }
-
-    btn.addEventListener("click", lightCandle);
-    nameInput?.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        lightCandle();
-      }
-    });
-
-    function addCandleDOM(name) {
-      const c = document.createElement("span");
-      c.className = "candle-emoji";
-      c.textContent = "🕯️";
-      if (name) c.title = name;
-      c.setAttribute("aria-hidden", "true");
-      container.appendChild(c);
-      // Keep DOM light: only last 50
-      while (container.children.length > 50) {
-        container.removeChild(container.firstChild);
-      }
-      container.scrollTop = container.scrollHeight;
-    }
-  })();
+  // Tribute Wall → js/tribute-wall.js
 
   // -------------------------
   // FLAME CANVAS

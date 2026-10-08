@@ -103,26 +103,6 @@ describe('main.js – Timeline & Gallery markup', () => {
   });
 });
 
-describe('main.js – Tribute Wall use case', () => {
-  test('T-14 Kerze mit Name speichern', () => {
-    loadDashboard();
-    const input = document.getElementById('candleName');
-    const btn = document.getElementById('lightCandle');
-    input.value = '  Randy  ';
-    btn.click();
-    expect(document.getElementById('candleCount').textContent).toBe('1');
-    const stored = JSON.parse(localStorage.getItem('ozzyCandleNames'));
-    expect(stored).toContain('Randy');
-    expect(document.querySelectorAll('.candle-emoji').length).toBe(1);
-  });
-
-  test('Kerzen werden beim Load wiederhergestellt', () => {
-    loadDashboard({ ozzyCandleNames: JSON.stringify(['A', 'B']) });
-    expect(document.getElementById('candleCount').textContent).toBe('2');
-    expect(document.querySelectorAll('.candle-emoji').length).toBe(2);
-  });
-});
-
 describe('main.js – navigation improvements', () => {
   test('mobile navigation toggle exists and toggles the nav state', () => {
     loadDashboard();
